@@ -5,7 +5,7 @@
 # Site
 title: Sogou.dh.fe
 subtitle: fe blogs
-description: Sogou daohang front-end blog post
+description: 🐳🐳 搜狗导航前端开发组 🐬🐬
 author: dhfe
 language: zh-cn
 timezone:
@@ -73,6 +73,7 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 
+# theme: landscape
 # theme: anodyne
 # theme: cactus-dark
 theme: cactus-light
