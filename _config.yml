@@ -6,7 +6,7 @@
 title: Sogou.dh.fe
 subtitle: fe blogs
 description: 🐳🐳 搜狗导航前端开发组 🐬🐬
-author: dhfe
+author: sgdhfe
 language: zh-cn
 timezone:
 
@@ -81,4 +81,7 @@ theme: cactus-light
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repository: git@github.com:sgdh-fe/sgdh-fe.github.io.git
+  branch: master
+
