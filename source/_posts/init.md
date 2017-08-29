@@ -17,7 +17,7 @@ $ hexo new "My New Post"
 
 more: [🍁🍁](https://hexo.io/zh-cn/docs/writing.html)
 
-### 起一个服务
+### 启动服务器 (:4000)
 
 ``` bash
 $ hexo server

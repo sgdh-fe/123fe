@@ -1,6 +1,6 @@
 ---
 title: 关于z-index的一些事
-date: 2017-08-28 15:44:50
+date: 2017-08-29 14:14:24
 author: Singsong
 tags: css
 ---
@@ -104,16 +104,17 @@ CSS如下：
 
 ### painted order in stacking context
 
-1. 形成**stacking context**元素的`background`和`borders` | the background and borders of the element forming the stacking context.
-2. 负数的stack层级的**child stacking context**(负数值越大越前) | the child stacking contexts with negative stack levels (most negative first).
-3. 文档流中非inline级、非positioned子节点 | the in-flow, non-inline-level, non-positioned descendants.
-4. 非positioned浮动子节点 | the non-positioned floats.
-5. 文档流中非positioned的inline级子节点（包括inline tables和inline blocks） | the in-flow, inline-level, non-positioned descendants, including inline tables and inline blocks.
-6. stack层级为0的**child stacking context**和positoned子节点 | the child stacking contexts with stack level 0 and the positioned descendants with stack level 0.
-7. stack层级为正整数的**child stacking context** | the child stacking contexts with positive stack levels (least positive first).
-### Example
-<iframe height='265' scrolling='no' title='stackLevel' src='//codepen.io/zhansingsong/embed/WEMrNK/?height=265&theme-id=dark&default-tab=css,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/zhansingsong/pen/WEMrNK/'>stackLevel</a> by zhansingsong (<a href='https://codepen.io/zhansingsong'>@zhansingsong</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
+  1. 形成**stacking context**元素的`background`和`borders` | the background and borders of the element forming the stacking context.
+  2. 负数的stack层级的**child stacking context**(负数值越大越前) | the child stacking contexts with negative stack levels (most negative first).
+  3. 文档流中非inline级、非positioned子节点 | the in-flow, non-inline-level, non-positioned descendants.
+  4. 非positioned浮动子节点 | the non-positioned floats.
+  5. 文档流中非positioned的inline级子节点（包括inline tables和inline blocks） | the in-flow, inline-level, non-positioned descendants, including inline tables and inline blocks.
+  6. stack层级为0的**child stacking context**和positoned子节点 | the child stacking contexts with stack level 0 and the positioned descendants with stack level 0.
+  7. stack层级为正整数的**child stacking context** | the child stacking contexts with positive stack levels (least positive first).
+  ### Example
+  <iframe height='265' scrolling='no' title='stackLevel' src='//codepen.io/zhansingsong/embed/WEMrNK/?height=265&theme-id=dark&default-tab=css,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/zhansingsong/pen/WEMrNK/'>stackLevel</a> by zhansingsong (<a href='https://codepen.io/zhansingsong'>@zhansingsong</a>) on <a href='https://codepen.io'>CodePen</a>.
+  </iframe>
+
 
 ## 参考文章：
 - [What No One Told You About Z-Index](https://philipwalton.com/articles/what-no-one-told-you-about-z-index/)
@@ -121,4 +122,10 @@ CSS如下：
 - [Specifying the stack level: the 'z-index' property](https://www.w3.org/TR/CSS2/visuren.html#propdef-z-index)
 
 
-   
+</br>
+
+---
+
+> 声明:本资料仅供学习交流，严禁使用于任何商业用途! 如需转载，转载请注明出处。
+
+---
