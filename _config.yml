@@ -73,8 +73,7 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 
-# theme: landscape
-# theme: anodyne
+
 # theme: cactus-dark
 theme: cactus-light
 
