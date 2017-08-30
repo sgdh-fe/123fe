@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="一般z-index失效基本上都是不了解z-index是如何工作导致的（这没有看这篇blog之前，至少我也是这样的）。它不复杂，但如果不花时间去查看z-index文档，可能会不了解一些关键技术点。 不信？能否解答如下问题，作为检验你是否真正了解z-index： 问题：HTML结构如下： 123456789&amp;lt;div&amp;gt;  &amp;lt;span class=&quot;red&quot;&amp;gt;Red&amp;lt;/">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于z-index的一些事">
+<meta property="og:url" content="http://123fe.com/2017/08/29/css-zIndex/index.html">
+<meta property="og:site_name" content="Sogou.dh.fe">
+<meta property="og:description" content="一般z-index失效基本上都是不了解z-index是如何工作导致的（这没有看这篇blog之前，至少我也是这样的）。它不复杂，但如果不花时间去查看z-index文档，可能会不了解一些关键技术点。 不信？能否解答如下问题，作为检验你是否真正了解z-index： 问题：HTML结构如下： 123456789&amp;lt;div&amp;gt;  &amp;lt;span class=&quot;red&quot;&amp;gt;Red&amp;lt;/">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-08-30T08:15:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于z-index的一些事">
+<meta name="twitter:description" content="一般z-index失效基本上都是不了解z-index是如何工作导致的（这没有看这篇blog之前，至少我也是这样的）。它不复杂，但如果不花时间去查看z-index文档，可能会不了解一些关键技术点。 不信？能否解答如下问题，作为检验你是否真正了解z-index： 问题：HTML结构如下： 123456789&amp;lt;div&amp;gt;  &amp;lt;span class=&quot;red&quot;&amp;gt;Red&amp;lt;/">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>关于z-index的一些事</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/gabithume">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2017/08/28/init/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://123fe.com/2017/08/29/css-zIndex/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://123fe.com/2017/08/29/css-zIndex/&text=关于z-index的一些事"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://123fe.com/2017/08/29/css-zIndex/&title=关于z-index的一些事"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://123fe.com/2017/08/29/css-zIndex/&is_video=false&description=关于z-index的一些事"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=关于z-index的一些事&body=Check out this article: http://123fe.com/2017/08/29/css-zIndex/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://123fe.com/2017/08/29/css-zIndex/&title=关于z-index的一些事"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://123fe.com/2017/08/29/css-zIndex/&title=关于z-index的一些事"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://123fe.com/2017/08/29/css-zIndex/&title=关于z-index的一些事"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://123fe.com/2017/08/29/css-zIndex/&title=关于z-index的一些事"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://123fe.com/2017/08/29/css-zIndex/&name=关于z-index的一些事&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题："><span class="toc-number">1.</span> <span class="toc-text">问题：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如何将“红色块”放置“绿色块”之后，需要满足如下条件："><span class="toc-number">1.1.</span> <span class="toc-text">如何将“红色块”放置“绿色块”之后，需要满足如下条件：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#codepen："><span class="toc-number">1.2.</span> <span class="toc-text">codepen：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-number">2.</span> <span class="toc-text">解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#z-index-specification"><span class="toc-number">2.1.</span> <span class="toc-text">z-index specification</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stacking-order"><span class="toc-number">2.2.</span> <span class="toc-text">stacking order</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stacking-context"><span class="toc-number">2.3.</span> <span class="toc-text">stacking context</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#painted-order-in-stacking-context"><span class="toc-number">2.4.</span> <span class="toc-text">painted order in stacking context</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example"><span class="toc-number">2.5.</span> <span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章："><span class="toc-number">3.</span> <span class="toc-text">参考文章：</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        关于z-index的一些事
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Singsong</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-08-29T06:14:24.000Z" itemprop="datePublished">2017-08-29</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/css/">css</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>一般<strong>z-index</strong>失效基本上都是不了解<strong>z-index</strong>是如何工作导致的（这没有看这篇<a href="https://philipwalton.com/articles/what-no-one-told-you-about-z-index/" target="_blank" rel="external">blog</a>之前，至少我也是这样的）。它不复杂，但如果不花时间去查看z-index文档，可能会不了解一些关键技术点。</p>
+<p>不信？能否解答如下问题，作为检验你是否真正了解<strong>z-index</strong>：</p>
+<h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h2><p>HTML结构如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"red"</span>&gt;</span>Red<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"green"</span>&gt;</span>Green<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"blue"</span>&gt;</span>Blue<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>CSS如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.red</span>, <span class="selector-class">.green</span>, <span class="selector-class">.blue</span> &#123;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.red</span> &#123;</div><div class="line">  <span class="attribute">background</span>: red;</div><div class="line">  <span class="attribute">z-index</span>: <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.green</span> &#123;</div><div class="line">  <span class="attribute">background</span>: green;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.blue</span> &#123;</div><div class="line">  <span class="attribute">background</span>: blue;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="如何将“红色块”放置“绿色块”之后，需要满足如下条件："><a href="#如何将“红色块”放置“绿色块”之后，需要满足如下条件：" class="headerlink" title="如何将“红色块”放置“绿色块”之后，需要满足如下条件："></a>如何将“红色块”放置“绿色块”之后，需要满足如下条件：</h3><ul>
+<li>不能修改html结构</li>
+<li>不能修改任何元素的z-index属性</li>
+<li>不能修改任何元素的position属性</li>
+</ul>
+<h3 id="codepen："><a href="#codepen：" class="headerlink" title="codepen："></a>codepen：</h3><iframe height="320" scrolling="no" title="JyNRxj" src="//codepen.io/zhansingsong/embed/JyNRxj/?height=330&theme-id=dark&default-tab=css,result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/zhansingsong/pen/JyNRxj/" target="_blank" rel="external">JyNRxj</a> by zhansingsong (<a href="https://codepen.io/zhansingsong" target="_blank" rel="external">@zhansingsong</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>给第一个<code>div</code>（即“红色块”的父节点）添加如下样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:first-child</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: .<span class="number">99</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或许你会好奇为什么这个<code>opacity</code>会让“红色块”置于“绿色块”之后（当时我看这个答案也是一脸懵逼了😑）。希望下文能解惑你的好奇。</p>
+<h3 id="z-index-specification"><a href="#z-index-specification" class="headerlink" title="z-index specification"></a>z-index <a href="https://www.w3.org/TR/CSS2/visuren.html#propdef-z-index" target="_blank" rel="external">specification</a></h3><p><strong>z-index</strong>只对<strong>positioned元素</strong>（即该元素的<code>position</code>不等于默认<code>static</code>外的值）起作用。对应<code>positoned box</code>（positioned元素)，<strong>z-index</strong>主要：</p>
+<ol>
+<li>指定该元素在当前<strong>stacking context</strong>的stack层级</li>
+<li>该元素是否创建新的<strong>stacking context</strong></li>
+</ol>
+<p><strong>z-index</strong>可以取如下值：</p>
+<ul>
+<li><p><strong>(integer)整数</strong>：表示当前元素在当前的<strong>stacking context</strong>的stack层级，并会让当前元素创建一个新的<strong>stacking context</strong></p>
+</li>
+<li><p><strong>auto</strong>: 表示当前元素在当前的<strong>stacking context</strong>的stack层级为0，如果该元素不是<strong>root</strong>元素，就不会创建新的<strong>stacking context</strong></p>
+</li>
+</ul>
+<h3 id="stacking-order"><a href="#stacking-order" class="headerlink" title="stacking order"></a>stacking order</h3><p><strong>stacking context</strong>可以相互嵌套，每个元素（box）都属于一个<strong>stacking context</strong>（自包含），每个<code>positoned box</code>在一个<strong>stacking context</strong>中都有一个整数的stack层级，它表示在同一个<strong>stacking context</strong>中的z轴方向stack层级位置。stack层级越大在<strong>stacking context</strong>中的位置越靠前。如果stack层级相同，按其在DOM文档中出现顺序绘制。</p>
+<h3 id="stacking-context"><a href="#stacking-context" class="headerlink" title="stacking context"></a>stacking context</h3><blockquote>
+<p><strong>The stacking context</strong> is a three-dimensional conceptualization of HTML elements along an imaginary z-axis relative to the user who is assumed to be facing the viewport or the webpage. HTML elements occupy this space in priority order based on element attributes.——MDN</p>
+</blockquote>
+<p><strong>stacking context</strong>的形成条件：</p>
+<ul>
+<li>文档根节点（HTML）| Root element of document (HTML).</li>
+<li>元素的position属性值为<code>absolute</code>或<code>relative</code>，并且z-index属性为除<code>auto</code>外的值 | Element with a position value “absolute” or “relative” and z-index value other than “auto”.</li>
+<li>元素的position属性值为<code>fixed</code>或<code>sticky</code> | Element with a position value “fixed” or “sticky” (sticky for all mobile browsers, but not older desktop).</li>
+<li>元素是flexbox容器的子元素，带有z-index属性，且值为除<code>auto</code>外的值 | Element that is a child of a flex (flexbox) container, with z-index value other than “auto”.</li>
+<li>元素的opcity属性值小于1 | Element with a opacity value less than 1 (See the specification for opacity).</li>
+<li>元素的<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode" target="_blank" rel="external">mix-blend-mode</a>属性值为除<code>normal</code>外的值 | Element with a mix-blend-mode value other than “normal”.</li>
+<li>元素的如下属性值为除<code>none</code>外的值 | Element with any of the following properties with value other than “none”:<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform" target="_blank" rel="external">transform</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter" target="_blank" rel="external">filter</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/perspective" target="_blank" rel="external">perspective</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/clip-path" target="_blank" rel="external">clip-path</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/mask" target="_blank" rel="external">mask</a> / <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/mask-image" target="_blank" rel="external">mask-image</a> / <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/mask-border" target="_blank" rel="external">mask-border</a></li>
+</ul>
+</li>
+<li>元素的isolation属性值为<code>isolate</code> | Element with a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/isolation" target="_blank" rel="external">isolation</a> value “isolate”.</li>
+<li>元素的-webkit-overflow-scrolling属性值为<code>touch</code> | Element with a -webkit-overflow-scrolling value “touch”.</li>
+<li>元素带有<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/will-change" target="_blank" rel="external">will-change</a>属性 | Element with a will-change value specifying any property that would create a stacking context on non-initial value (see this post).</li>
+</ul>
+<h3 id="painted-order-in-stacking-context"><a href="#painted-order-in-stacking-context" class="headerlink" title="painted order in stacking context"></a>painted order in stacking context</h3><ol>
+<li>形成<strong>stacking context</strong>元素的<code>background</code>和<code>borders</code> | the background and borders of the element forming the stacking context.</li>
+<li>负数的stack层级的<strong>child stacking context</strong>(负数值越大越前) | the child stacking contexts with negative stack levels (most negative first).</li>
+<li>文档流中非inline级、非positioned子节点 | the in-flow, non-inline-level, non-positioned descendants.</li>
+<li>非positioned浮动子节点 | the non-positioned floats.</li>
+<li>文档流中非positioned的inline级子节点（包括inline tables和inline blocks） | the in-flow, inline-level, non-positioned descendants, including inline tables and inline blocks.</li>
+<li>stack层级为0的<strong>child stacking context</strong>和positoned子节点 | the child stacking contexts with stack level 0 and the positioned descendants with stack level 0.</li>
+<li>stack层级为正整数的<strong>child stacking context</strong> | the child stacking contexts with positive stack levels (least positive first).<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><iframe height="265" scrolling="no" title="stackLevel" src="//codepen.io/zhansingsong/embed/WEMrNK/?height=265&theme-id=dark&default-tab=css,result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/zhansingsong/pen/WEMrNK/" target="_blank" rel="external">stackLevel</a> by zhansingsong (<a href="https://codepen.io/zhansingsong" target="_blank" rel="external">@zhansingsong</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+
+</li>
+</ol>
+<h2 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h2><ul>
+<li><a href="https://philipwalton.com/articles/what-no-one-told-you-about-z-index/" target="_blank" rel="external">What No One Told You About Z-Index</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context" target="_blank" rel="external">The stacking context</a></li>
+<li><a href="https://www.w3.org/TR/CSS2/visuren.html#propdef-z-index" target="_blank" rel="external">Specifying the stack level: the ‘z-index’ property</a></li>
+</ul>
+<p><br></p>
+<hr>
+<blockquote>
+<p>声明:本资料仅供学习交流，严禁使用于任何商业用途! 如需转载，转载请注明出处。</p>
+</blockquote>
+<hr>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/gabithume">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题："><span class="toc-number">1.</span> <span class="toc-text">问题：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如何将“红色块”放置“绿色块”之后，需要满足如下条件："><span class="toc-number">1.1.</span> <span class="toc-text">如何将“红色块”放置“绿色块”之后，需要满足如下条件：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#codepen："><span class="toc-number">1.2.</span> <span class="toc-text">codepen：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-number">2.</span> <span class="toc-text">解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#z-index-specification"><span class="toc-number">2.1.</span> <span class="toc-text">z-index specification</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stacking-order"><span class="toc-number">2.2.</span> <span class="toc-text">stacking order</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stacking-context"><span class="toc-number">2.3.</span> <span class="toc-text">stacking context</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#painted-order-in-stacking-context"><span class="toc-number">2.4.</span> <span class="toc-text">painted order in stacking context</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example"><span class="toc-number">2.5.</span> <span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章："><span class="toc-number">3.</span> <span class="toc-text">参考文章：</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://123fe.com/2017/08/29/css-zIndex/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://123fe.com/2017/08/29/css-zIndex/&text=关于z-index的一些事"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://123fe.com/2017/08/29/css-zIndex/&title=关于z-index的一些事"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://123fe.com/2017/08/29/css-zIndex/&is_video=false&description=关于z-index的一些事"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=关于z-index的一些事&body=Check out this article: http://123fe.com/2017/08/29/css-zIndex/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://123fe.com/2017/08/29/css-zIndex/&title=关于z-index的一些事"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://123fe.com/2017/08/29/css-zIndex/&title=关于z-index的一些事"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://123fe.com/2017/08/29/css-zIndex/&title=关于z-index的一些事"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://123fe.com/2017/08/29/css-zIndex/&title=关于z-index的一些事"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://123fe.com/2017/08/29/css-zIndex/&name=关于z-index的一些事&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 sgdhfe
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/gabithume">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
