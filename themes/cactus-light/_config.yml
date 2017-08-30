@@ -1,11 +1,10 @@
 nav:
-  Home: /
-  About: /about/
-  Writing: /archives/
-  Projects: http://github.com/gabithume
-
-projects_url: http://github.com/gabithume
-
+    Home: /
+    # Writing: /archives/
+    Github: https://github.com/sgdh-fe
+    Projects: http://git.dh.sogou-inc.com/groups/fe
+    About: /about/
+    
 customize:
     gravatar:
         email:
@@ -27,10 +26,10 @@ customize:
         url: /images/apple-touch-icon.png
         gravator: false
     social_links:
-        github: http://github.com/gabithume/cactus-light
-        twitter: /
-        facebook: /
-        linkedin: /
+        github: https://github.com/sgdh-fe
+        # twitter: /
+        # facebook: /
+        # linkedin: /
     show_all_posts: false
     post_count: 5
     highlight: monokai
