@@ -6,6 +6,8 @@
     "version": "3.3.8"
   },
   "dependencies": {
+    "debug": "^3.1.0",
+    "fresh": "^0.5.2",
     "hexo": "^3.2.0",
     "hexo-deployer-git": "^0.3.1",
     "hexo-generator-archive": "^0.1.4",
@@ -19,9 +21,15 @@
     "hexo-renderer-marked": "^0.3.0",
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0",
+    "hoek": "^5.0.4",
+    "lodash": "^4.17.10",
+    "marked": "^0.5.0",
     "mime": "^2.3.1",
+    "moment": "^2.22.2",
+    "no-case": "^2.3.2",
     "node-mime": "^1.0.0",
     "sshpk": "^1.14.2",
+    "tough-cookie": "^2.4.3",
     "uglify-js": "^3.4.7"
   }
 }
