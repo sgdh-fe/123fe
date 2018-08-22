@@ -74,8 +74,9 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 
 
-# theme: cactus-dark
-theme: cactus-light
+# 更改主题时 需更新db.json文件
+theme: cactus-dark
+# theme: cactus-light
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
