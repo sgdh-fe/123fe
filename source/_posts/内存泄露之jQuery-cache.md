@@ -1,12 +1,13 @@
 ---
 title: 内存泄露之jQuery.cache
 date: 2017-11-13 16:51:49
+category: memory
 tags: [$.cache,'jquery', 优化, 内存泄露]
 author: singsong
 ---
 
-![jquery.jpg](./jquery.jpg)
-
+![jquery.jpg](title/jquery.jpg)
+<!-- More -->
 jQuery没有将事件和数据绑定在DOM节点上，而是将这些信息储存在`$.cache`对象上。jQuery对象每次新增事件或数据时，都在`$.cache`新增一条数据。而`$.cache`会持有对应DOM节点的引用，如果没有正确删除DOM节点，会导致DOM节点不能被回收。即DOM节点已从DOM中删除，但依然还存在内存中，没有被CG回收。正确的删除方式是通过jQuery的删除方法来移除：`remove()`,`empty()`,`html()`;
 
 #### 上述提到不正确的删除方式，会导致DOM节点不能被回收，而导致内存泄露问题。如使用JavaScript内置方法（如removeChild，innerHTML）来删除jQuery绑定了事件或数据的节点。

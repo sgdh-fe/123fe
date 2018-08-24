@@ -1,6 +1,7 @@
 ---
 title: 关于z-index的一些事
 date: 2017-08-29 14:14:24
+category: css
 author: Singsong
 tags: css
 ---
@@ -8,6 +9,8 @@ tags: css
 一般**z-index**失效基本上都是不了解**z-index**是如何工作导致的（这没有看这篇[blog](https://philipwalton.com/articles/what-no-one-told-you-about-z-index/)之前，至少我也是这样的）。它不复杂，但如果不花时间去查看z-index文档，可能会不了解一些关键技术点。
 
 不信？能否解答如下问题，作为检验你是否真正了解**z-index**：
+
+<!-- More -->
 
 ## 问题：
 
@@ -24,6 +27,7 @@ HTML结构如下：
   <span class="blue">Blue</span>
 </div>
 ```
+
 CSS如下：
 
 ```css
@@ -41,6 +45,7 @@ CSS如下：
   background: blue;
 }
 ```
+
 
 ### 如何将“红色块”放置“绿色块”之后，需要满足如下条件：
 

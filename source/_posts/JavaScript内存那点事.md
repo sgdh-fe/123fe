@@ -16,8 +16,9 @@ C、C++语言需要手动管理内存的分配与释放（常用方法：malloc(
 
 ![lifecycle](./life-cycle.png)
 
-虽然内存自动进行分配、释放，但并不意味着开发者不需要关注内存管理。因为一些不好的编码会导致[内存泄露](https://en.wikipedia.org/wiki/Memory_leak#Reference_counting_and_cyclic_references)，即应用程序不再需要的内存没有被释放掉。因此了解内存管理是很重要的
+<!-- More -->
 
+虽然内存自动进行分配、释放，但并不意味着开发者不需要关注内存管理。因为一些不好的编码会导致[内存泄露](https://en.wikipedia.org/wiki/Memory_leak#Reference_counting_and_cyclic_references)，即应用程序不再需要的内存没有被释放掉。因此了解内存管理是很重要的
 
 ## Javascript中的内存分配
 

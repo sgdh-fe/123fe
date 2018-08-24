@@ -1,6 +1,7 @@
 ---
 title: 关于external-style-sheets你不知道的事
 date: 2017-09-19 19:02:53
+category: js
 tags: [style-sheet, 优化]
 author: singsong
 ---
@@ -8,6 +9,8 @@ author: singsong
 在讲解之前，先看一个问题。如下图所示，外部样式表是否阻塞HTML解析（先不要看答案，可以自己思考和实验一下）：
 
 ![default](./style-sheet-default.png)
+<!-- More -->
+
 ***
 
 通过**DevTool->network**:

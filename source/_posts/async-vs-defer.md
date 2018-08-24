@@ -1,6 +1,7 @@
 ---
 title: async-vs-defer
 date: 2017-09-19 19:16:04
+category: 异步
 tags: [defer, async, 优化]
 author: singsong
 ---
@@ -12,10 +13,9 @@ author: singsong
 
 ![legend](./legend.svg)
 
-
+<!-- More -->
 ## script
 script标签不带**async**或**defer**特性时。当浏览器解析HTML遇到该script标签时，会暂停解析工作。然后会发起脚本请求，在脚本下载完便开始执行，只有在脚本执行完之后才恢复HTML解析。
-
 
 ![script](./script.svg)
 

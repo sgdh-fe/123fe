@@ -1,11 +1,14 @@
 ---
 title: requestAnimationFrame
 date: 2017-11-23 15:38:33
+category: 动画
 tags: [requestAnimationFrame, 动画]
 author: singsong
 ---
 
-![arf](./arf.png)
+![arf](requestAnimationFrame/arf.png)
+
+<!-- More -->
 
 ## setTimeout
 
@@ -14,7 +17,6 @@ author: singsong
 **定义**：setTimeout()方法用于在delay毫秒数之后调用函数或计算表达式。
 
 <u>setTimeout()指定的时间间隔表示何时将定时器的代码添加到任务队列中，而不是何时执行代码。</u>
-
 
 ## setInterval
 

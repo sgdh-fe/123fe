@@ -7,7 +7,7 @@ title: Sogou.dh.fe
 subtitle: fe blogs
 description: 🐳🐳 搜狗导航前端开发组 🐬🐬
 author: sgdhfe
-language: zh-cn
+language: zh-Hans
 timezone:
 
 # URL
@@ -73,10 +73,31 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 
+# yilia theme add settings
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true
 
-# 更改主题时 需更新db.json文件
-theme: cactus-dark
+# 更改主题之前先删除db.json文件
+# theme: cactus-dark
 # theme: cactus-light
+theme: next
+# theme: yilia
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

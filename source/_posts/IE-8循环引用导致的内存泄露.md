@@ -1,11 +1,14 @@
 ---
 title: IE<8循环引用导致的内存泄露
 date: 2017-11-10 18:05:58
+category: memory
 tags: [IE6, 内存泄露, 优化]
 author: singsong
 ---
 
 ![leakage](./leakage.png)
+
+<!-- More -->
 
 在IE<8版本中，JScript垃圾回收器仅管理JScript对象生命周期而不会管理DOM对象的(即DOM对象有自己的垃圾回收器)。因此JScript回收器不会解除掉DOM对象与Jscript对象之间的相互引用，这从而导致内存泄露。
 在IE6中，循环引用只在IE浏览器程序退出时才会被解除，而在IE7中，离开当前页面时，才会解除页面中的循环引用。IE8修复该问题，JScript垃圾回收器会将引用的DOM对象视为JScript对象，从而避免循环引用不能被解除的问题（_注：这里循环引用解除是指浏览器自动解除循环引用_）。

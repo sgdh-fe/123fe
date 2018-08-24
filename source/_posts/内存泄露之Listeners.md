@@ -1,6 +1,7 @@
 ---
 title: 内存泄露之Listeners
 date: 2017-11-01 12:59:04
+category: memory
 tags: [listeners, 优化, 内存泄露]
 author: singsong
 ---
@@ -10,7 +11,7 @@ author: singsong
 > 事件代理 (事件委托) 利用了事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。
 
 因此如何控制事件绑定数量就很重要了，通常都是通过事件代理（事件委托）来解决类似的问题。不过有时借助了事件代理（事件委托），而页面的事件绑定数量也在不断地增加？这可能是某些“不好”代码导致的，那如何定位增加的原因就显得很关键了。这里可以通过chrome的**DevTools**来辅助诊断。
-
+<!-- More -->
 ## DevTools
 
 ### 如何判断页面的事件绑定数量在增加：
@@ -18,12 +19,11 @@ author: singsong
  2. 进行可能引起事件绑定数量增加的操作。
  3. 单击【stop】按钮，停止记录。
 
-![performance](listeners_performance.png)
-
+![performance](./listeners_performance.png)
 ### 如何定位事件绑定数量的增加：
 1. 打开DevTools->Elements，查看页面中绑定事件的元素。
 
-![listeners](listeners_event.png)
+![listeners](./listeners_event.png)
 
 
 ## 实战

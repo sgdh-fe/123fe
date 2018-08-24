@@ -1,19 +1,90 @@
 <!DOCTYPE html>
-<html lang=zh>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="在讲解之前，先看一个问题。如下图所示，外部样式表是否阻塞HTML解析（先不要看答案，可以自己思考和实验一下）：   通过DevTool-&amp;gt;network: 如上图所示，indexcss.css并没有阻塞HTML解析，因为DOMContentLoaded时间线在indexcss.css之后。但如果在indexcss.css之后添加script标签（不能为空），结果会一样？ 通过DevTool-">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-192x192.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="优化,style-sheet," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在讲解之前，先看一个问题。如下图所示，外部样式表是否阻塞HTML解析（先不要看答案，可以自己思考和实验一下）：">
 <meta name="keywords" content="优化,style-sheet">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于external-style-sheets你不知道的事">
 <meta property="og:url" content="http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/index.html">
 <meta property="og:site_name" content="Sogou.dh.fe">
-<meta property="og:description" content="在讲解之前，先看一个问题。如下图所示，外部样式表是否阻塞HTML解析（先不要看答案，可以自己思考和实验一下）：   通过DevTool-&amp;gt;network: 如上图所示，indexcss.css并没有阻塞HTML解析，因为DOMContentLoaded时间线在indexcss.css之后。但如果在indexcss.css之后添加script标签（不能为空），结果会一样？ 通过DevTool-">
-<meta property="og:locale" content="zh-cn">
+<meta property="og:description" content="在讲解之前，先看一个问题。如下图所示，外部样式表是否阻塞HTML解析（先不要看答案，可以自己思考和实验一下）：">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/style-sheet-default.png">
 <meta property="og:image" content="http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/default-network.png">
 <meta property="og:image" content="http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/script.png">
@@ -23,144 +94,291 @@
 <meta property="og:image" content="http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/async-network1.png">
 <meta property="og:image" content="http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/media.png">
 <meta property="og:image" content="http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/media-network.png">
-<meta property="og:updated_time" content="2018-08-22T08:06:45.000Z">
+<meta property="og:updated_time" content="2018-08-23T08:45:05.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于external-style-sheets你不知道的事">
-<meta name="twitter:description" content="在讲解之前，先看一个问题。如下图所示，外部样式表是否阻塞HTML解析（先不要看答案，可以自己思考和实验一下）：   通过DevTool-&amp;gt;network: 如上图所示，indexcss.css并没有阻塞HTML解析，因为DOMContentLoaded时间线在indexcss.css之后。但如果在indexcss.css之后添加script标签（不能为空），结果会一样？ 通过DevTool-">
+<meta name="twitter:description" content="在讲解之前，先看一个问题。如下图所示，外部样式表是否阻塞HTML解析（先不要看答案，可以自己思考和实验一下）：">
 <meta name="twitter:image" content="http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/style-sheet-default.png">
-    
-    
-        
-          
-              <link rel="shortcut icon" href="/images/favicon.ico">
-          
-        
-        
-          
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
-        
-        
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
-        
-    
-    <!-- title -->
-    <title>关于external-style-sheets你不知道的事</title>
-    <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
-    <!-- rss -->
-    
-    
-</head>
-
-<body>
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="https://github.com/sgdh-fe">Github</a></li>
-         
-          <li><a href="http://git.dh.sogou-inc.com/groups/fe">Projects</a></li>
-         
-          <li><a href="/about/">About</a></li>
-        
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" href="/2017/09/19/async-vs-defer/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" href="/2017/08/29/css-zIndex/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/&text=关于external-style-sheets你不知道的事"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/&title=关于external-style-sheets你不知道的事"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/&is_video=false&description=关于external-style-sheets你不知道的事"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=关于external-style-sheets你不知道的事&body=Check out this article: http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/&title=关于external-style-sheets你不知道的事"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/&title=关于external-style-sheets你不知道的事"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/&title=关于external-style-sheets你不知道的事"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/&title=关于external-style-sheets你不知道的事"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/&name=关于external-style-sheets你不知道的事&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#参考相关资料，找到如下描述："><span class="toc-number">1.</span> <span class="toc-text">参考相关资料，找到如下描述：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结："><span class="toc-number"></span> <span class="toc-text">总结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章："><span class="toc-number"></span> <span class="toc-text">参考文章：</span></a>
-    </div>
-  </span>
-</div>
-
-    
-    <div class="content index width mx-auto px2 my4">
-        
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle" itemprop="name headline">
-        关于external-style-sheets你不知道的事
-    </h1>
 
 
 
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">singsong</span>
-      </span>
-      
-    <div class="postdate">
-        <time datetime="2017-09-19T11:02:53.000Z" itemprop="datePublished">2017-09-19</time>
-    </div>
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
 
 
-      
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/style-sheet/">style-sheet</a>, <a class="tag-link" href="/tags/优化/">优化</a>
-    </div>
+
+  <link rel="canonical" href="http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/"/>
 
 
-    </div>
-  </header>
+
+
+
+  <title>关于external-style-sheets你不知道的事 | Sogou.dh.fe</title>
   
 
-  <div class="content" itemprop="articleBody">
-    <p>在讲解之前，先看一个问题。如下图所示，外部样式表是否阻塞HTML解析（先不要看答案，可以自己思考和实验一下）：</p>
-<p><img src="./style-sheet-default.png" alt="default"></p>
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sogou.dh.fe</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">fe blogs</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-github">
+          <a href="https://github.com/sgdh-fe" rel="section">
+            
+            Github
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-projects">
+          <a href="http://git.dh.sogou-inc.com/groups/fe" rel="section">
+            
+            Projects
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sgdhfe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sogou.dh.fe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">关于external-style-sheets你不知道的事</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-19T19:02:53+08:00">
+                2017-09-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在讲解之前，先看一个问题。如下图所示，外部样式表是否阻塞HTML解析（先不要看答案，可以自己思考和实验一下）：</p>
+<p><img src="/2017/09/19/关于external-style-sheets你不知道的事/style-sheet-default.png" alt="default"><br><a id="more"></a></p>
 <hr>
 <p>通过<strong>DevTool-&gt;network</strong>:</p>
-<p><img src="./default-network.png" alt="default"><br>如上图所示，<strong>indexcss.css</strong>并没有阻塞HTML解析，因为DOMContentLoaded时间线在<strong>indexcss.css</strong>之后。但如果在<br><strong>indexcss.css</strong>之后添加<strong>script标签（不能为空）</strong>，结果会一样？</p>
-<p><img src="./script.png" alt="script"><br>通过<strong>DevTool-&gt;network</strong>:</p>
-<p><img src="./script-network.png" alt="script"></p>
+<p><img src="/2017/09/19/关于external-style-sheets你不知道的事/default-network.png" alt="default"><br>如上图所示，<strong>indexcss.css</strong>并没有阻塞HTML解析，因为DOMContentLoaded时间线在<strong>indexcss.css</strong>之后。但如果在<br><strong>indexcss.css</strong>之后添加<strong>script标签（不能为空）</strong>，结果会一样？</p>
+<p><img src="/2017/09/19/关于external-style-sheets你不知道的事/script.png" alt="script"><br>通过<strong>DevTool-&gt;network</strong>:</p>
+<p><img src="/2017/09/19/关于external-style-sheets你不知道的事/script-network.png" alt="script"></p>
 <p>如上图所示，在<strong>indexcss.css</strong>之后添加<strong>script标签</strong>(不能为空)后，此时DOMContentLoaded时间线位于<strong>indexcss.css</strong>之后。说明这里<strong>indexcss.css</strong>是阻塞HTML解析的。</p>
 <h4 id="参考相关资料，找到如下描述："><a href="#参考相关资料，找到如下描述：" class="headerlink" title="参考相关资料，找到如下描述："></a>参考相关资料，找到如下描述：</h4><blockquote>
-<p>Style sheets on the other hand have a different model. Conceptually it seems that since style sheets don’t change the DOM tree, there is no reason to wait for them and stop the document parsing. There is an issue, though, of scripts asking for style information during the document parsing stage. If the style is not loaded and parsed yet, the script will get wrong answers and apparently this caused lots of problems. It seems to be an edge case but is quite common. Firefox blocks all scripts when there is a style sheet that is still being loaded and parsed. WebKit blocks scripts only when they try to access certain style properties that may be affected by unloaded style sheets.—-<a href="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/#The_order_of_processing_scripts_and_style_sheets" target="_blank" rel="external">Tali Garsiel</a> </p>
+<p>Style sheets on the other hand have a different model. Conceptually it seems that since style sheets don’t change the DOM tree, there is no reason to wait for them and stop the document parsing. There is an issue, though, of scripts asking for style information during the document parsing stage. If the style is not loaded and parsed yet, the script will get wrong answers and apparently this caused lots of problems. It seems to be an edge case but is quite common. Firefox blocks all scripts when there is a style sheet that is still being loaded and parsed. WebKit blocks scripts only when they try to access certain style properties that may be affected by unloaded style sheets.—-<a href="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/#The_order_of_processing_scripts_and_style_sheets" target="_blank" rel="noopener">Tali Garsiel</a> </p>
 </blockquote>
 <p>大概意思是：<u>style-sheets不会修改DOM树，没有理由为了解析style-sheets而阻塞文档解析（即style-sheets不会阻塞文档解析）。但如果在解析文档过程中有脚本需要访问样式信息时，为了保证访问样式信息的正确性。Firefox会阻塞所有脚本直到style-sheets下载解析完为止。而WebKit只在脚本访问的样式属性没有被加载解析时，才会阻塞脚本</u>。</p>
-<p><img src="./style-sheet.png" alt="relationship"></p>
+<p><img src="/2017/09/19/关于external-style-sheets你不知道的事/style-sheet.png" alt="relationship"></p>
 <p>也即style-sheet不会直接阻塞文档解析，它只阻塞script的解析执行，才导致style-sheet间接阻塞文档解析。如果将script设置为非阻塞式的呢？可以通过为script标签设置<strong>aysnc</strong>特性来实现。为啥不用<strong>defer</strong>?</p>
 <blockquote>
 <p>Both async and defer scripts begin to download immediately without pausing the parser and both support an optional onload handler to address the common need to perform initialization which depends on the script. The difference between async and defer centers around when the script is executed. Each async script executes at the first opportunity after it is finished downloading and before the window’s load event. This means it’s possible (and likely) that async scripts are not executed in the order in which they occur in the page. <strong>The defer scripts, on the other hand, are guaranteed to be executed in the order they occur in the page. That execution starts after parsing is completely finished, but before the document’s DOMContentLoaded event.</strong></p>
@@ -168,13 +386,13 @@
 <p>大概意思：<u><strong>async</strong>和<strong>defer</strong>特性在脚本开始下载时，都不会阻塞文档解析。并且都支持onload事件回调处理，用于一些初始化工作。另外，对内联脚本都无效，脚本中不能调用<code>document.write()</code>。不同之处：带有<strong>async</strong>特性的脚本会在脚本下载完后立即执行，且在load事件之前，所以不能确保脚本在文档中出现的顺序来执行。而带有<strong>defer</strong>特性的脚本会在文档解析完后按照在文档出现的顺序依次执行，且在DOMContentLoaded事件之前。</u></p>
 <p>因此，这里设置<strong>async</strong>特性，而不设置<strong>defer</strong>特性。为了尽早地触发DOMContentLoaded事件，因为<strong>defer</strong>会延迟DOMContentLoaded事件触发。</p>
 <p>为script标签添加<strong>async</strong>特性:</p>
-<p><img src="./async.png" alt="async"></p>
+<p><img src="/2017/09/19/关于external-style-sheets你不知道的事/async.png" alt="async"></p>
 <p>通过<strong>DevTool-&gt;network</strong>:</p>
-<p><img src="./async-network1.png" alt="async"></p>
+<p><img src="/2017/09/19/关于external-style-sheets你不知道的事/async-network1.png" alt="async"></p>
 <hr>
-<p>当然，这里可以通过<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries" target="_blank" rel="external">媒体查询media</a>让style-sheet异步加载：<br><img src="./media.png" alt="media"></p>
+<p>当然，这里可以通过<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries" target="_blank" rel="noopener">媒体查询media</a>让style-sheet异步加载：<br><img src="/2017/09/19/关于external-style-sheets你不知道的事/media.png" alt="media"></p>
 <p>通过<strong>DevTool-&gt;network</strong>:</p>
-<p><img src="./media-network.png" alt="media"></p>
+<p><img src="/2017/09/19/关于external-style-sheets你不知道的事/media-network.png" alt="media"></p>
 <h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><ul>
 <li>style-sheet默认情况下是不会阻塞文档解析的。</li>
 <li>style-sheet只会阻塞script脚本解析执行。因为需要script脚本需要访问style-sheet样式信息，为了确保样式信息的正确性，script脚本需要等待style-sheet下载解析完。从而导致style-sheet间接阻塞文档解析。</li>
@@ -182,9 +400,9 @@
 <li>为script设置<strong>aysnc</strong>特性来实现异步加载，来加快文档解析。</li>
 </ul>
 <h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><ul>
-<li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp" target="_blank" rel="external">分析关键渲染路径性能</a></li>
-<li><a href="https://calendar.perfplanet.com/2012/deciphering-the-critical-rendering-path/" target="_blank" rel="external">Deciphering the Critical Rendering Path</a></li>
-<li><a href="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/#The_order_of_processing_scripts_and_style_sheets" target="_blank" rel="external">How Browsers Work: Behind the scenes of modern web browsers</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp" target="_blank" rel="noopener">分析关键渲染路径性能</a></li>
+<li><a href="https://calendar.perfplanet.com/2012/deciphering-the-critical-rendering-path/" target="_blank" rel="noopener">Deciphering the Critical Rendering Path</a></li>
+<li><a href="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/#The_order_of_processing_scripts_and_style_sheets" target="_blank" rel="noopener">How Browsers Work: Behind the scenes of modern web browsers</a></li>
 </ul>
 <hr>
 <blockquote>
@@ -192,107 +410,407 @@
 </blockquote>
 <hr>
 
-  </div>
-</article>
-
-
-
+      
     </div>
     
-      <div id="footer-post-container">
-  <div id="footer-post">
+    
+    
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="https://github.com/sgdh-fe">Github</a></li>
-         
-          <li><a href="http://git.dh.sogou-inc.com/groups/fe">Projects</a></li>
-         
-          <li><a href="/about/">About</a></li>
-        
-      </ul>
-    </div>
+    
 
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#参考相关资料，找到如下描述："><span class="toc-number">1.</span> <span class="toc-text">参考相关资料，找到如下描述：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结："><span class="toc-number"></span> <span class="toc-text">总结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章："><span class="toc-number"></span> <span class="toc-text">参考文章：</span></a>
-    </div>
+    
 
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/&text=关于external-style-sheets你不知道的事"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/&title=关于external-style-sheets你不知道的事"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/&is_video=false&description=关于external-style-sheets你不知道的事"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=关于external-style-sheets你不知道的事&body=Check out this article: http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/&title=关于external-style-sheets你不知道的事"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/&title=关于external-style-sheets你不知道的事"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/&title=关于external-style-sheets你不知道的事"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/&title=关于external-style-sheets你不知道的事"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/&name=关于external-style-sheets你不知道的事&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-</ul>
+    
 
-    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/优化/" rel="tag"># 优化</a>
+          
+            <a href="/tags/style-sheet/" rel="tag"># style-sheet</a>
+          
+        </div>
+      
 
-    <div id="actions-footer">
-      <ul>
-        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
-        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
-        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
-        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
-      </ul>
-    </div>
+      
+      
+      
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/29/css-zIndex/" rel="next" title="关于z-index的一些事">
+                <i class="fa fa-chevron-left"></i> 关于z-index的一些事
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/19/async-vs-defer/" rel="prev" title="async-vs-defer">
+                async-vs-defer <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="sgdhfe" />
+            
+              <p class="site-author-name" itemprop="name">sgdhfe</p>
+              <p class="site-description motion-element" itemprop="description">🐳🐳 搜狗导航前端开发组 🐬🐬</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sgdh-fe" target="_blank" title="github">
+                      
+                        <i class="fa fa-fw fa-github"></i>github</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://123.sogou.com/" title="123sogou" target="_blank">123sogou</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#参考相关资料，找到如下描述："><span class="nav-number">1.</span> <span class="nav-text">参考相关资料，找到如下描述：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结："><span class="nav-number"></span> <span class="nav-text">总结：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文章："><span class="nav-number"></span> <span class="nav-text">参考文章：</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sgdhfe</span>
+
+  
 </div>
 
-    
-    <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy; 2018 sgdhfe
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="https://github.com/sgdh-fe">Github</a></li>
-         
-          <li><a href="http://git.dh.sogou-inc.com/groups/fe">Projects</a></li>
-         
-          <li><a href="/about/">About</a></li>
+
+
+
+
+
+
+
+
         
-      </ul>
-    </nav>
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
   </div>
-</footer>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
 
 </body>
 </html>
-<!-- styles -->
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
-<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
-
-
-<!-- jquery -->
-<script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
-<script src="/js/main.js"></script>
-<!-- Google Analytics -->
-
-    <script type="text/javascript">
-        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-86660611-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-
-<!-- Disqus Comments -->
-
-
