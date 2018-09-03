@@ -1,3 +1,344 @@
 ---
-title: About
+title: Our Team
 ---
+<style type="text/css">
+  body {
+    overflow: hidden;
+  }
+  .person{
+    margin-top:320px;
+    box-sizing: border-box;
+    font-family: 'Muli', sans-serif;
+  }
+  .person-toggler {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 120px;
+    height: 120px;
+    z-index: 2;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .person-toggler:checked ~ ul .person-item {
+    opacity: 1;
+  }
+  .person-toggler:checked ~ ul .person-item:nth-child(1) {
+    -webkit-transform: rotate(0deg) translateX(250px);
+    transform: rotate(0deg) translateX(250px);
+  }
+  .person-toggler:checked ~ ul .person-item:nth-child(2) {
+    -webkit-transform: rotate(30deg) translateX(250px);
+    transform: rotate(30deg) translateX(250px);
+  }
+  .person-toggler:checked ~ ul .person-item:nth-child(3) {
+    -webkit-transform: rotate(60deg) translateX(250px);
+    transform: rotate(60deg) translateX(250px);
+  }
+  .person-toggler:checked ~ ul .person-item:nth-child(4) {
+    -webkit-transform: rotate(90deg) translateX(250px);
+    transform: rotate(90deg) translateX(250px);
+  }
+  .person-toggler:checked ~ ul .person-item:nth-child(5) {
+    -webkit-transform: rotate(120deg) translateX(250px);
+    transform: rotate(120deg) translateX(250px);
+  }
+  .person-toggler:checked ~ ul .person-item:nth-child(6) {
+    -webkit-transform: rotate(150deg) translateX(250px);
+    transform: rotate(150deg) translateX(250px);
+  }
+  .person-toggler:checked ~ ul .person-item:nth-child(7) {
+    -webkit-transform: rotate(180deg) translateX(250px);
+    transform: rotate(180deg) translateX(250px);
+  }
+  .person-toggler:checked ~ ul .person-item:nth-child(8) {
+    -webkit-transform: rotate(210deg) translateX(250px);
+    transform: rotate(210deg) translateX(250px);
+  }
+  .person-toggler:checked ~ ul .person-item:nth-child(9) {
+    -webkit-transform: rotate(240deg) translateX(250px);
+    transform: rotate(240deg) translateX(250px);
+  }
+  .person-toggler:checked ~ ul .person-item:nth-child(10) {
+    -webkit-transform: rotate(270deg) translateX(250px);
+    transform: rotate(270deg) translateX(250px);
+  }
+  .person-toggler:checked ~ ul .person-item:nth-child(11) {
+    -webkit-transform: rotate(300deg) translateX(250px);
+    transform: rotate(300deg) translateX(250px);
+  }
+  .person-toggler:checked ~ ul .person-item:nth-child(12) {
+    -webkit-transform: rotate(330deg) translateX(250px);
+    transform: rotate(330deg) translateX(250px);
+  }
+  .person-toggler:checked ~ ul .person-item a {
+    pointer-events: auto;
+  }
+  
+  .person-item:nth-child(1) a {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  
+  .person-item:nth-child(2) a {
+    -webkit-transform: rotate(-30deg);
+    transform: rotate(-30deg);
+  }
+  
+  .person-item:nth-child(3) a {
+    -webkit-transform: rotate(-60deg);
+    transform: rotate(-60deg);
+  }
+  
+  .person-item:nth-child(4) a {
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+  }
+  
+  .person-item:nth-child(5) a {
+    -webkit-transform: rotate(-120deg);
+    transform: rotate(-120deg);
+  }
+  
+  .person-item:nth-child(6) a {
+    -webkit-transform: rotate(-150deg);
+    transform: rotate(-150deg);
+  }
+  .person-item:nth-child(7) a {
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+  }
+  
+  .person-item:nth-child(8) a {
+    -webkit-transform: rotate(-210deg);
+    transform: rotate(-210deg);
+  }
+  
+  .person-item:nth-child(9) a {
+    -webkit-transform: rotate(-240deg);
+    transform: rotate(-240deg);
+  }
+  
+  .person-item:nth-child(10) a {
+    -webkit-transform: rotate(-270deg);
+    transform: rotate(-270deg);
+  }
+  
+  .person-item:nth-child(11) a {
+    -webkit-transform: rotate(-300deg);
+    transform: rotate(-300deg);
+  }
+  
+  .person-item:nth-child(12) a {
+    -webkit-transform: rotate(-330deg);
+    transform: rotate(-330deg);
+  }
+  
+  .person-item {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 120px;
+    height: 120px;
+    opacity: 0;
+    transition: 0.5s;
+  }
+  .person-item a {
+    display: block;
+    width: inherit;
+    line-height: 40px;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    text-align: center;
+    text-decoration: none;
+    pointer-events: none;
+    transition: 0.2s;
+  }
+/*
+*card内的样式
+*/
+.card {
+  display: inline-block;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  opacity: 0.85;
+}
+.front,
+.back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform 300ms;
+  transition-timing-function: linear;
+  border-radius: 5px;
+}
+.front {
+  tranform: rotateY(0deg);
+  text-align: center;
+}
+.back {
+  transform: rotateY(180deg);
+  color: #555;
+}
+.card:hover .front {
+  transform: rotateY(-180deg);
+}
+.card:hover .back {
+  transform: rotateY(0deg);
+}
+.person .contact {
+  height: 120px;
+  width: 120px;
+  border: 1px solid #B2DBBF;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.person img{
+  margin: 0 auto 0px !important;
+}
+.person p{
+  margin: 0 0 0 0 !important;
+  text-align: center;
+  height: 120px;
+  line-height: 120px;
+}
+</style>
+
+<nav class='person'>
+        <input checked='checked' class='person-toggler' id='person-toggler' type='checkbox'>
+        <ul>
+            <li class='person-item'>
+              <div class='card'>
+        <div class='front'>
+            <img src='https://ws1.sinaimg.cn/large/005vGbJ7ly1fuwl537v6dj305k05kaap.jpg' class='contact' />
+        </div>
+        <div class='back'>
+            <p class='contact'>关凯丽ddd</p>
+        </div>
+    </div>
+            </li>
+            <li class='person-item'>
+              <div class='card'>
+        <div class='front'>
+            <img src='https://ws1.sinaimg.cn/large/005vGbJ7ly1fuwl537v6dj305k05kaap.jpg' class='contact' />
+        </div>
+        <div class='back'>
+          <p class='contact'>关凯丽ddd</p>
+        </div>
+    </div>
+            </li>
+            <li class='person-item'>
+              <div class='card'>
+        <div class='front'>
+            <img src='https://ws1.sinaimg.cn/large/005vGbJ7ly1fuwl537v6dj305k05kaap.jpg' class='contact' />
+        </div>
+        <div class='back'>
+          <p class='contact'>关凯丽ddd</p>
+        </div>
+    </div>
+            </li>
+            <li class='person-item'>
+              <div class='card'>
+        <div class='front'>
+            <img src='https://ws1.sinaimg.cn/large/005vGbJ7ly1fuwl537v6dj305k05kaap.jpg' class='contact' />
+        </div>
+        <div class='back'>
+          <p class='contact'>关凯丽ddd</p>
+        </div>
+    </div>
+            </li>
+            <li class='person-item'>
+              <div class='card'>
+        <div class='front'>
+            <img src='https://ws1.sinaimg.cn/large/005vGbJ7ly1fuwl537v6dj305k05kaap.jpg' class='contact' />
+        </div>
+        <div class='back'>
+            <p class='contact'>关凯丽ddd</p>
+        </div>
+    </div>
+            </li>
+            <li class='person-item'>
+              <div class='card'>
+        <div class='front'>
+            <img src='https://ws1.sinaimg.cn/large/005vGbJ7ly1fuwl537v6dj305k05kaap.jpg' class='contact' />
+        </div>
+        <div class='back'>
+            <p class='contact'>关凯丽ddd</p>
+        </div>
+    </div>
+            </li>
+            <li class='person-item'>
+              <div class='card'>
+        <div class='front'>
+            <img src='https://ws1.sinaimg.cn/large/005vGbJ7ly1fuwl537v6dj305k05kaap.jpg' class='contact' />
+        </div>
+        <div class='back'>
+            <p class='contact'>关凯丽ddd</p>
+        </div>
+    </div>
+            </li>
+            <li class='person-item'>
+              <div class='card'>
+        <div class='front'>
+            <img src='https://ws1.sinaimg.cn/large/005vGbJ7ly1fuwl537v6dj305k05kaap.jpg' class='contact' />
+        </div>
+        <div class='back'>
+            <p class='contact'>关凯丽ddd</p>
+        </div>
+    </div>
+            </li>
+            <li class='person-item'>
+              <div class='card'>
+        <div class='front'>
+            <img src='https://ws1.sinaimg.cn/large/005vGbJ7ly1fuwl537v6dj305k05kaap.jpg' class='contact' />
+        </div>
+        <div class='back'>
+            <p class='contact'>关凯丽ddd</p>
+        </div>
+    </div>
+            </li>
+            <li class='person-item'>
+              <div class='card'>
+        <div class='front'>
+            <img src='https://ws1.sinaimg.cn/large/005vGbJ7ly1fuwl537v6dj305k05kaap.jpg' class='contact' />
+        </div>
+        <div class='back'>
+            <p class='contact'>关凯丽ddd</p>
+        </div>
+    </div>
+            </li>
+            <li class='person-item'>
+              <div class='card'>
+        <div class='front'>
+            <img src='https://ws1.sinaimg.cn/large/005vGbJ7ly1fuwl537v6dj305k05kaap.jpg' class='contact' />
+        </div>
+        <div class='back'>
+            <p class='contact'>关凯丽ddd</p>
+        </div>
+    </div>
+            </li>
+            <li class='person-item'>
+              <div class='card'>
+        <div class='front'>
+            <img src='https://ws1.sinaimg.cn/large/005vGbJ7ly1fuwl537v6dj305k05kaap.jpg' class='contact' />
+        </div>
+        <div class='back'>
+            <p class='contact'>关凯丽ddd</p>
+        </div>
+    </div>
+            </li>
+        </ul>
+    </nav>
