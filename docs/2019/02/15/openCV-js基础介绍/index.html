@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="hexo,tag,category,img," />
+  <meta name="keywords" content="openCV 图像处理 人脸识别," />
 
 
 
@@ -77,17 +77,19 @@
 
 
 
-<meta name="keywords" content="hexo,tag,category,img">
+<meta name="keywords" content="openCV 图像处理 人脸识别">
 <meta property="og:type" content="article">
-<meta property="og:title" content="发布文章">
-<meta property="og:url" content="http://123fe.com/2018/08/23/教程/index.html">
+<meta property="og:title" content="openCV.js基础介绍">
+<meta property="og:url" content="http://123fe.com/2019/02/15/openCV-js基础介绍/index.html">
 <meta property="og:site_name" content="Sogou.dh.fe">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://123fe.com/2018/08/23/教程/blog.jpg">
-<meta property="og:updated_time" content="2019-02-15T09:27:07.926Z">
+<meta property="og:image" content="http://123fe.com/2019/02/15/openCV-js基础介绍/opencv_logo.png">
+<meta property="og:image" content="http://123fe.com/2019/02/15/openCV-js基础介绍/opencv_face.png">
+<meta property="og:image" content="http://123fe.com/2019/02/15/openCV-js基础介绍/opencv_face_detection.png">
+<meta property="og:updated_time" content="2019-02-15T09:53:27.574Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="发布文章">
-<meta name="twitter:image" content="http://123fe.com/2018/08/23/教程/blog.jpg">
+<meta name="twitter:title" content="openCV.js基础介绍">
+<meta name="twitter:image" content="http://123fe.com/2019/02/15/openCV-js基础介绍/opencv_logo.png">
 
 
 
@@ -117,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://123fe.com/2018/08/23/教程/"/>
+  <link rel="canonical" href="http://123fe.com/2019/02/15/openCV-js基础介绍/"/>
 
 
 
 
 
-  <title>发布文章 | Sogou.dh.fe</title>
+  <title>openCV.js基础介绍 | Sogou.dh.fe</title>
   
 
 
@@ -266,7 +268,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://123fe.com/2018/08/23/教程/">
+    <link itemprop="mainEntityOfPage" href="http://123fe.com/2019/02/15/openCV-js基础介绍/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sgdhfe">
@@ -283,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">发布文章</h1>
+          <h1 class="post-title" itemprop="name headline">openCV.js基础介绍</h1>
         
 
         <div class="post-meta">
@@ -295,8 +297,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-23T17:16:42+08:00">
-                2018-08-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-15T17:38:18+08:00">
+                2019-02-15
               </time>
             
 
@@ -318,8 +320,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
+                  <a href="/categories/类库/" itemprop="url" rel="index">
+                    <span itemprop="name">类库</span>
                   </a>
                 </span>
 
@@ -328,7 +330,7 @@
               
             </span>
           
-          <span> ｜ </span><span class="fa fa-user-o"> </span><span style="color:#222;"> Carry</span>
+          <span> ｜ </span><span class="fa fa-user-o"> </span><span style="color:#222;"> 牛犇</span>
           
             
           
@@ -355,23 +357,67 @@
       
 
       
-        <p><img src="/2018/08/23/教程/blog.jpg" alt="blog]"></p>
+        <p><img src="/2019/02/15/openCV-js基础介绍/opencv_logo.png" alt="openCV_logo"> </p>
 <a id="more"></a>
-<h1 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h1><p>假如文章名是：发布配置</p>
+<p>本文目标</p>
 <ul>
-<li>hexo new 发布配置</li>
-<li>会生成：发布配置的md ，发布配置的目录</li>
-<li>在md文件中应用<a href="http://www.markdown.cn/" target="_blank" rel="external">markdown语法</a>写文章</li>
-<li>目录中放图片</li>
+<li>openCV.js是什么？</li>
+<li>openCV.js能做什么？</li>
+<li>openCV.js怎么用？</li>
+<li>openCV.js有哪些常见例子？</li>
+<li>openCV.js优缺点有哪些？</li>
 </ul>
-<h1 id="解释md文件中的配置"><a href="#解释md文件中的配置" class="headerlink" title="解释md文件中的配置"></a>解释md文件中的配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">title: 发布文章//默认生成的文章名，可更改</div><div class="line">date: 2018-08-23 17:16:42 //默认生成的时间,可更改</div><div class="line">tags: //标签，会生成在标签页面里</div><div class="line">category: //分类，会生成在分类页面里</div><div class="line">author: //作者</div></pre></td></tr></table></figure>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">title: 发布和配置</div><div class="line">date: 2018-08-22 15:06:26</div><div class="line">category: hexo</div><div class="line">tags: [init,post,write]</div><div class="line">author: Carry</div></pre></td></tr></table></figure>
-<h1 id="加载图片"><a href="#加载图片" class="headerlink" title="加载图片"></a>加载图片</h1><p>将图片放在与文章同名的目录里，例如现在文章名为发布文章，会有一个教程目录，将图片blog.jpg放在其中加载语法为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">![](./blog.jpg)</div><div class="line"></div><div class="line">![]() 是markdown加载图片的方法，[]里面放图片描述，()为图片路径</div></pre></td></tr></table></figure>
-<h1 id="设置阅读全文"><a href="#设置阅读全文" class="headerlink" title="设置阅读全文"></a>设置阅读全文</h1><p>在文章任一合适位置加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!-- More --&gt;</div></pre></td></tr></table></figure></p>
-<h1 id="看文章效果-启动服务"><a href="#看文章效果-启动服务" class="headerlink" title="看文章效果,启动服务"></a>看文章效果,启动服务</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure>
-<h1 id="生成html-css静态资源"><a href="#生成html-css静态资源" class="headerlink" title="生成html css静态资源"></a>生成html css静态资源</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g</div></pre></td></tr></table></figure>
-<h1 id="自动部署到github"><a href="#自动部署到github" class="headerlink" title="自动部署到github"></a>自动部署到github</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh push.sh</div></pre></td></tr></table></figure>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>openCV(open computer vision)是一个跨平台的计算机视觉库，主要用于图像识别和处理领域。openCV封装300多个API，实现了图像处理和识别方面的很多通用算法。</p>
+<p>对于Web开发者想学习openCV有几个问题: </p>
+<ol>
+<li>图像识别和处理领域门槛很高，需要一定专业背景;</li>
+<li>需要掌握特定的后端语言，比如C++;</li>
+<li>openCV开发环境配置繁琐;</li>
+<li>代码调试成本高;</li>
+</ol>
+<p>openCV.js是openCV的JS版本，主要运行在浏览器环境中。使用openCV.js可以实现多种复杂图像处理和识别，比如图像美化、人脸识别等功能。对Web开发者openCV.js有下面几个优势:</p>
+<ol>
+<li>熟悉的编程语言和开发环境;</li>
+<li>代码实时运行，调试成本低，开发效率高;</li>
+</ol>
+<h3 id="加载openCV-js"><a href="#加载openCV-js" class="headerlink" title="加载openCV.js"></a>加载openCV.js</h3><p>openCV官网没有提供openCV.js版本，需要开发者手动进行编译。网上有文章介绍如何编译，这里就不赘述。如果不想编译可以去github下载第三方编译好版本。</p>
+<p>加载openCV.js代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;./opencv.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>因为openCV.js文件比较大，为了不影响页面整体展现，可以通过异步非阻塞方法加载，代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script async src=&quot;./opencv.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>如果openCV.js加载后需要立即处理图片的话，可以增加一个<code>onload</code>事件，代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script async src=&quot;,/opencv.js&quot; onload=&quot;openCvReady();&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="使用openCV-js"><a href="#使用openCV-js" class="headerlink" title="使用openCV.js"></a>使用openCV.js</h3><p>加载openCV成功后，全局环境下会出现一个<code>cv</code>对象。<code>cv</code>对象包含openCV.js所有属性和方法。</p>
+<p>我们试着使用<code>cv</code>对象读取一张图片并生成到<code>canvas</code>中, 这个过程涉及到两个API:</p>
+<ol>
+<li>cv.imRead: 读取图片;</li>
+<li>cv.imShow: 在指定位置生成图片;</li>
+</ol>
+<p>整体代码如下:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"dog"</span> <span class="attr">src</span>=<span class="string">"./dog"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> imgElement = <span class="built_in">document</span>.getElementById(<span class="string">"dog"</span>);</div><div class="line"><span class="keyword">var</span> mat = cv.imread(imgElement);</div><div class="line">cv.imshow(<span class="string">"canvasOutput"</span>, mat);</div><div class="line">mat.delete();</div></pre></td></tr></table></figure>
+<h3 id="openCV-js常见例子"><a href="#openCV-js常见例子" class="headerlink" title="openCV.js常见例子"></a>openCV.js常见例子</h3><ul>
+<li>图像美化</li>
+<li>人脸识别</li>
+</ul>
+<p>图像美化是一个最常见图像处理场景，特别是人脸的处理。下面例子是将一个脸上的雀斑进行去除，使用是openCV.js中<strong>双边过滤</strong>算法。代码如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> src = cv.imread(<span class="string">"imageSrc"</span>, <span class="number">1</span>);</div><div class="line">cv.cvtColor(src, src, cv.COLOR_RGBA2RGB, <span class="number">0</span>);</div><div class="line"><span class="keyword">let</span> dst = <span class="keyword">new</span> cv.Mat();            </div><div class="line">cv.bilateralFilter(src, dst, <span class="number">19</span>, <span class="number">75</span>, <span class="number">75</span>, cv.BORDER_DEFAULT);</div><div class="line">cv.imshow(<span class="string">"canvasOutput"</span>, dst);</div></pre></td></tr></table></figure>
+<p>运行截图<br><img src="/2019/02/15/openCV-js基础介绍/opencv_face.png" alt="opencv_face">  </p>
+<p><strong>人脸识别</strong>是图像识别领域热门应用。当有脸部训练模型后，可以使用openCV.js实现人脸识别。主要代码如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> src = cv.imread(<span class="string">"imageSrc"</span>);</div><div class="line"><span class="keyword">let</span> gray = <span class="keyword">new</span> cv.Mat();</div><div class="line">cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, <span class="number">0</span>);</div><div class="line"><span class="keyword">let</span> faces = <span class="keyword">new</span> cv.RectVector();</div><div class="line"><span class="keyword">let</span> eyes = <span class="keyword">new</span> cv.RectVector();</div><div class="line"><span class="keyword">let</span> faceCascade = <span class="keyword">new</span> cv.CascadeClassifier();</div><div class="line"><span class="keyword">let</span> eyeCascade = <span class="keyword">new</span> cv.CascadeClassifier();</div><div class="line"></div><div class="line">faceCascade.load(<span class="string">"haarcascade_frontalface_default.xml"</span>); <span class="comment">//脸部模型</span></div><div class="line">eyeCascade.load(<span class="string">"haarcascade_eye.xml"</span>); <span class="comment">//眼睛模型</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> msize = <span class="keyword">new</span> cv.Size(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">faceCascade.detectMultiScale(gray, faces, <span class="number">1.1</span>, <span class="number">3</span>, <span class="number">0</span>, msize, msize);</div><div class="line">cv.imshow(<span class="string">"canvasOutput"</span>, src);</div></pre></td></tr></table></figure>
+<p>运行截图<br><img src="/2019/02/15/openCV-js基础介绍/opencv_face_detection.png" alt="openCV_logo">  </p>
+<h3 id="openCV-js优缺点"><a href="#openCV-js优缺点" class="headerlink" title="openCV.js优缺点"></a>openCV.js优缺点</h3><p>openCV.js让Web开发者低门槛进入图像处理和识别领域，可以在浏览器上创造出更强大应用。不过在使用openCV.js之前一定要调研清楚自己项目是否适用。下面是我总结openCV.js优缺点;</p>
+<p>优点：</p>
+<ol>
+<li>openCV.js功能强大，API丰富;</li>
+<li>openCV.js版本持续更新和维护;</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>openCV.js相关文档缺乏，学习成本高;</li>
+<li>openCV.js文件体积大，对页面加载速度影响大;</li>
+<li>openCV.js处理图像会消耗大量计算资源，有时会导致页面卡顿;</li>
+<li>openCV.js相关社区匮乏，遇到问题解决成本高;</li>
+</ol>
+<p>总结：如果对图像处理和识别感兴趣，可以考虑下功夫钻研一下openCV.js。我觉得openCV.js一把屠龙刀。如果有本事用好它，会带来很多好处；如果用不好它，可能会伤到自己。</p>
+
       
     </div>
     
@@ -388,13 +434,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
-          
-            <a href="/tags/tag/" rel="tag"># tag</a>
-          
-            <a href="/tags/category/" rel="tag"># category</a>
-          
-            <a href="/tags/img/" rel="tag"># img</a>
+            <a href="/tags/openCV-图像处理-人脸识别/" rel="tag"># openCV 图像处理 人脸识别</a>
           
         </div>
       
@@ -407,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/23/关于闭包也许你不知道的事/" rel="next" title="关于闭包也许你不知道的事">
-                <i class="fa fa-chevron-left"></i> 关于闭包也许你不知道的事
+              <a href="/2018/08/23/教程/" rel="next" title="发布文章">
+                <i class="fa fa-chevron-left"></i> 发布文章
               </a>
             
           </div>
@@ -416,10 +456,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/15/openCV-js基础介绍/" rel="prev" title="openCV.js基础介绍">
-                openCV.js基础介绍 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -579,7 +615,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#发布文章"><span class="nav-number">1.</span> <span class="nav-text">发布文章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解释md文件中的配置"><span class="nav-number">2.</span> <span class="nav-text">解释md文件中的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#示例："><span class="nav-number">2.1.</span> <span class="nav-text">示例：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加载图片"><span class="nav-number">3.</span> <span class="nav-text">加载图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置阅读全文"><span class="nav-number">4.</span> <span class="nav-text">设置阅读全文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#看文章效果-启动服务"><span class="nav-number">5.</span> <span class="nav-text">看文章效果,启动服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成html-css静态资源"><span class="nav-number">6.</span> <span class="nav-text">生成html css静态资源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自动部署到github"><span class="nav-number">7.</span> <span class="nav-text">自动部署到github</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载openCV-js"><span class="nav-number">2.</span> <span class="nav-text">加载openCV.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用openCV-js"><span class="nav-number">3.</span> <span class="nav-text">使用openCV.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#openCV-js常见例子"><span class="nav-number">4.</span> <span class="nav-text">openCV.js常见例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#openCV-js优缺点"><span class="nav-number">5.</span> <span class="nav-text">openCV.js优缺点</span></a></li></ol></div>
             
 
           </div>

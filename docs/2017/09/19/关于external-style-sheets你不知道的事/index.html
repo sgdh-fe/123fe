@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/async-network1.png">
 <meta property="og:image" content="http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/media.png">
 <meta property="og:image" content="http://123fe.com/2017/09/19/关于external-style-sheets你不知道的事/media-network.png">
-<meta property="og:updated_time" content="2018-08-23T08:45:05.040Z">
+<meta property="og:updated_time" content="2019-02-15T09:27:07.872Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于external-style-sheets你不知道的事">
 <meta name="twitter:description" content="在讲解之前，先看一个问题。如下图所示，外部样式表是否阻塞HTML解析（先不要看答案，可以自己思考和实验一下）：">
@@ -375,7 +375,7 @@
 <p><img src="/2017/09/19/关于external-style-sheets你不知道的事/script-network.png" alt="script"></p>
 <p>如上图所示，在<strong>indexcss.css</strong>之后添加<strong>script标签</strong>(不能为空)后，此时DOMContentLoaded时间线位于<strong>indexcss.css</strong>之后。说明这里<strong>indexcss.css</strong>是阻塞HTML解析的。</p>
 <h4 id="参考相关资料，找到如下描述："><a href="#参考相关资料，找到如下描述：" class="headerlink" title="参考相关资料，找到如下描述："></a>参考相关资料，找到如下描述：</h4><blockquote>
-<p>Style sheets on the other hand have a different model. Conceptually it seems that since style sheets don’t change the DOM tree, there is no reason to wait for them and stop the document parsing. There is an issue, though, of scripts asking for style information during the document parsing stage. If the style is not loaded and parsed yet, the script will get wrong answers and apparently this caused lots of problems. It seems to be an edge case but is quite common. Firefox blocks all scripts when there is a style sheet that is still being loaded and parsed. WebKit blocks scripts only when they try to access certain style properties that may be affected by unloaded style sheets.—-<a href="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/#The_order_of_processing_scripts_and_style_sheets" target="_blank" rel="noopener">Tali Garsiel</a> </p>
+<p>Style sheets on the other hand have a different model. Conceptually it seems that since style sheets don’t change the DOM tree, there is no reason to wait for them and stop the document parsing. There is an issue, though, of scripts asking for style information during the document parsing stage. If the style is not loaded and parsed yet, the script will get wrong answers and apparently this caused lots of problems. It seems to be an edge case but is quite common. Firefox blocks all scripts when there is a style sheet that is still being loaded and parsed. WebKit blocks scripts only when they try to access certain style properties that may be affected by unloaded style sheets.—-<a href="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/#The_order_of_processing_scripts_and_style_sheets" target="_blank" rel="external">Tali Garsiel</a> </p>
 </blockquote>
 <p>大概意思是：<u>style-sheets不会修改DOM树，没有理由为了解析style-sheets而阻塞文档解析（即style-sheets不会阻塞文档解析）。但如果在解析文档过程中有脚本需要访问样式信息时，为了保证访问样式信息的正确性。Firefox会阻塞所有脚本直到style-sheets下载解析完为止。而WebKit只在脚本访问的样式属性没有被加载解析时，才会阻塞脚本</u>。</p>
 <p><img src="/2017/09/19/关于external-style-sheets你不知道的事/style-sheet.png" alt="relationship"></p>
@@ -390,7 +390,7 @@
 <p>通过<strong>DevTool-&gt;network</strong>:</p>
 <p><img src="/2017/09/19/关于external-style-sheets你不知道的事/async-network1.png" alt="async"></p>
 <hr>
-<p>当然，这里可以通过<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries" target="_blank" rel="noopener">媒体查询media</a>让style-sheet异步加载：<br><img src="/2017/09/19/关于external-style-sheets你不知道的事/media.png" alt="media"></p>
+<p>当然，这里可以通过<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries" target="_blank" rel="external">媒体查询media</a>让style-sheet异步加载：<br><img src="/2017/09/19/关于external-style-sheets你不知道的事/media.png" alt="media"></p>
 <p>通过<strong>DevTool-&gt;network</strong>:</p>
 <p><img src="/2017/09/19/关于external-style-sheets你不知道的事/media-network.png" alt="media"></p>
 <h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><ul>
@@ -400,9 +400,9 @@
 <li>为script设置<strong>aysnc</strong>特性来实现异步加载，来加快文档解析。</li>
 </ul>
 <h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><ul>
-<li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp" target="_blank" rel="noopener">分析关键渲染路径性能</a></li>
-<li><a href="https://calendar.perfplanet.com/2012/deciphering-the-critical-rendering-path/" target="_blank" rel="noopener">Deciphering the Critical Rendering Path</a></li>
-<li><a href="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/#The_order_of_processing_scripts_and_style_sheets" target="_blank" rel="noopener">How Browsers Work: Behind the scenes of modern web browsers</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp" target="_blank" rel="external">分析关键渲染路径性能</a></li>
+<li><a href="https://calendar.perfplanet.com/2012/deciphering-the-critical-rendering-path/" target="_blank" rel="external">Deciphering the Critical Rendering Path</a></li>
+<li><a href="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/#The_order_of_processing_scripts_and_style_sheets" target="_blank" rel="external">How Browsers Work: Behind the scenes of modern web browsers</a></li>
 </ul>
 <hr>
 <blockquote>
@@ -534,7 +534,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -545,7 +545,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -556,7 +556,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -633,7 +633,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-"></i>
   </span>
