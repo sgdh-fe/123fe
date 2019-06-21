@@ -372,8 +372,6 @@
 <p><strong>不过setInterval()会不停地调用函数，直到窗口关闭或调用clearInterval()。当然如果链式setTimeout()调用模式没有终止逻辑，也会一直运行下去。因此再不需要重复定时器时，确保对定时器进行清除，避免占用系统资源。</strong></p>
 <h2 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h2><blockquote>
 <p>在JavaScript中创建动画的典型方式就是使用setInterval()方法来控制所有动画（或链式setTimeout()调用模式）。编写这种动画循环的关键是要知道延迟时间多长适合。一方面，循环间隔必须足够短，这样才能让不同的动画效果显得更平滑流畅；另一方面，循环间隔还要足够长，这样才能确保浏览器有能力渲染产生的变化。通常电脑显示器的刷新频率是60Hz，大概相当于每秒重绘60次，平均每次约等于17ms(1000ms/60)，以这个循环间隔重绘动画可到达最平滑效果。<br>虽然与使用多组setTimeout()的循环方式相比，使用setInterval()的动画循环效率更高，但后者也不是没有问题的。无论是setInterval()还是setTimeout()都不十分精确。<u>传递给它们的第二个参数，实际上只是指定了把动画代码添加到浏览器UI线程队列中以等待执行的时间点。如果队列前面已经加入了其他的任务，那动画代码就要等待前面的任务完成后再执行。另外，要保证动画平滑的关键是要知道下一帧的绘制时间点，而开发人员没有办法确保浏览器按时绘制下一帧。加上浏览器使用的<a href="http://www.ituring.com.cn/article/1828" target="_blank" rel="external">计时器并非精确到毫秒级别</a>。</u></p>
-</blockquote>
-<blockquote>
 <p>CSS的transition和animation效果优于JavaScript实现的动画效果，原因在于CSS知道动画什么时候开始，会计算出正确的循环间隔，在适合的时候刷新UI。基于该问题，浏览器为了JavaScript动画添加了一个新API，即requestAnimationFrame()。</p>
 </blockquote>
 <p><strong>语法</strong>：<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame" target="_blank" rel="external">requestAnimationFrame(callback)</a>;</p>
@@ -608,7 +606,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
