@@ -24,15 +24,7 @@ $ hexo server
 
 more: [🐹](https://hexo.io/zh-cn/docs/server.html)
 
-### 生成静态资源
-
-``` bash
-$ hexo generate
-```
-
-more: [😝](https://hexo.io/zh-cn/docs/generating.html)
-
-### 生成博客
+### 生成博客静态资源
 
 ```
 sh build.sh
