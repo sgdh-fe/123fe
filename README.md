@@ -32,8 +32,14 @@ $ hexo generate
 
 more: [😝](https://hexo.io/zh-cn/docs/generating.html)
 
-### 自动部署到Github
+### 生成博客
 
-``` bash
-$ sh push.sh
+```
+sh build.sh
+```
+
+### 提交git远程仓库
+
+```
+git add/ci/push 
 ```

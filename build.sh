@@ -12,12 +12,6 @@ hexo generate  && cp -r public/. docs
 
 echo  "----------------"
 
-echo  "🎈  远程库地址 🎈 :"
-
-git remote -v
-
-echo  "----------------"
-
 
 function autoPush()
 {
@@ -79,4 +73,4 @@ function autoPush()
 
 
 # Push
-autoPush
+#autoPush
