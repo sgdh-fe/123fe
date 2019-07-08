@@ -896,5 +896,7 @@ action是一个包含type字段的对象。
 7. middleWare   
 中间件，对原dispatch的功能增强。   
 
-附：redux功能图
-![redux](./从零实现redux基本功能/redux功能图.png)
+附：
+1. redux功能图
+![redux](./从零实现redux基本功能/redux功能图.png)   
+2. [代码地址](https://github.com/fallenleaves409/redux-demo)
