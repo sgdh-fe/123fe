@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="sgdh sogou fe" />
+  <meta name="keywords" content="sgdh sogou fe">
 
 
 
@@ -116,7 +116,7 @@
 
 
 
-  <link rel="canonical" href="http://123fe.com/page/2/"/>
+  <link rel="canonical" href="http://123fe.com/page/2/">
 
 
 
@@ -151,7 +151,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Sogou.dh.fe</span>
         <span class="logo-line-after"><i></i></span>
@@ -266,11 +266,161 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://123fe.com/2017/11/01/内存泄露之Listeners/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sgdhfe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sogou.dh.fe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/01/内存泄露之Listeners/" itemprop="url">内存泄露之Listeners</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T12:59:04+08:00">
+                2017-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/memory/" itemprop="url" rel="index">
+                    <span itemprop="name">memory</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+          <span> ｜ </span><span class="fa fa-user-o"> </span><span style="color:#222;"> singsong</span>
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>页面中事件绑定数量会直接影响页面的整体运行性能，因为每个事件的回调处理函数都是一个对象，占用一定的内存。如果事件的绑定数量越多，内存也随之增加。另外，回调处理函数需要与DOM节点进行交互，而JS引擎独立于渲染引擎，而DOM是位于渲染引擎，相互访问需要消耗一定的资源。加上操作DOM，会引起浏览器的重排或重绘，而影响页面的整体性能。</p>
+<blockquote>
+<p>事件代理 (事件委托) 利用了事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。</p>
+</blockquote>
+<p>因此如何控制事件绑定数量就很重要了，通常都是通过事件代理（事件委托）来解决类似的问题。不过有时借助了事件代理（事件委托），而页面的事件绑定数量也在不断地增加？这可能是某些“不好”代码导致的，那如何定位增加的原因就显得很关键了。这里可以通过chrome的<strong>DevTools</strong>来辅助诊断。<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/01/内存泄露之Listeners/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://123fe.com/2017/09/30/JavaScript内存那点事/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sgdhfe">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/logo.png">
     </span>
 
@@ -308,7 +458,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -422,7 +572,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sgdhfe">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/logo.png">
     </span>
 
@@ -460,7 +610,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -571,7 +721,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sgdhfe">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/logo.png">
     </span>
 
@@ -609,7 +759,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -718,7 +868,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sgdhfe">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/logo.png">
     </span>
 
@@ -756,7 +906,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -806,7 +956,7 @@
 
       
         
-          <p>一般<strong>z-index</strong>失效基本上都是不了解<strong>z-index</strong>是如何工作导致的（这没有看这篇<a href="https://philipwalton.com/articles/what-no-one-told-you-about-z-index/" target="_blank" rel="external">blog</a>之前，至少我也是这样的）。它不复杂，但如果不花时间去查看z-index文档，可能会不了解一些关键技术点。</p>
+          <p>一般<strong>z-index</strong>失效基本上都是不了解<strong>z-index</strong>是如何工作导致的（这没有看这篇<a href="https://philipwalton.com/articles/what-no-one-told-you-about-z-index/" target="_blank" rel="noopener">blog</a>之前，至少我也是这样的）。它不复杂，但如果不花时间去查看z-index文档，可能会不了解一些关键技术点。</p>
 <p>不信？能否解答如下问题，作为检验你是否真正了解<strong>z-index</strong>：</p>
           <!--noindex-->
           <div class="post-button text-center">
@@ -865,7 +1015,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sgdhfe">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/logo.png">
     </span>
 
@@ -903,7 +1053,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -953,9 +1103,9 @@
 
       
         
-          <p>博客由<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>搭建，hexo是一款基于Node.js的静态博客框架。配合<a href="https://pages.github.com/" target="_blank" rel="external">GitHub Pages</a><br>，将博客静态资源托管在托管在 GitHub 上。</p>
-<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="创建一篇新文章"><a href="#创建一篇新文章" class="headerlink" title="创建一篇新文章"></a>创建一篇新文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>more: <a href="https://hexo.io/zh-cn/docs/writing.html" target="_blank" rel="external">🍁🍁</a></p>
+          <p>博客由<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>搭建，hexo是一款基于Node.js的静态博客框架。配合<a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a><br>，将博客静态资源托管在托管在 GitHub 上。</p>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="创建一篇新文章"><a href="#创建一篇新文章" class="headerlink" title="创建一篇新文章"></a>创建一篇新文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>more: <a href="https://hexo.io/zh-cn/docs/writing.html" target="_blank" rel="noopener">🍁🍁</a></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/08/28/init/#more" rel="contents">
@@ -1035,9 +1185,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/logo.png"
-                alt="sgdhfe" />
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
             
               <p class="site-author-name" itemprop="name">sgdhfe</p>
               <p class="site-description motion-element" itemprop="description">🐳🐳 搜狗导航前端开发组 🐬🐬</p>
@@ -1050,7 +1198,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1072,7 +1220,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

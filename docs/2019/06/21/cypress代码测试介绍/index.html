@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="sgdh sogou fe" />
+  <meta name="keywords" content="sgdh sogou fe">
 
 
 
@@ -88,7 +88,7 @@
 <meta property="og:image" content="http://123fe.com/2019/06/21/cypress代码测试介绍/cypress_browser.png">
 <meta property="og:image" content="http://123fe.com/2019/06/21/cypress代码测试介绍/cypress_wait.png">
 <meta property="og:image" content="http://123fe.com/2019/06/21/cypress代码测试介绍/cypress_compare.png">
-<meta property="og:updated_time" content="2019-06-21T03:35:11.029Z">
+<meta property="og:updated_time" content="2019-07-05T11:29:12.379Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cypress代码测试介绍">
 <meta name="twitter:image" content="http://123fe.com/2019/06/21/cypress代码测试介绍/cypress_title.png">
@@ -121,7 +121,7 @@
 
 
 
-  <link rel="canonical" href="http://123fe.com/2019/06/21/cypress代码测试介绍/"/>
+  <link rel="canonical" href="http://123fe.com/2019/06/21/cypress代码测试介绍/">
 
 
 
@@ -155,7 +155,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Sogou.dh.fe</span>
         <span class="logo-line-after"><i></i></span>
@@ -274,7 +274,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sgdhfe">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/logo.png">
     </span>
 
@@ -357,8 +357,8 @@
 <h3 id="cypress怎么使用"><a href="#cypress怎么使用" class="headerlink" title="cypress怎么使用?"></a>cypress怎么使用?</h3><p>···<br>$ yarn add cypress –dev<br>···</p>
 <p>会在项目中增加<code>cypress</code>文件夹, 先将测试代码放在<code>integration</code>中;</p>
 <p>下一步 在<code>integration</code>文件夹中，创建add.func.spec.js文件，并增加单元测试代码:</p>
-<p>单元测试<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> x + y;</div><div class="line">&#125;</div><div class="line"></div><div class="line">describe(<span class="string">"Test Add Function"</span>, ()=&gt;&#123;    </div><div class="line">    it(<span class="string">"test 1 + 1 equal 2 ?"</span>, ()=&gt;&#123;                </div><div class="line">        expect(add(<span class="number">1</span>, <span class="number">1</span>)).to.equal(<span class="number">2</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>下一步 open <code>Cypress</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn run cypress open</div></pre></td></tr></table></figure></p>
+<p>单元测试<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">"Test Add Function"</span>, ()=&gt;&#123;    </span><br><span class="line">    it(<span class="string">"test 1 + 1 equal 2 ?"</span>, ()=&gt;&#123;                </span><br><span class="line">        expect(add(<span class="number">1</span>, <span class="number">1</span>)).to.equal(<span class="number">2</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>下一步 open <code>Cypress</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn run cypress open</span><br></pre></td></tr></table></figure></p>
 <p>打开下面弹出框<br><img src="/2019/06/21/cypress代码测试介绍/cypress_run_sheenshot.png" alt="cypress_run_sheenshot"></p>
 <p>下一步 点击<code>add.func.spec.js</code>文件, 会打开浏览器<br><img src="/2019/06/21/cypress代码测试介绍/cypress_browser.png" alt="cypress_browser"></p>
 <p>最终显示代码测试通过;</p>
@@ -367,7 +367,7 @@
 <li>above(): 大于</li>
 <li>true、undefined、null、NaN: 类型判断</li>
 </ul>
-<p>UI测试<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">context(<span class="string">'Waiting'</span>, () =&gt; &#123;</div><div class="line">  beforeEach(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    cy.visit(<span class="string">'https://example.cypress.io/commands/waiting'</span>)</div><div class="line">  &#125;)</div><div class="line">  <span class="comment">// BE CAREFUL of adding unnecessary wait times.</span></div><div class="line">  <span class="comment">// https://on.cypress.io/best-practices#Unnecessary-Waiting</span></div><div class="line"></div><div class="line">  <span class="comment">// https://on.cypress.io/wait</span></div><div class="line">  it(<span class="string">'cy.wait() - wait for a specific amount of time'</span>, () =&gt; &#123;</div><div class="line">    cy.get(<span class="string">'.wait-input1'</span>).type(<span class="string">'Wait 1000ms after typing'</span>)</div><div class="line">    cy.wait(<span class="number">1000</span>)</div><div class="line">    cy.get(<span class="string">'.wait-input2'</span>).type(<span class="string">'Wait 1000ms after typing'</span>)</div><div class="line">    cy.wait(<span class="number">1000</span>)</div><div class="line">    cy.get(<span class="string">'.wait-input3'</span>).type(<span class="string">'Wait 1000ms after typing'</span>)</div><div class="line">    cy.wait(<span class="number">1000</span>)</div><div class="line">  &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>UI测试<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">context(<span class="string">'Waiting'</span>, () =&gt; &#123;</span><br><span class="line">  beforeEach(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    cy.visit(<span class="string">'https://example.cypress.io/commands/waiting'</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// BE CAREFUL of adding unnecessary wait times.</span></span><br><span class="line">  <span class="comment">// https://on.cypress.io/best-practices#Unnecessary-Waiting</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// https://on.cypress.io/wait</span></span><br><span class="line">  it(<span class="string">'cy.wait() - wait for a specific amount of time'</span>, () =&gt; &#123;</span><br><span class="line">    cy.get(<span class="string">'.wait-input1'</span>).type(<span class="string">'Wait 1000ms after typing'</span>)</span><br><span class="line">    cy.wait(<span class="number">1000</span>)</span><br><span class="line">    cy.get(<span class="string">'.wait-input2'</span>).type(<span class="string">'Wait 1000ms after typing'</span>)</span><br><span class="line">    cy.wait(<span class="number">1000</span>)</span><br><span class="line">    cy.get(<span class="string">'.wait-input3'</span>).type(<span class="string">'Wait 1000ms after typing'</span>)</span><br><span class="line">    cy.wait(<span class="number">1000</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 <p><img src="/2019/06/21/cypress代码测试介绍/cypress_wait.png" alt="cypress_browser"></p>
 <h3 id="cypress有什么不足"><a href="#cypress有什么不足" class="headerlink" title="cypress有什么不足"></a>cypress有什么不足</h3><p>cypress在跨浏览器兼容测试方面有些不足，需要配合其他工具一起使用。<br><img src="/2019/06/21/cypress代码测试介绍/cypress_compare.png" alt="cypress_browser"></p>
 
@@ -472,9 +472,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/logo.png"
-                alt="sgdhfe" />
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
             
               <p class="site-author-name" itemprop="name">sgdhfe</p>
               <p class="site-description motion-element" itemprop="description">🐳🐳 搜狗导航前端开发组 🐬🐬</p>
@@ -487,7 +485,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -509,7 +507,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
