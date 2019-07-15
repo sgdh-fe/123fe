@@ -1,9 +1,9 @@
 ---
 title: Cypress代码测试介绍
 date: 2019-06-21 10:30:08
-tags:
-category:
-author:
+tags: 测试库
+category: 测试库
+author: 牛犇
 ---
 
 ![cypress_title.png](./cypress_title.png) 
