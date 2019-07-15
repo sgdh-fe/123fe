@@ -88,7 +88,7 @@
 <meta property="og:image" content="http://123fe.com/2017/11/13/内存泄露之jQuery-cache/jquery2_x.png">
 <meta property="og:image" content="http://123fe.com/2017/11/13/内存泄露之jQuery-cache/jquery_cache_1_x.png">
 <meta property="og:image" content="http://123fe.com/2017/11/13/内存泄露之jQuery-cache/jquery_cache_2_x.png">
-<meta property="og:updated_time" content="2019-07-05T11:29:12.416Z">
+<meta property="og:updated_time" content="2019-07-15T03:25:23.134Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="内存泄露之jQuery.cache">
 <meta name="twitter:image" content="http://123fe.com/2017/11/13/内存泄露之jQuery-cache/jquery.jpg">
@@ -139,7 +139,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -149,7 +149,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -265,20 +265,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://123fe.com/2017/11/13/内存泄露之jQuery-cache/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sgdhfe">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/logo.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Sogou.dh.fe">
     </span>
 
@@ -321,7 +321,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/memory/" itemprop="url" rel="index">
                     <span itemprop="name">memory</span>
                   </a>
@@ -388,13 +388,13 @@
 <li>执行一次CG</li>
 </ol>
 <p>结果图如下：</p>
-<p><img src="/2017/11/13/内存泄露之jQuery-cache/jquery1_x.png" alt></p>
+<p><img src="/2017/11/13/内存泄露之jQuery-cache/jquery1_x.png" alt=""></p>
 <hr>
-<p><img src="/2017/11/13/内存泄露之jQuery-cache/jquery2_x.png" alt></p>
+<p><img src="/2017/11/13/内存泄露之jQuery-cache/jquery2_x.png" alt=""></p>
 <p><strong>从对比结果图证实了jquery2.x将事件信息存储在元素对象上。这里也可以分别打印<code>$.cache</code>，对比一下输出结果：</strong></p>
-<p><img src="/2017/11/13/内存泄露之jQuery-cache/jquery_cache_1_x.png" alt></p>
+<p><img src="/2017/11/13/内存泄露之jQuery-cache/jquery_cache_1_x.png" alt=""></p>
 <hr>
-<p><img src="/2017/11/13/内存泄露之jQuery-cache/jquery_cache_2_x.png" alt></p>
+<p><img src="/2017/11/13/内存泄露之jQuery-cache/jquery_cache_2_x.png" alt=""></p>
 <p>这里没有讨论jquery3.x版本，因为它与jquery2.x版本一样不支持低版本IE，也不存在<code>$.cache</code>问题，所以不再赘述。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要讨论了jquery的<code>$.cache</code>引起的内存泄露问题。在使用jquery1.x版本时，需要关注一下这一问题。如jquery.lazyload.js和单页应用都很容易引起这方面的问题。如何避免呢？本文也提到了，通过jquery的删除方法来移除:<code>remove()</code>,<code>empty()</code>,<code>html()</code>。<strong>在使用第三方库时一定要记住：通过任何第三方库创建的对象，最好通过该库提供的删除方法来删除。</strong></p>
 <h2 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h2><ul>
@@ -440,7 +440,7 @@
           <div class="post-nav-next post-nav-item">
             
               <a href="/2017/11/10/IE-8循环引用导致的内存泄露/" rel="next" title="IE<8循环引用导致的内存泄露">
-                <i class="fa fa-chevron-left"></i> IE<8循环引用导致的内存泄露 < a>
+                <i class="fa fa-chevron-left"></i> IE<8循环引用导致的内存泄露 <="" a="">
             
           </8循环引用导致的内存泄露></a></div>
 
@@ -514,7 +514,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
             
@@ -529,7 +529,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -540,7 +540,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -551,7 +551,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

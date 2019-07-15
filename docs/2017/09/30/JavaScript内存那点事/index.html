@@ -89,7 +89,7 @@
 <meta property="og:image" content="http://123fe.com/2017/09/30/JavaScript内存那点事/cycle.png">
 <meta property="og:image" content="http://123fe.com/2017/09/30/JavaScript内存那点事/mark-sweep.gif">
 <meta property="og:image" content="http://123fe.com/2017/09/30/JavaScript内存那点事/no-cycle.png">
-<meta property="og:updated_time" content="2019-07-05T11:29:12.376Z">
+<meta property="og:updated_time" content="2019-07-15T03:25:23.098Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript内存那点事">
 <meta name="twitter:description" content="C、C++语言需要手动管理内存的分配与释放（常用方法：malloc(), calloc(), realloc()和free()等）。而JavaScript与Java、C#相似，内置了垃圾回收器，能自动管理内存的分配与释放。 内存生命周期: 分配内存 使用分配的内存(读与写操作) 当应用程序不再需要时，释放掉已分配的内存">
@@ -141,7 +141,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -151,7 +151,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -267,20 +267,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://123fe.com/2017/09/30/JavaScript内存那点事/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sgdhfe">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/logo.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Sogou.dh.fe">
     </span>
 
@@ -323,7 +323,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/memory/" itemprop="url" rel="index">
                     <span itemprop="name">memory</span>
                   </a>
@@ -392,9 +392,9 @@
 <li>垃圾回收器会检查所有的roots并标记为活跃状态。然后递归遍历所有的子变量。只要从root不能到达的都被标记为垃圾。</li>
 <li>所有没有被标记为活跃状态的内存块都被视为垃圾。垃圾回收器就可以释放这部分内存并把释放的内存返回给操作系统。</li>
 </ol>
-<p><img src="/2017/09/30/JavaScript内存那点事/mark-sweep.gif" alt></p>
+<p><img src="/2017/09/30/JavaScript内存那点事/mark-sweep.gif" alt=""></p>
 <p>这个算法比引用计数算法更优，因为“零引用的对象”总是不可到达的，但反之则不一定，如循环引用。<br>截至2012年，所有现代浏览器都内置了<strong>标记清除垃圾回收器</strong>。在过去几年里所有对JavaScript垃圾回收的改进（<a href="http://www.memorymanagement.org/glossary/g.html#term-generational-garbage-collection" target="_blank" rel="noopener">generational/incremental/concurrent/parallel garbage collection</a>）都是基于<strong>标记清除算法</strong>来实现的，并没有改变<strong>标记清除算法</strong>本身和它对“对象不再需要”定义的简化。<br></p>
-<h4 id="循环引用不再是问题"><a href="#循环引用不再是问题" class="headerlink" title="循环引用不再是问题"></a>循环引用不再是问题</h4><p>前面循环引用的实例中，在函数执行完后，两个对象不再被全局对象可访问的对象引用。因此这两个对象被垃圾回收器标记为不可到达，接着被回收掉。<br><img src="/2017/09/30/JavaScript内存那点事/no-cycle.png" alt></p>
+<h4 id="循环引用不再是问题"><a href="#循环引用不再是问题" class="headerlink" title="循环引用不再是问题"></a>循环引用不再是问题</h4><p>前面循环引用的实例中，在函数执行完后，两个对象不再被全局对象可访问的对象引用。因此这两个对象被垃圾回收器标记为不可到达，接着被回收掉。<br><img src="/2017/09/30/JavaScript内存那点事/no-cycle.png" alt=""></p>
 <h4 id="限制：需要明确无法到达的对象"><a href="#限制：需要明确无法到达的对象" class="headerlink" title="限制：需要明确无法到达的对象"></a>限制：需要明确无法到达的对象</h4><p>尽管这是一个限制，但实践中很少遇见这种情况，所以开发者不太会去关心垃圾回收机制。</p>
 <h2 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h2><ul>
 <li><a href="http://www.nodesimplified.com/2017/08/javascript-memory-management-and.html" target="_blank" rel="noopener">Memory Management And Garbage Collection In Javascript</a></li>
@@ -517,7 +517,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
             
@@ -532,7 +532,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -543,7 +543,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -554,7 +554,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

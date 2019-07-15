@@ -84,7 +84,7 @@
 <meta property="og:site_name" content="Sogou.dh.fe">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://123fe.com/2017/11/10/IE-8循环引用导致的内存泄露/leakage.png">
-<meta property="og:updated_time" content="2019-07-05T11:29:12.375Z">
+<meta property="og:updated_time" content="2019-07-15T03:25:23.097Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IE&lt;8循环引用导致的内存泄露">
 <meta name="twitter:image" content="http://123fe.com/2017/11/10/IE-8循环引用导致的内存泄露/leakage.png">
@@ -123,7 +123,7 @@
 
 
 
-  <title>IE<8循环引用导致的内存泄露 | sogou.dh.fe< title>
+  <title>IE<8循环引用导致的内存泄露 |="" sogou.dh.fe<="" title="">
   
 
 
@@ -135,7 +135,7 @@
 
 </8循环引用导致的内存泄露></title></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -145,7 +145,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -261,20 +261,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://123fe.com/2017/11/10/IE-8循环引用导致的内存泄露/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sgdhfe">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/logo.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Sogou.dh.fe">
     </span>
 
@@ -283,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">IE<8循环引用导致的内存泄露< h1>
+          <h1 class="post-title" itemprop="name headline">IE<8循环引用导致的内存泄露< h1="">
         
 
         <div class="post-meta">
@@ -317,7 +317,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/memory/" itemprop="url" rel="index">
                     <span itemprop="name">memory</span>
                   </a>
@@ -358,7 +358,7 @@
         <p><img src="/2017/11/10/IE-8循环引用导致的内存泄露/leakage.png" alt="leakage"></p>
 <a id="more"></a>
 <p>在IE&lt;8版本中，JScript垃圾回收器仅管理JScript对象生命周期而不会管理DOM对象的(即DOM对象有自己的垃圾回收器)。因此JScript回收器不会解除掉DOM对象与Jscript对象之间的相互引用，这从而导致内存泄露。<br>在IE6中，循环引用只在IE浏览器程序退出时才会被解除，而在IE7中，离开当前页面时，才会解除页面中的循环引用。IE8修复该问题，JScript垃圾回收器会将引用的DOM对象视为JScript对象，从而避免循环引用不能被解除的问题（<em>注：这里循环引用解除是指浏览器自动解除循环引用</em>）。</p>
-<p>IE6-7中管理DOM对象的垃圾回收器是基于引用计数策略，如果DOM对象与js对象存在循环引用。需要将DOM对象上的expando属性设置为null或重新赋值。这样才能回收DOM对象。(<em>注：这里只是针对DOM的回收</em>)<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"JScript"</span>&gt;</span></span><br><span class="line">        var myGlobalObject;</span><br><span class="line">        function SetupLeak()</span><br><span class="line">        &#123;</span><br><span class="line">            myGlobalObject = document.getElementById("LeakedDiv");// ← js对象引用DOM对象</span><br><span class="line">            document.getElementById("LeakedDiv").expandoProperty = myGlobalObject;// ← DOM对象的expando属性引用js对象</span><br><span class="line">        &#125;</span><br><span class="line">        function BreakLeak()</span><br><span class="line">        &#123;</span><br><span class="line">            document.getElementById("LeakedDiv").expandoProperty = null;// ← 设置为null或重新赋新值</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">"SetupLeak()"</span> <span class="attr">onunload</span>=<span class="string">"BreakLeak()"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"LeakedDiv"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>IE6-7中管理DOM对象的垃圾回收器是基于引用计数策略，如果DOM对象与js对象存在循环引用。需要将DOM对象上的expando属性设置为null或重新赋值。这样才能回收DOM对象。(<em>注：这里只是针对DOM的回收</em>)<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"JScript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        var myGlobalObject;</span></span><br><span class="line"><span class="undefined">        function SetupLeak()</span></span><br><span class="line"><span class="undefined">        &#123;</span></span><br><span class="line"><span class="undefined">            myGlobalObject = document.getElementById("LeakedDiv");// ← js对象引用DOM对象</span></span><br><span class="line"><span class="undefined">            document.getElementById("LeakedDiv").expandoProperty = myGlobalObject;// ← DOM对象的expando属性引用js对象</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">        function BreakLeak()</span></span><br><span class="line"><span class="undefined">        &#123;</span></span><br><span class="line"><span class="undefined">            document.getElementById("LeakedDiv").expandoProperty = null;// ← 设置为null或重新赋新值</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">"SetupLeak()"</span> <span class="attr">onunload</span>=<span class="string">"BreakLeak()"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"LeakedDiv"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>上述代码的循环引用不是很复杂，很容易发现。不过实际项目中可能会存在循环链很长的情况：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> d=&#123;<span class="attr">b</span>:<span class="built_in">document</span>.body&#125;</span><br><span class="line">    <span class="keyword">var</span> obj=&#123;<span class="attr">doc</span>:d&#125;; <span class="comment">// ← obj.doc.b === document.body</span></span><br><span class="line">    <span class="built_in">document</span>.body.o=obj; <span class="comment">// ← 循环引用: document.body.o.doc.b === document.body</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
 <p>另外一种常见的循环引用发生在闭包中：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> b=<span class="built_in">document</span>.body; <span class="comment">// ← 创建一个引用document.body的变量"b"</span></span><br><span class="line">    b.onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// ← b.onclick引用function</span></span><br><span class="line">    <span class="comment">// 通过闭包能在函数中能访问到"b"</span></span><br><span class="line">    <span class="comment">// do something...</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
 <h2 id="为什么DOM的垃圾回收器是基于引用计数策略？"><a href="#为什么DOM的垃圾回收器是基于引用计数策略？" class="headerlink" title="为什么DOM的垃圾回收器是基于引用计数策略？"></a>为什么DOM的垃圾回收器是基于引用计数策略？</h2><p>IE中有一部分对象并不是原生js对象。例如，其内存泄露DOM和BOM中的对象就是使用C++以COM(component object model，组件对象模型)对象的形式实现的，而COM对象的垃圾回收机制采用的就是引用计数策略。因此，即使IE的js引擎采用标记清除策略来实现，但js访问的COM对象依然是基于引用计数策略的。换句话说，只要在IE中涉及COM对象，就会存在循环引用的问题。在IE9把BOM和DOM对象转换为真正的js对象。</p>
@@ -487,7 +487,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
             
@@ -502,7 +502,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -513,7 +513,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -524,7 +524,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
