@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="优化,defer,async," />
+  <meta name="keywords" content="优化,defer,async,">
 
 
 
@@ -89,7 +89,7 @@
 <meta property="og:image" content="http://123fe.com/2017/09/19/async-vs-defer/script.svg">
 <meta property="og:image" content="http://123fe.com/2017/09/19/async-vs-defer/script-async.svg">
 <meta property="og:image" content="http://123fe.com/2017/09/19/async-vs-defer/script-defer.svg">
-<meta property="og:updated_time" content="2019-02-15T09:27:07.866Z">
+<meta property="og:updated_time" content="2019-07-15T03:25:23.099Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="async-vs-defer">
 <meta name="twitter:description" content="async与defer都是用来延迟（异步）加载脚本，但两者之间还是存在一些区别的，因此使用场景也有所不同。  Legend">
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="http://123fe.com/2017/09/19/async-vs-defer/"/>
+  <link rel="canonical" href="http://123fe.com/2017/09/19/async-vs-defer/">
 
 
 
@@ -141,7 +141,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -151,13 +151,13 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Sogou.dh.fe</span>
         <span class="logo-line-after"><i></i></span>
@@ -267,20 +267,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://123fe.com/2017/09/19/async-vs-defer/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sgdhfe">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/logo.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Sogou.dh.fe">
     </span>
 
@@ -312,7 +312,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -323,7 +323,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/异步/" itemprop="url" rel="index">
                     <span itemprop="name">异步</span>
                   </a>
@@ -389,9 +389,9 @@
 <li>如果脚本较小，并且被其他带<strong>async</strong>的脚本依赖，可以将该脚本直接内联script标签中，并放置在<strong>async</strong>脚本之前</li>
 </ul>
 <p></p>
-<h2 id="兼容"><a href="#兼容" class="headerlink" title="兼容"></a>兼容</h2><p>在&lt;=IE9浏览器对<strong>defer</strong>的实现存在一些bug，如defer不能保证script的执行顺序，如果需要支持&lt;=IE9，不建议使用<strong>defer</strong>，如果scirpts的执行顺序重要，可以不设置任何特性，<a href="https://github.com/h5bp/lazyweb-requests/issues/42" target="_blank" rel="external">了解更多</a>。</p>
+<h2 id="兼容"><a href="#兼容" class="headerlink" title="兼容"></a>兼容</h2><p>在&lt;=IE9浏览器对<strong>defer</strong>的实现存在一些bug，如defer不能保证script的执行顺序，如果需要支持&lt;=IE9，不建议使用<strong>defer</strong>，如果scirpts的执行顺序重要，可以不设置任何特性，<a href="https://github.com/h5bp/lazyweb-requests/issues/42" target="_blank" rel="noopener">了解更多</a>。</p>
 <h2 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h2><ul>
-<li><a href="http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html" target="_blank" rel="external">async vs defer attributes</a></li>
+<li><a href="http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html" target="_blank" rel="noopener">async vs defer attributes</a></li>
 </ul>
 <hr>
 <blockquote>
@@ -508,11 +508,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/logo.png"
-                alt="sgdhfe" />
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
             
               <p class="site-author-name" itemprop="name">sgdhfe</p>
               <p class="site-description motion-element" itemprop="description">🐳🐳 搜狗导航前端开发组 🐬🐬</p>
@@ -525,7 +523,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -536,7 +534,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -547,7 +545,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

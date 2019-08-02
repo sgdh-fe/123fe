@@ -24,16 +24,14 @@ $ hexo server
 
 more: [🐹](https://hexo.io/zh-cn/docs/server.html)
 
-### 生成静态资源
+### 生成博客静态资源
 
-``` bash
-$ hexo generate
+```
+sh build.sh
 ```
 
-more: [😝](https://hexo.io/zh-cn/docs/generating.html)
+### 提交git远程仓库
 
-### 自动部署到Github
-
-``` bash
-$ sh push.sh
+```
+git add/ci/push 
 ```

@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-192x192.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="总结,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="遇到的问题 canvas画跨域图片 canvas绘制图片模糊 qrcode在安卓9.0下生成二维码的HTML与其他设备不同 IOS上遇到的click事件bug;">
+<meta name="keywords" content="总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="淘淘优惠小助手项目总结">
+<meta property="og:url" content="http://123fe.com/2019/06/21/淘淘优惠小助手项目总结/index.html">
+<meta property="og:site_name" content="Sogou.dh.fe">
+<meta property="og:description" content="遇到的问题 canvas画跨域图片 canvas绘制图片模糊 qrcode在安卓9.0下生成二维码的HTML与其他设备不同 IOS上遇到的click事件bug;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://123fe.com/2019/06/21/淘淘优惠小助手项目总结/b.jpg">
+<meta property="og:image" content="http://123fe.com/2019/06/21/淘淘优惠小助手项目总结/canvas.png">
+<meta property="og:image" content="http://123fe.com/2019/06/21/淘淘优惠小助手项目总结/qrcode_other.png">
+<meta property="og:image" content="http://123fe.com/2019/06/21/淘淘优惠小助手项目总结/qrcode_android9.png">
+<meta property="og:updated_time" content="2019-07-15T04:26:07.644Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="淘淘优惠小助手项目总结">
+<meta name="twitter:description" content="遇到的问题 canvas画跨域图片 canvas绘制图片模糊 qrcode在安卓9.0下生成二维码的HTML与其他设备不同 IOS上遇到的click事件bug;">
+<meta name="twitter:image" content="http://123fe.com/2019/06/21/淘淘优惠小助手项目总结/b.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://123fe.com/2019/06/21/淘淘优惠小助手项目总结/">
+
+
+
+
+
+  <title>淘淘优惠小助手项目总结 | Sogou.dh.fe</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sogou.dh.fe</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">fe blogs</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-github">
+          <a href="https://github.com/sgdh-fe" rel="section">
+            
+            Github
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-projects">
+          <a href="http://git.dh.sogou-inc.com/groups/fe" rel="section">
+            
+            Projects
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://123fe.com/2019/06/21/淘淘优惠小助手项目总结/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sgdhfe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sogou.dh.fe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">淘淘优惠小助手项目总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-21T11:57:44+08:00">
+                2019-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目总结/" itemprop="url" rel="index">
+                    <span itemprop="name">项目总结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+          <span> ｜ </span><span class="fa fa-user-o"> </span><span style="color:#222;"> 胡丽娟</span>
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2019/06/21/淘淘优惠小助手项目总结/b.jpg" alt=""></p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ul>
+<li>canvas画跨域图片</li>
+<li>canvas绘制图片模糊</li>
+<li>qrcode在安卓9.0下生成二维码的HTML与其他设备不同</li>
+<li>IOS上遇到的click事件bug;</li>
+</ul>
+<a id="more"></a>
+<p>以上前两个问题都是在生成微信分享图时遇到的，下面分别介绍生成微信分享图的步骤和用的API。</p>
+<h3 id="生成微信分享图的步骤"><a href="#生成微信分享图的步骤" class="headerlink" title="生成微信分享图的步骤"></a>生成微信分享图的步骤</h3><ol>
+<li>把所有需要的信息绘制到canvas画布上</li>
+<li>把画布上的信息转换成base64的png图片</li>
+</ol>
+<p>步骤2用到的API</p>
+<blockquote>
+<h5 id="canvas-toDataURL-type-encoderOptions"><a href="#canvas-toDataURL-type-encoderOptions" class="headerlink" title="canvas.toDataURL(type, encoderOptions)"></a>canvas.toDataURL(type, encoderOptions)</h5><p>将canvas画布上的信息转换成base64编码格式的图片使用的API是toDataURL，改方法返回一个包含图片展示的 data URI。参数：</p>
+<ul>
+<li>type(可选)：图片格式，默认为 image/png</li>
+<li>encoderOptions(可选)：在指定图片格式为 image/jpeg 或 image/webp的情况下，可以从 0 到 1 的区间内选择图片的质量。如果超出取值范围，将会使用默认值 0.92。其他参数会被忽略</li>
+</ul>
+</blockquote>
+<p>步骤1绘制图片用到的API</p>
+<blockquote>
+<h5 id="context-drawImage-img-x-y-width-height"><a href="#context-drawImage-img-x-y-width-height" class="headerlink" title="context.drawImage(img,x,y,width,height)"></a>context.drawImage(img,x,y,width,height)</h5><p>使用上面API画图时，如果img是外链图片，受限于CORS策略，会存在跨域问题。此时可以将图片正常绘制到canvas画布上，但是绘制到画布上会污染画布，一旦一个画布被污染,就无法提取画布的数据，比如无法使用使用画布toBlob(),toDataURL(),或getImageData()方法；当使用这些方法的时候会抛出安全错误。</p>
+</blockquote>
+<h3 id="canvas画跨域图片问题"><a href="#canvas画跨域图片问题" class="headerlink" title="canvas画跨域图片问题"></a>canvas画跨域图片问题</h3><p>使用img的crossorigin属性<br>img的crossorigin属性决定了图片获取过程中是否开启CORS功能，该属性有两个取值：</p>
+<ul>
+<li>anonymous：如果使用这个值的话就会在请求中的header中的带上Origin属性，但请求不会带上cookie和其他的一些认证信息</li>
+<li>use-credentials：这个就同时会在跨域请求中带上cookie和其他的一些认证信息<br><a href="https://codepen.io/hulijuan410/pen/vwoQee?editors=1010" target="_blank" rel="noopener">小demo</a></li>
+</ul>
+<blockquote>
+<h5 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h5><p>跨域资源共享(CORS) 是一种机制，它使用额外的 HTTP 头来告诉浏览器，让运行在一个 origin (domain) 上的Web应用被准许访问来自不同源服务器上的指定的资源。<br>对于简单请求，浏览器直接发出CORS请求，在头信息之中，增加一个Origin字段。Origin字段用来说明，本次请求属于哪个域（协议 + 域名 + 端口）。服务器根据这个值，决定是否同意这次请求。<br>整个CORS通信过程，都是浏览器自动完成，不需要用户参与。浏览器一旦发现请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。</p>
+</blockquote>
+<h3 id="canvas绘图模糊问题"><a href="#canvas绘图模糊问题" class="headerlink" title="canvas绘图模糊问题"></a>canvas绘图模糊问题</h3><h5 id="基本概念："><a href="#基本概念：" class="headerlink" title="基本概念："></a>基本概念：</h5><ul>
+<li>物理像素：设备像素，设备屏幕实际拥有的像素点，屏幕的基本单元</li>
+<li>设备独立性素：逻辑像素，css像素</li>
+<li>设备像素比：dpr = 物理像素 ／ 逻辑像素</li>
+<li>位图canvas绘制的是位图）：位图又叫像素图或栅格图，它是通过记录图像中每一个点的颜色、深度等信息来存储和显示图像。每个位图像素不可以再进一步分割，因此，理论上一个位图像素应该对应着一个物理像素</li>
+<li>canvas的width和height：<br><code>&lt;canvas width=&quot;600&quot; height=&quot;300&quot; style=&quot;width: 300px; height: 150px&quot;&gt;&lt;/canvas&gt;</code><blockquote>
+<ul>
+<li>style中的width和height分别代表canvas这个元素在界面上所占据的宽高，即样式上的宽高</li>
+<li>attribute中的width和height则代表canvas实际像素的宽高</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h5 id="模糊原因"><a href="#模糊原因" class="headerlink" title="模糊原因"></a>模糊原因</h5><p>假设我们有如下代码，该代码将展示在iphone4的retina屏上：<br><code>&lt;canvas width=&quot;320&quot; height=&quot;150&quot; style=&quot;width: 320px; height: 150px&quot;&gt;&lt;/canvas&gt;</code><br>iphone4本身的物理像素为640 980，而设备独立像素为320 480，这代表着1个css像素实际由4个物理像素构成；<br>canvas的像素为320 150，其css像素为320 150，则代表1个css像素将会由1个canvas元素构成；<br>这样进行换算，在retina屏幕下，1个canvas像素（或者说是1个位图像素）将会填充4个物理像素，由于单个位图像素不可以再进一步分割，所以只能就近取色，从而导致图片模糊。<br>下面图片可以帮助理解：<br><img src="/2019/06/21/淘淘优惠小助手项目总结/canvas.png" alt="canvas"></p>
+<h5 id="模糊解决方法"><a href="#模糊解决方法" class="headerlink" title="模糊解决方法"></a>模糊解决方法</h5><h6 id="让1个canvas像素和一个物理像素挂等号"><a href="#让1个canvas像素和一个物理像素挂等号" class="headerlink" title="让1个canvas像素和一个物理像素挂等号"></a>让1个canvas像素和一个物理像素挂等号</h6><p><code>canvas.width = width * window.devicePixelRatio;</code><br><code>canvas.height = height * window.devicePixelRatio;</code><br><code>canvas.style.width = width + &#39;px&#39;;</code><br><code>canvas.style.height = height + &#39;px&#39;;</code></p>
+<h3 id="qrcode在安卓9-0下生成二维码的HTML与其他设备不同"><a href="#qrcode在安卓9-0下生成二维码的HTML与其他设备不同" class="headerlink" title="qrcode在安卓9.0下生成二维码的HTML与其他设备不同"></a>qrcode在安卓9.0下生成二维码的HTML与其他设备不同</h3><p>非安卓9.0机型<br><img src="/2019/06/21/淘淘优惠小助手项目总结/qrcode_other.png" alt="qrcodeimg"></p>
+<p>生成的二维码在img中，直接通过img的src获取图片就好；<br>安卓9.0机型<br><img src="/2019/06/21/淘淘优惠小助手项目总结/qrcode_android9.png" alt="qrcodeimg"><br>生成的二维码在canvas中，要获取图片需将canvas转换成图片，使用toDataURL()方法;</p>
+<h3 id="IOS上使用委托事件时的点击bug"><a href="#IOS上使用委托事件时的点击bug" class="headerlink" title="IOS上使用委托事件时的点击bug"></a>IOS上使用委托事件时的点击bug</h3><p>IOS上当使用委托，给一个元素添加click事件时，如果事件是委托到document 或 body 上，并且委托的元素是默认不可点击的(如 div, span 等)，此时 click 事件会失效。</p>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><ol>
+<li>将 click 事件直接绑定到目标元素上</li>
+<li>将目标元素换成 <code>&lt;a&gt;</code> 或者 <code>&lt;button&gt;</code> 等可点击的元素</li>
+<li>给目标元素添加一个空的 <code>onclick=&quot;&quot;</code></li>
+<li>把 click 改成 touchend 或 touchstart（注意加上preventDefault）</li>
+<li>将 click 元素委托到非 document 或 body 的父级元素上</li>
+<li>给目标元素加一条样式规则 <code>cursor: pointer</code></li>
+</ol>
+<p><a href="https://codepen.io/hulijuan410/pen/OeJpKK?editors=1010" target="_blank" rel="noopener">小demo</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/总结/" rel="tag"># 总结</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/21/cypress代码测试介绍/" rel="next" title="Cypress代码测试介绍">
+                <i class="fa fa-chevron-left"></i> Cypress代码测试介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/08/从零实现redux基本功能/" rel="prev" title="从零实现redux基本功能">
+                从零实现redux基本功能 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
+            
+              <p class="site-author-name" itemprop="name">sgdhfe</p>
+              <p class="site-description motion-element" itemprop="description">🐳🐳 搜狗导航前端开发组 🐬🐬</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sgdh-fe" target="_blank" title="github">
+                      
+                        <i class="fa fa-fw fa-github"></i>github</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://123.sogou.com/" title="123sogou" target="_blank">123sogou</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的问题"><span class="nav-number">1.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成微信分享图的步骤"><span class="nav-number">2.</span> <span class="nav-text">生成微信分享图的步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#canvas-toDataURL-type-encoderOptions"><span class="nav-number">2.0.1.</span> <span class="nav-text">canvas.toDataURL(type, encoderOptions)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#context-drawImage-img-x-y-width-height"><span class="nav-number">2.0.2.</span> <span class="nav-text">context.drawImage(img,x,y,width,height)</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas画跨域图片问题"><span class="nav-number">3.</span> <span class="nav-text">canvas画跨域图片问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#CORS"><span class="nav-number">3.0.1.</span> <span class="nav-text">CORS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas绘图模糊问题"><span class="nav-number">4.</span> <span class="nav-text">canvas绘图模糊问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本概念："><span class="nav-number">4.0.1.</span> <span class="nav-text">基本概念：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#模糊原因"><span class="nav-number">4.0.2.</span> <span class="nav-text">模糊原因</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#模糊解决方法"><span class="nav-number">4.0.3.</span> <span class="nav-text">模糊解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#让1个canvas像素和一个物理像素挂等号"><span class="nav-number">4.0.3.1.</span> <span class="nav-text">让1个canvas像素和一个物理像素挂等号</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#qrcode在安卓9-0下生成二维码的HTML与其他设备不同"><span class="nav-number">5.</span> <span class="nav-text">qrcode在安卓9.0下生成二维码的HTML与其他设备不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IOS上使用委托事件时的点击bug"><span class="nav-number">6.</span> <span class="nav-text">IOS上使用委托事件时的点击bug</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方法"><span class="nav-number">6.1.</span> <span class="nav-text">解决方法</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sgdhfe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

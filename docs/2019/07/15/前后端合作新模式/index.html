@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-192x192.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="框架,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文主要介绍一种全新的前后端合作模式，在介绍这种模式之前咋们先来看看前后端合作模式的演变。  singsong：该模式主要对传统多页面应用构建的改进。关于 SPA（Single Page Application，单页应用程序）可以参考 SSR（Server-Side Render，服务端渲染）。">
+<meta name="keywords" content="框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前后端合作新模式">
+<meta property="og:url" content="http://123fe.com/2019/07/15/前后端合作新模式/index.html">
+<meta property="og:site_name" content="Sogou.dh.fe">
+<meta property="og:description" content="本文主要介绍一种全新的前后端合作模式，在介绍这种模式之前咋们先来看看前后端合作模式的演变。  singsong：该模式主要对传统多页面应用构建的改进。关于 SPA（Single Page Application，单页应用程序）可以参考 SSR（Server-Side Render，服务端渲染）。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://123fe.com/2019/07/15/前后端合作新模式/b.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhansingsong/create-fes/master/docs/dev-model/imgs/dev-model-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhansingsong/create-fes/master/docs/dev-model/imgs/dev-model-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhansingsong/create-fes/master/docs/dev-model/imgs/dev-model-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhansingsong/create-fes/master/docs/dev-model/imgs/dev-model-4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhansingsong/create-fes/master/docs/dev-model/imgs/dev-model-5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhansingsong/create-fes/master/docs/dev-model/imgs/dev-model.gif">
+<meta property="og:updated_time" content="2019-07-15T06:00:49.242Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前后端合作新模式">
+<meta name="twitter:description" content="本文主要介绍一种全新的前后端合作模式，在介绍这种模式之前咋们先来看看前后端合作模式的演变。  singsong：该模式主要对传统多页面应用构建的改进。关于 SPA（Single Page Application，单页应用程序）可以参考 SSR（Server-Side Render，服务端渲染）。">
+<meta name="twitter:image" content="http://123fe.com/2019/07/15/前后端合作新模式/b.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://123fe.com/2019/07/15/前后端合作新模式/">
+
+
+
+
+
+  <title>前后端合作新模式 | Sogou.dh.fe</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sogou.dh.fe</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">fe blogs</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-github">
+          <a href="https://github.com/sgdh-fe" rel="section">
+            
+            Github
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-projects">
+          <a href="http://git.dh.sogou-inc.com/groups/fe" rel="section">
+            
+            Projects
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://123fe.com/2019/07/15/前后端合作新模式/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sgdhfe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sogou.dh.fe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">前后端合作新模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-15T12:03:37+08:00">
+                2019-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+          <span> ｜ </span><span class="fa fa-user-o"> </span><span style="color:#222;"> singsong</span>
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2019/07/15/前后端合作新模式/b.jpg" alt=""><br>本文主要介绍一种全新的前后端合作模式，在介绍这种模式之前咋们先来看看前后端合作模式的演变。</p>
+<blockquote>
+<p>singsong：该模式主要对传统多页面应用构建的改进。关于 SPA（Single Page Application，单页应用程序）可以参考 SSR（Server-Side Render，服务端渲染）。<br><a id="more"></a></p>
+</blockquote>
+<h2 id="演变"><a href="#演变" class="headerlink" title="演变"></a>演变</h2><p>在那个前端角色比较弱化的年代，页面主要以静态页面为主。合作模式很简单粗暴。</p>
+<p><img src="https://raw.githubusercontent.com/zhansingsong/create-fes/master/docs/dev-model/imgs/dev-model-1.png" alt="model-1"></p>
+<p>前端开发完页面，输出给后端。后端拿到页面拼模板，然后再渲染输出。但随着前端业务复杂性逐渐地增加，这种模式合作起来就不是很愉快了。<strong>后端在拼模板时，不能确保输出的页面结构与前端保持一致</strong>。为了规避这个问题，聪明的开发人员就给前端同学建议：<strong>使用后端开发环境开发前端页面</strong>。</p>
+<p><img src="https://raw.githubusercontent.com/zhansingsong/create-fes/master/docs/dev-model/imgs/dev-model-2.png" alt="model-2"></p>
+<p>前端直接在本地部署后端开发环境，只负责 views 开发。再基于代码托管工具 git，实现前后端的合作。此时还是以后端为主导，维护性成本依然很高。</p>
+<p>随着 node.js 的崛起，前端工程化也逐渐成为前端开发重要组成部分。各种构建工具（如 webpack、rollup、grunt、gulp 等），MVVM 框架（如 React、Vue、Angular 等），模块化系统（cjs、amd、umd、ES6-modules 等），CSS 预处理器（SASS、Less、Stylus、Postcss 等），模块管理工具（NPM、Yarn、brower 等）犹如雨后春笋般不断涌现。SAP 也开始在前端领域流行来，前端能做的事情更多。如客户端渲染，静态分析、优化打包等。后端只需负责数据提供。此时，前后端已完全分离，各自负责各自的业务。</p>
+<p><img src="https://raw.githubusercontent.com/zhansingsong/create-fes/master/docs/dev-model/imgs/dev-model-3.png" alt="model-3"></p>
+<p>这种合作模式的核心：<strong>客户端渲染 + 接口</strong>。由于基于客户端渲染，对浏览器的 SEO 不是很友好。虽然可以通过 SSR 来解决，但是 SSR 也存在局限性。关于 SSR 感兴趣的同学可自行查阅相关的资料。本文主要探讨传统多页面应用构建的优化。</p>
+<p>基于前端工程化，要让传统多页面应用构建也支持前后端完全分离。还需要做一件事，前端脚手架需要与后端使用相同的模板渲染引擎。前端编写好后，直接输出模板给后端使用。为此自己也构建一个 <a href="https://github.com/zhansingsong/create-fes" title="fes" target="_blank" rel="noopener">fes</a> 脚手架。</p>
+<p><img src="https://raw.githubusercontent.com/zhansingsong/create-fes/master/docs/dev-model/imgs/dev-model-4.png" alt="model-4"></p>
+<p>在使用 <a href="https://github.com/zhansingsong/create-fes" title="fes" target="_blank" rel="noopener">fes</a> 构建了几个项目后，虽然在开发体验、开发效率上都得到了很大地提升。但与后端合作起来不是很轻松。因为在开发之前需要与后端约定好模板数据变量，一般会以文档形式进行说明。如果后端更新了数据，没同步更新文档，就会存在数据不一致的问题。对开发效率大打折扣，与传统的后端重新拼接模板相比优势不是很明显。秉着 geek 的精神，就想能不能 <strong>将模板数据以接口的形式提供给前端</strong>。这样上述问题不就迎刃而解了么。</p>
+<p><img src="https://raw.githubusercontent.com/zhansingsong/create-fes/master/docs/dev-model/imgs/dev-model-5.png" alt="model-5"></p>
+<p>于是就对 <a href="https://github.com/zhansingsong/create-fes" title="fes" target="_blank" rel="noopener">fes</a> 进行改造。让其支持模板数据接口的配置，在渲染之前会根据配置拉起接口数据，再进行渲染输出。同时还提供了接口数据适配功能，能让客户端更好地控制数据结构。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mockConfig: &#123;</span><br><span class="line">  <span class="comment">// 访问路径作为key</span></span><br><span class="line">  <span class="string">'/index'</span>: &#123;</span><br><span class="line">    <span class="comment">// 提供渲染模板数据接口</span></span><br><span class="line">    api: <span class="string">'https://postman-echo.com/get?page=index'</span>,</span><br><span class="line">    <span class="comment">// 适配数据</span></span><br><span class="line">    format: <span class="function"><span class="params">data</span> =&gt;</span> data.args,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">'/fes/info'</span>: &#123;</span><br><span class="line">    api: <span class="string">'https://postman-echo.com/get?page=info'</span>,</span><br><span class="line">    format: <span class="function"><span class="params">data</span> =&gt;</span> data.args,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外，为了方便查看模板数据，开发模式下输入 <code>mock</code> 指令可获取当前的模板数据。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$ mock</span><br><span class="line">Mock Data:</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"/about"</span>: &#123;</span><br><span class="line">        <span class="string">"page"</span>: <span class="string">"about"</span>,</span><br><span class="line">        <span class="string">"common"</span>: <span class="string">"commons"</span>,</span><br><span class="line">        <span class="string">"data"</span>: <span class="string">"singsong"</span>,</span><br><span class="line">        <span class="string">"name"</span>: <span class="string">"fes-about-page"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"/index"</span>: &#123;</span><br><span class="line">        <span class="string">"page"</span>: <span class="string">"index"</span>,</span><br><span class="line">        <span class="string">"common"</span>: <span class="string">"commons"</span>,</span><br><span class="line">        <span class="string">"name"</span>: <span class="string">"fes-index-page"</span>,</span><br><span class="line">        <span class="string">"data"</span>: &#123;</span><br><span class="line">            <span class="string">"name"</span>: <span class="string">"fes"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">"article"</span>: &#123;</span><br><span class="line">            <span class="string">"_value"</span>: &#123;&#125;,</span><br><span class="line">            <span class="string">"_state"</span>: <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"/post"</span>: &#123;</span><br><span class="line">        <span class="string">"common"</span>: <span class="string">"commons"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果需要查看对应页面数据，只需输入对应的路径即可。如 <code>/index</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ /index</span><br><span class="line">Mock Data [<span class="regexp">/index]:</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&#123;</span></span><br><span class="line"><span class="regexp">    "page": "index",</span></span><br><span class="line"><span class="regexp">    "common": "commons",</span></span><br><span class="line"><span class="regexp">    "name": "fes-index-page",</span></span><br><span class="line"><span class="regexp">    "data": &#123;</span></span><br><span class="line"><span class="regexp">        "name": "fes"</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    "article": &#123;</span></span><br><span class="line"><span class="regexp">        "_value": &#123;&#125;,</span></span><br><span class="line"><span class="regexp">        "_state": 1</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>除了 mock 指令，还提供了如下指令：</p>
+<ul>
+<li>mock: 查看当前的 mock 数据</li>
+<li>view: 打印范围地址和二维码信息</li>
+<li>clear: 清空控制台</li>
+</ul>
+<p><strong>这种合作模式，需要后端多做一件事。额外提供一个包含模板数据的接口供前端使用（只存在开发环境下，在上线时需要关闭掉）。只需对该类接口定义特定的前缀，然后在模板渲染逻辑之前拦截请求响应数据。这样不仅能保持数据一致性，而且维护起来也方便。</strong></p>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>这里以改进后 <a href="https://github.com/zhansingsong/create-fes" title="fes" target="_blank" rel="noopener">fes</a> 进行演示。如下以 <code>index 页面</code> 为例进行讲解：</p>
+<h3 id="前端修改"><a href="#前端修改" class="headerlink" title="前端修改"></a>前端修改</h3><p>index 页面路由为：<code>http://127.0.0.1:3001/index</code>，结构如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>&#123;&#123; title &#125;&#125;<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123; title &#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>模板数据接口为：<code>http://127.0.0.1:3001/mockdata/index</code>。其中<code>/mockdata</code>为前缀，接口返回的数据如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"rawdata"</span>: &#123;</span><br><span class="line">    <span class="string">"title"</span>: <span class="string">"index page"</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 fes 中对模板数据接口进行如下配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mockConfig: &#123;</span><br><span class="line">  <span class="comment">// 访问路径作为key</span></span><br><span class="line">  <span class="string">'/index'</span>: &#123;</span><br><span class="line">    <span class="comment">// 提供渲染模板数据接口</span></span><br><span class="line">    api: <span class="string">'http://127.0.0.1:3001/mockdata/index'</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里如果只想要 <code>rawdata</code> 中的变量数据。可以通过<code>format</code> 进行适配。最后的配置信息如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mockConfig: &#123;</span><br><span class="line">  <span class="comment">// 访问路径作为key</span></span><br><span class="line">  <span class="string">'/index'</span>: &#123;</span><br><span class="line">    <span class="comment">// 提供渲染模板数据接口</span></span><br><span class="line">    api: <span class="string">'http://127.0.0.1:3001/mockdata/index'</span>,</span><br><span class="line">    <span class="comment">// 适配数据</span></span><br><span class="line">    format: <span class="function"><span class="params">data</span> =&gt;</span> data.rawdata,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="后端修改"><a href="#后端修改" class="headerlink" title="后端修改"></a>后端修改</h3><ul>
+<li><p>路由处理器</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//path: ./controllers/index.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;url&#125; = ctx;</span><br><span class="line">  <span class="comment">// 从 DB 获取数据</span></span><br><span class="line">  <span class="keyword">const</span> getDataFromDB = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 做一些数据查询操作……</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      rawdata: &#123;</span><br><span class="line">        title: <span class="string">'index page'</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">const</span> data = getDataFromDB();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 判断是否有前缀进行不同的响应</span></span><br><span class="line">  <span class="comment">// 这里前缀已保存在 ctx.mockApiPrefix 中</span></span><br><span class="line">  <span class="keyword">if</span> (url.indexOf(ctx.mockApiPrefix) === <span class="number">0</span>) &#123;</span><br><span class="line">    ctx.body = data;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> ctx.render(<span class="string">'index'</span>, data.rawdata);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义路由</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// path: ./pages/index.js</span></span><br><span class="line"><span class="comment">// 该接口与页面请求使用相同的路由处理，通过是否有`PREFIX`进行区别</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">PREFIX = <span class="string">''</span></span>) =&gt;</span> [</span><br><span class="line">  &#123;</span><br><span class="line">    method: <span class="string">'get'</span>,</span><br><span class="line">    path: <span class="string">`<span class="subst">$&#123;PREFIX&#125;</span>/index`</span>,</span><br><span class="line">    middleware: <span class="built_in">require</span>(<span class="string">'./controllers/index'</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注册路由</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> pagesConfig = <span class="built_in">require</span>(<span class="string">'./pages/index'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = [];</span><br><span class="line"><span class="comment">// 定义前缀</span></span><br><span class="line"><span class="keyword">const</span> MOCK_API_PREFIX = <span class="string">'/mockdata'</span>;</span><br><span class="line"><span class="comment">// 注册页面路由</span></span><br><span class="line">config.push(...pagesConfig());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注册模板数据接口</span></span><br><span class="line"><span class="keyword">if</span> (process.env.NODE === <span class="string">'dev'</span>) &#123;</span><br><span class="line">  config.push(...pagesConfig(MOCK_API_PREFIX));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> generateRoutes = <span class="function">(<span class="params">router, config</span>) =&gt;</span> &#123;</span><br><span class="line">  config.forEach(<span class="function">(<span class="params">&#123;method, path, middleware&#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    router[method](path, middleware);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">app</span> =&gt;</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 绑定前缀，方便后续逻辑使用</span></span><br><span class="line">  ctx.mockApiPrefix = MOCK_API_PREFIX;</span><br><span class="line">  generateRoutes(router, config);</span><br><span class="line">  app.use(router.routes()).use(router.allowedMethods());</span><br><span class="line">  <span class="keyword">return</span> next();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>运行效果：</p>
+<p><img src="https://raw.githubusercontent.com/zhansingsong/create-fes/master/docs/dev-model/imgs/dev-model.gif" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要与大家分享一种前后端合作新模式，也许当成一种新思路更恰当些😀，因为它只是对多页面应用构建的一种优化。~~~🌴</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/框架/" rel="tag"># 框架</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/08/从零实现redux基本功能/" rel="next" title="从零实现redux基本功能">
+                <i class="fa fa-chevron-left"></i> 从零实现redux基本功能
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
+            
+              <p class="site-author-name" itemprop="name">sgdhfe</p>
+              <p class="site-description motion-element" itemprop="description">🐳🐳 搜狗导航前端开发组 🐬🐬</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sgdh-fe" target="_blank" title="github">
+                      
+                        <i class="fa fa-fw fa-github"></i>github</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://123.sogou.com/" title="123sogou" target="_blank">123sogou</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#演变"><span class="nav-number">1.</span> <span class="nav-text">演变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo"><span class="nav-number">2.</span> <span class="nav-text">Demo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前端修改"><span class="nav-number">2.1.</span> <span class="nav-text">前端修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后端修改"><span class="nav-number">2.2.</span> <span class="nav-text">后端修改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sgdhfe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

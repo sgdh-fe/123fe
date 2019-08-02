@@ -6,15 +6,9 @@ echo  "👉  生成博客静态资源 👉 : "
 
 echo  "----------------"
 
-hexo clean && rm -rf docs/*
+npx hexo clean && rm -rf docs/*
 
-hexo generate  && cp -r public/. docs
-
-echo  "----------------"
-
-echo  "🎈  远程库地址 🎈 :"
-
-git remote -v
+npx hexo generate  && cp -r public/. docs
 
 echo  "----------------"
 
@@ -79,4 +73,4 @@ function autoPush()
 
 
 # Push
-autoPush
+#autoPush
