@@ -77,17 +77,19 @@
 
 
 
-<meta name="description" content="animation                 .svg {             fill: none;             stroke: #f4368b;             stroke-width: 10px;             width: 100%;             height: 440px;">
-<meta property="og:type" content="article">
+<meta name="description" content="exercise                 .profile {             position: relative;             max-width: 600px;             width: 100%;             min-width: 320px;             height: 600p">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Sogou.dh.fe">
-<meta property="og:url" content="http://123fe.com/2019/08/02/svg-描边动画/demo/animation_demo/index.html">
+<meta property="og:url" content="http://123fe.com/demos/exercise.html">
 <meta property="og:site_name" content="Sogou.dh.fe">
-<meta property="og:description" content="animation                 .svg {             fill: none;             stroke: #f4368b;             stroke-width: 10px;             width: 100%;             height: 440px;">
+<meta property="og:description" content="exercise                 .profile {             position: relative;             max-width: 600px;             width: 100%;             min-width: 320px;             height: 600p">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-02T09:12:25.060Z">
+<meta property="og:image" content="https://avatars2.githubusercontent.com/u/13599801?s=460&v=4">
+<meta property="og:updated_time" content="2019-08-02T07:17:51.010Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sogou.dh.fe">
-<meta name="twitter:description" content="animation                 .svg {             fill: none;             stroke: #f4368b;             stroke-width: 10px;             width: 100%;             height: 440px;">
+<meta name="twitter:description" content="exercise                 .profile {             position: relative;             max-width: 600px;             width: 100%;             min-width: 320px;             height: 600p">
+<meta name="twitter:image" content="https://avatars2.githubusercontent.com/u/13599801?s=460&v=4">
 
 
 
@@ -117,7 +119,7 @@
 
 
 
-  <link rel="canonical" href="http://123fe.com/2019/08/02/svg-描边动画/demo/animation_demo/"/>
+  <link rel="canonical" href="http://123fe.com/demos/exercise.html"/>
 
 
 
@@ -254,225 +256,145 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://123fe.com/2019/08/02/svg-描边动画/demo/animation_demo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="sgdhfe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sogou.dh.fe">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline"></h1>
-        
+	<h1 class="post-title" itemprop="name headline"></h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-02T00:52:00+08:00">
-                2019-08-02
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-          <span> ｜ </span><span class="fa fa-user-o"> </span><span style="color:#222;"> </span>
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
-        <!DOCTYPE html>
+      <div class="post-body">
+        
+        
+          <!DOCTYPE html>
 <html lang="en">
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>animation</title>
+    <title>exercise</title>
 </head>
 
 <body>
     <style>
-        .svg {
-            fill: none;
-            stroke: #f4368b;
-            stroke-width: 10px;
+        .profile {
+            position: relative;
+            max-width: 600px;
             width: 100%;
-            height: 440px;
+            min-width: 320px;
+            height: 600px;
+            margin: 0 auto;
+            transform: translate(0, 5%);
         }
         
-        .path1 {
-            transform: translate(25%, 10%);
-            stroke-dasharray: 523.1047973632812;
-            stroke-dashoffset: 0;
-            animation: dash 2s linear 3s alternate 1;
+        .wp {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: #f5f5f5;
+            transition: opacity 1s ease-in;
         }
         
-        .path2 {
-            transform: translate(25%, 10%);
-            /* stroke-dasharray: 523.1047973632812; */
-            /* stroke-dashoffset: 523.1047973632812; */
+        .img {
+            position: absolute;
+            height: 304px;
+            width: 304px;
+            overflow: hidden;
+            border-radius: 152px;
+            transform: translate(168px, 54px);
         }
         
-        @keyframes dash {
-            from {
-                stroke-dashoffset: 523.1047973632812;
-            }
-            to {
-                stroke-dashoffset: 0;
-            }
+        .des {
+            position: absolute;
+            width: 400px;
+            text-align: center;
+            transform: translate(120px, 392px);
+            font-size: 28px;
         }
     </style>
-    CSS动画
-    <svg class="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="10" y="10" viewbox="0 0 400 400" xml:space="preserve">
-        <g>
-          <path class="path1" d="M150.383,18.301c-7.13-3.928-15.308-6.187-24.033-6.187c-15.394,0-29.18,7.015-38.283,18.015    c-9.146-11-22.919-18.015-38.334-18.015c-8.704,0-16.867,2.259-24.013,6.187C10.388,26.792,0,43.117,0,61.878    C0,67.249,0.874,72.4,2.457,77.219c8.537,38.374,85.61,86.771,85.61,86.771s77.022-48.396,85.571-86.771    c1.583-4.819,2.466-9.977,2.466-15.341C176.104,43.124,165.716,26.804,150.383,18.301z"/>
+    <section class="profile">
+        <svg id="rectangle" class="line-drawing hide" preserveaspectratio="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 600 600">
+        <g fill="none" stroke-width="4" stroke="#aaa">
+            <path d="M0 0L600 0L600 600L0 600L0 0Z" id="i0"/><path d="M470 206C470 288.79 402.79 356 320 356C237.21 356 170 288.79 170 206C170 123.21 237.21 56 320 56C402.79 56 470 123.21 470 206Z" id="i1"/><path d="M170 418L470 418L470 460.52L170 460.52L170 418Z" id="i2"/>
         </g>
-    </svg> JS动画：<button class="replay">重播</button>
-    <svg class="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="10" y="10" viewbox="0 0 400 400" xml:space="preserve">
-      <g>
-        <path class="path2" d="M150.383,18.301c-7.13-3.928-15.308-6.187-24.033-6.187c-15.394,0-29.18,7.015-38.283,18.015    c-9.146-11-22.919-18.015-38.334-18.015c-8.704,0-16.867,2.259-24.013,6.187C10.388,26.792,0,43.117,0,61.878    C0,67.249,0.874,72.4,2.457,77.219c8.537,38.374,85.61,86.771,85.61,86.771s77.022-48.396,85.571-86.771    c1.583-4.819,2.466-9.977,2.466-15.341C176.104,43.124,165.716,26.804,150.383,18.301z"/>
-      </g>
-    </svg>
+      </svg>
+        <div class="wp">
+            <a href="https://github.com/zhansingsong" class="img" target="_blank" rel="noopener">
+                <img src="https://avatars2.githubusercontent.com/u/13599801?s=460&v=4" alt="" style="
+          transform: translate(-25%, -10%);
+      ">
+            </a>
+            <p class="des">进化中的“菜鸟”</p>
+        </div>
+    </section>
     <script>
-        const path2 = document.querySelector('.path2');
-        const replay = document.querySelector('.replay');
-        const totalLength = path2.getTotalLength();
-        path2.style.strokeDasharray = totalLength;
-        path2.style.strokeDashoffset = totalLength;
+        var current_frame, total_frames, path, length, handle, myobj;
 
-        let current_frame = 0;
-        let total_frames = 160;
-        const draw = function() {
-            let progress = current_frame / total_frames;
+        // myobj = document.getElementById('myobj').cloneNode(true);
+        const wp = document.querySelector('.wp');
+        var init = function() {
+            current_frame = 0;
+            total_frames = 60;
+            path = new Array();
+            length = new Array();
+            for (var i = 0; i < 3; i++) {
+                path[i] = document.getElementById('i' + i);
+                l = path[i].getTotalLength();
+                length[i] = l;
+                path[i].style.strokeDasharray = l + ' ' + l;
+                path[i].style.strokeDashoffset = l;
+            }
+            handle = 0;
+        }
+
+        var draw = function() {
+            var progress = current_frame / total_frames;
             if (progress > 1) {
+                wp.style.opacity = 1;
                 window.cancelAnimationFrame(handle);
             } else {
                 current_frame++;
-                path2.style.strokeDashoffset = totalLength * (1 - progress);
+                for (var j = 0; j < path.length; j++) {
+                    path[j].style.strokeDashoffset = Math.floor(length[j] * (1 - progress));
+                }
                 handle = window.requestAnimationFrame(draw);
             }
         };
+
+        init();
         draw();
-        replay.addEventListener('click', () => {
-            console.log('click');
-            if (current_frame >= 160) {
-                current_frame = 0;
-                total_frames = 160;
-                draw();
-            }
-        });
+
+        // var rerun = function() {
+        //   var old = document.getElementsByTagName('div')[0];
+        //   old.parentNode.removeChild(old);
+        //   document.getElementsByTagName('body')[0].appendChild(myobj);
+        //   init();
+        //   draw();
+        // };
     </script>
 </body>
 
 </html>
+        
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/08/01/svg-描边动画/demo/stroke/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/02/趣清理H5项目分享/" rel="prev" title="趣清理H5项目分享">
-                趣清理H5项目分享 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
@@ -525,7 +447,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
