@@ -3,12 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.3.8"
+    "version": "3.9.0"
   },
   "dependencies": {
     "debug": "^3.1.0",
     "fresh": "^0.5.2",
-    "hexo": "^3.9.0",
     "hexo-asset-image": "https://github.com/CodeFalling/hexo-asset-image",
     "hexo-deployer-git": "^0.3.1",
     "hexo-generator-archive": "^0.1.4",
@@ -32,5 +31,8 @@
     "sshpk": "^1.14.2",
     "tough-cookie": "^2.4.3",
     "uglify-js": "^3.4.7"
+  },
+  "devDependencies": {
+    "hexo": "^3.9.0"
   }
 }

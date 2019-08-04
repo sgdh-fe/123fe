@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="内存泄露,优化,listeners," />
+  <meta name="keywords" content="内存泄露,优化,listeners,">
 
 
 
@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://123fe.com/2017/11/01/内存泄露之Listeners/listeners_resize_after.png">
 <meta property="og:image" content="http://123fe.com/2017/11/01/内存泄露之Listeners/listener_location.png">
 <meta property="og:image" content="http://123fe.com/2017/11/01/内存泄露之Listeners/listeners_fixed.png">
-<meta property="og:updated_time" content="2019-02-15T09:27:07.904Z">
+<meta property="og:updated_time" content="2019-08-04T08:44:02.685Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="内存泄露之Listeners">
 <meta name="twitter:description" content="页面中事件绑定数量会直接影响页面的整体运行性能，因为每个事件的回调处理函数都是一个对象，占用一定的内存。如果事件的绑定数量越多，内存也随之增加。另外，回调处理函数需要与DOM节点进行交互，而JS引擎独立于渲染引擎，而DOM是位于渲染引擎，相互访问需要消耗一定的资源。加上操作DOM，会引起浏览器的重排或重绘，而影响页面的整体性能。  事件代理 (事件委托) 利用了事件冒泡，只指定一个事件处理程序，就">
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="http://123fe.com/2017/11/01/内存泄露之Listeners/"/>
+  <link rel="canonical" href="http://123fe.com/2017/11/01/内存泄露之Listeners/">
 
 
 
@@ -143,7 +143,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -153,13 +153,13 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Sogou.dh.fe</span>
         <span class="logo-line-after"><i></i></span>
@@ -269,20 +269,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://123fe.com/2017/11/01/内存泄露之Listeners/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sgdhfe">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/logo.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Sogou.dh.fe">
     </span>
 
@@ -314,7 +314,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -325,7 +325,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/memory/" itemprop="url" rel="index">
                     <span itemprop="name">memory</span>
                   </a>
@@ -379,7 +379,7 @@
 </ol>
 <p><img src="/2017/11/01/内存泄露之Listeners/listeners_event.png" alt="listeners"></p>
 <h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><p>双十一快到了，各种tmall活动就多起来了。在做一个tmall动态皮肤时，需要在window大小变化时将之前构建的结构销毁，然后再重新计算构建。因为在销毁时，未解绑对应的事件。导致在window触发resize时，某个元素的事件绑定数量不断增加。关键代码如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> tmallskin = &#123;</div><div class="line">  init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//......</span></div><div class="line">    <span class="keyword">this</span>.bindEvent();</div><div class="line">  &#125;,</div><div class="line">  destroy: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.element.length &gt; <span class="number">0</span>) &#123;</div><div class="line">      <span class="keyword">this</span>.container.off(<span class="string">"click.tmallskin"</span>);<span class="comment">//该语句可以不用，因为在element.remove时会解除element上绑定的事件</span></div><div class="line">      <span class="keyword">this</span>.element.remove();</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"> <span class="comment">// 绑定逻辑</span></div><div class="line"> bindEvent: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> context = <span class="keyword">this</span>;</div><div class="line">    <span class="keyword">this</span>.container.on(<span class="string">"click.tmallskin"</span>, <span class="string">".tmallskin-close"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">//.... </span></div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="keyword">var</span> timer = <span class="literal">null</span>;</div><div class="line">    $(<span class="built_in">window</span>).on(<span class="string">"resize.tmallskin"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (timer) &#123;</div><div class="line">        clearTimeout(timer);</div><div class="line">      &#125;</div><div class="line">      timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// 窗口大小变化时，会不断执行destroy，init</span></div><div class="line">        context.destroy();</div><div class="line">        context.init();</div><div class="line">        timer = <span class="literal">null</span>;</div><div class="line">      &#125;, <span class="number">400</span>);</div><div class="line">    &#125;);</div><div class="line">    <span class="comment">// 因为未在destroy中解除该绑定，在window触发resize时，会不断地绑定</span></div><div class="line">    $(<span class="string">".m-skin"</span>).on(<span class="string">"click.tmallskin"</span>, <span class="string">".grey, .reset"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      o._JS.SK[<span class="string">"1"</span>].init();</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmallskin = &#123;</span><br><span class="line">  init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//......</span></span><br><span class="line">    <span class="keyword">this</span>.bindEvent();</span><br><span class="line">  &#125;,</span><br><span class="line">  destroy: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.element.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.container.off(<span class="string">"click.tmallskin"</span>);<span class="comment">//该语句可以不用，因为在element.remove时会解除element上绑定的事件</span></span><br><span class="line">      <span class="keyword">this</span>.element.remove();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> <span class="comment">// 绑定逻辑</span></span><br><span class="line"> bindEvent: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">this</span>.container.on(<span class="string">"click.tmallskin"</span>, <span class="string">".tmallskin-close"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="comment">//.... </span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> timer = <span class="literal">null</span>;</span><br><span class="line">    $(<span class="built_in">window</span>).on(<span class="string">"resize.tmallskin"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (timer) &#123;</span><br><span class="line">        clearTimeout(timer);</span><br><span class="line">      &#125;</span><br><span class="line">      timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 窗口大小变化时，会不断执行destroy，init</span></span><br><span class="line">        context.destroy();</span><br><span class="line">        context.init();</span><br><span class="line">        timer = <span class="literal">null</span>;</span><br><span class="line">      &#125;, <span class="number">400</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 因为未在destroy中解除该绑定，在window触发resize时，会不断地绑定</span></span><br><span class="line">    $(<span class="string">".m-skin"</span>).on(<span class="string">"click.tmallskin"</span>, <span class="string">".grey, .reset"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      o._JS.SK[<span class="string">"1"</span>].init();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>上述code中，因为在destroy方法中未对<code>$(&quot;.m-skin&quot;)</code>元素上绑定的事件进行解除，导致在window触发resize时，不断进行绑定。</p>
 <ul>
 <li>DevTools诊断截图如下：</li>
@@ -393,7 +393,7 @@
 <li>单击右侧定位链接<code>(index):42</code>：</li>
 </ul>
 <p><img src="/2017/11/01/内存泄露之Listeners/listener_location.png" alt="location"></p>
-<h3 id="知道问题的原因，修复代码如下："><a href="#知道问题的原因，修复代码如下：" class="headerlink" title="知道问题的原因，修复代码如下："></a>知道问题的原因，修复代码如下：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//.....</span></div><div class="line">destroy: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.element.length &gt; <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.container.off(<span class="string">"click.tmallskin"</span>);</div><div class="line">    $(<span class="string">".m-skin"</span>).off(<span class="string">"click.tmallskin"</span>);<span class="comment">//销毁时解除绑定</span></div><div class="line">    $(<span class="built_in">window</span>).off(<span class="string">"resize.tmallskin"</span>);</div><div class="line">    <span class="keyword">this</span>.element.remove();</div><div class="line">  &#125;</div><div class="line">&#125;,</div><div class="line"><span class="comment">//.....</span></div></pre></td></tr></table></figure>
+<h3 id="知道问题的原因，修复代码如下："><a href="#知道问题的原因，修复代码如下：" class="headerlink" title="知道问题的原因，修复代码如下："></a>知道问题的原因，修复代码如下：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.....</span></span><br><span class="line">destroy: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.element.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.container.off(<span class="string">"click.tmallskin"</span>);</span><br><span class="line">    $(<span class="string">".m-skin"</span>).off(<span class="string">"click.tmallskin"</span>);<span class="comment">//销毁时解除绑定</span></span><br><span class="line">    $(<span class="built_in">window</span>).off(<span class="string">"resize.tmallskin"</span>);</span><br><span class="line">    <span class="keyword">this</span>.element.remove();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">//.....</span></span><br></pre></td></tr></table></figure>
 <p>效果截图：</p>
 <p><img src="/2017/11/01/内存泄露之Listeners/listeners_fixed.png" alt="fixed"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>可能在实践编码中，很少关注主动解除事件绑定。如常用的Jquery库，会在元素删除时，自动解除元素上绑定的事件。不过难免存在某些情况，Jquery也无能无力，这时需要我们主动进行解绑，因为过多的事件绑定会直接影响页面的整体性能。因此了解如何诊断事件绑定的增加是很重要的，也希望本文对你有所帮助。</p>
@@ -442,8 +442,8 @@
           <div class="post-nav-prev post-nav-item">
             
               <a href="/2017/11/10/IE-8循环引用导致的内存泄露/" rel="prev" title="IE<8循环引用导致的内存泄露">
-                IE<8循环引用导致的内存泄露 <i class="fa fa-chevron-right"></i>
-              </a>
+                IE<8循环引用导致的内存泄露 <i="" class="fa fa-chevron-right">
+              </8循环引用导致的内存泄露></a>
             
           </div>
         </div>
@@ -507,11 +507,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/logo.png"
-                alt="sgdhfe" />
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
             
               <p class="site-author-name" itemprop="name">sgdhfe</p>
               <p class="site-description motion-element" itemprop="description">🐳🐳 搜狗导航前端开发组 🐬🐬</p>
@@ -524,7 +522,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -546,7 +544,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
