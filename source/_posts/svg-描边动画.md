@@ -9,7 +9,7 @@ category:
 
 在开始讲解之前，先来看看效果
 
-![svg](svg.gif)
+![svg](./imgs/svg.gif)
 
 ## svg 描边属性 stroke
 
@@ -28,7 +28,7 @@ category:
     </g>
   </svg>
   ```
-  ![stroke](stroke.png)
+  ![stroke](./imgs/stroke.png)
 
 - stroke-width：宽度。
   ```html
@@ -40,7 +40,7 @@ category:
     </g>
   </svg>
   ```
-  ![stroke-width](stroke-width.png)
+  ![stroke-width](./imgs/stroke-width.png)
 
 - stroke-linecap：线端点样式。取值`butt`、`round`、`square`，默认`butt`。
   ```html
@@ -52,7 +52,7 @@ category:
     </g>
   </svg>
   ```
-  ![stroke-linecap](stroke-linecap.png)
+  ![stroke-linecap](./imgs/stroke-linecap.png)
 - stroke-opacity：透明度。
   ```html
   <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -63,7 +63,7 @@ category:
     </g>
   </svg>
   ```
-  ![stroke-opacity](stroke-opacity.png)
+  ![stroke-opacity](./imgs/stroke-opacity.png)
   
 - stroke-linejoin：转角处样式。取值`arcs`、`bevel`、`miter`、`round`，默认`miter`。
   ```html
@@ -88,7 +88,7 @@ category:
     </g>
   </svg>
   ```
-  ![stroke-linejoin](stroke-linejoin.png)
+  ![stroke-linejoin](./imgs/stroke-linejoin.png)
 
 - stroke-dasharray：定义虚线样式。取值是一个逗号或者空格分隔的数列。数列的第一个值表示dash大小、第二值表示两个dash之间空隙大小。如`stroke-dasharray:10, 2` 表示dash大小10、dash间隙2。如果提供数列是奇数个，则会重复一次形成偶数个。如`stroke-dasharray:10`等效于`stroke-dasharray:10, 10`或`stroke-dasharray:10, 2, 5`等效于`stroke-dasharray:10, 2, 5, 10, 2, 5`。
 
@@ -101,10 +101,10 @@ category:
     </g>
   </svg>
   ```
-  ![stroke-dasharray](stroke-dasharray.png)
-  >singsong：也就是说 `stroke-dasharray` 取值数列以两个数值为一个单元划分，每个单元第一个值表示dash大小，第二值表示两个dash之间空隙大小。[演示实例](demo.html)
+  ![stroke-dasharray](./imgs/stroke-dasharray.png)
+  >singsong：也就是说 `stroke-dasharray` 取值数列以两个数值为一个单元划分，每个单元第一个值表示dash大小，第二值表示两个dash之间空隙大小。[演示实例](./demo/animation_demo.html)
 
-  ![dasharray](dasharray.gif)
+  ![dasharray](./imgs/dasharray.gif)
 
 - stroke-miterlimit：当`stroke-linejoin: miter`时，对 `miter` 进行限制。
 
@@ -115,23 +115,23 @@ category:
 
 ### stroke-dashoffset
 
-这个属性用于指定 stroke-dasharray 开始的偏移量。也是本文重点介绍对象，理解该属性如何工作，就能很好地掌握 svg 描边动画。stroke-dashoffset 取值可以大于 0，也可以小于 0。[演示实例](stroke-dashoffset.html)。
+这个属性用于指定 stroke-dasharray 开始的偏移量。也是本文重点介绍对象，理解该属性如何工作，就能很好地掌握 svg 描边动画。stroke-dashoffset 取值可以大于 0，也可以小于 0。[演示实例](./demo/stroke-dashoffset.html)。
 - 取值大于 0
 
-  ![dashoffset1](dashoffset1.gif)
+  ![dashoffset1](./imgs/dashoffset1.gif)
 
 - 取值小于 0。等效于`offset = s - |-offset| % s`。其中`offset`表示正取值，`s`表示`dasharray`的总和（如：dasharray: '100 50'，则s: 150）。
 
-  ![dashoffset2](dashoffset2.gif)
+  ![dashoffset2](./imgs/dashoffset2.gif)
 
 
 ### 动画原理
 
-随着时间的变化，通过控制 `stroke-dashoffset` 来控制 `stroke-dasharray` 开始的偏移量的变化，以到达动画效果。[演示实例](js.html)。
+随着时间的变化，通过控制 `stroke-dashoffset` 来控制 `stroke-dasharray` 开始的偏移量的变化，以到达动画效果。[演示实例](./demo/animation_js.html)。
 
-![animation](animation.gif)
+![animation](./imgs/animation.gif)
 
-## 动画的实现方式：[演示实例](demo.html)
+## 动画的实现方式：[演示实例](./demo/animation_demo.html)
 
 - css
   ```css
@@ -182,13 +182,13 @@ category:
 
 将 stroke 动画用于预加载动画展示
 
-- [Demo](exercise.html)
+- [Demo](./demo/exercise.html)
 
-  ![exercise](exercise.gif)
+  ![exercise](./imgs/exercise.gif)
 
 - [实战实例](https://tympanus.net/Development/SVGDrawingAnimation/index.html)
 
-  ![inaction](inaction.gif)
+  ![inaction](./imgs/inaction.gif)
 
 ## 工具
 - [vectr](https://vectr.com/)：SVG 在线制作工具——[Demo](https://dev.to/oppnheimer/you-too-can-animate-svg-line-animation-jgm)
