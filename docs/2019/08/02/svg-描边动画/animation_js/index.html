@@ -77,17 +77,17 @@
 
 
 
-<meta name="description" content="stroke">
+<meta name="description" content="animation                 .svg {             fill: none;             stroke: #f4368b;             stroke-width: 10px;             width: 100%;             height: 300px;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sogou.dh.fe">
-<meta property="og:url" content="http://123fe.com/2019/08/01/svg-描边动画/demo/stroke/index.html">
+<meta property="og:url" content="http://123fe.com/2019/08/02/svg-描边动画/animation_js/index.html">
 <meta property="og:site_name" content="Sogou.dh.fe">
-<meta property="og:description" content="stroke">
+<meta property="og:description" content="animation                 .svg {             fill: none;             stroke: #f4368b;             stroke-width: 10px;             width: 100%;             height: 300px;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-01T14:31:31.799Z">
+<meta property="og:updated_time" content="2019-08-02T07:04:48.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sogou.dh.fe">
-<meta name="twitter:description" content="stroke">
+<meta name="twitter:description" content="animation                 .svg {             fill: none;             stroke: #f4368b;             stroke-width: 10px;             width: 100%;             height: 300px;">
 
 
 
@@ -117,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://123fe.com/2019/08/01/svg-描边动画/demo/stroke/"/>
+  <link rel="canonical" href="http://123fe.com/2019/08/02/svg-描边动画/animation_js/"/>
 
 
 
@@ -266,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://123fe.com/2019/08/01/svg-描边动画/demo/stroke/">
+    <link itemprop="mainEntityOfPage" href="http://123fe.com/2019/08/02/svg-描边动画/animation_js/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sgdhfe">
@@ -295,8 +295,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-01T22:31:31+08:00">
-                2019-08-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-02T15:04:48+08:00">
+                2019-08-02
               </time>
             
 
@@ -335,17 +335,69 @@
       
         <!DOCTYPE html>
 <html lang="en">
+
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>stroke</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>animation</title>
 </head>
+
 <body>
-  <svg class="svg" xmlns="http://www.w3.org/2000/svg" version="1.1" viewbox="0, 0, 100%,   100%">
-    <rect width="200" height="100" fill="none" stroke="red" stroke-width="8"/>
-  </svg>
+    <style>
+        .svg {
+            fill: none;
+            stroke: #f4368b;
+            stroke-width: 10px;
+            width: 100%;
+            height: 300px;
+        }
+        
+        .path1 {
+            transform: translate(25%, 10%);
+            stroke-dasharray: 523.1047973632812;
+            stroke-dashoffset: 0;
+            animation: dash 5s linear 5s alternate 1;
+        }
+        
+        .path2 {
+            transform: translate(25%, 10%);
+            /* stroke-dasharray: 523.1047973632812; */
+            /* stroke-dashoffset: 523.1047973632812; */
+        }
+        
+        @keyframes dash {
+            from {
+                stroke-dashoffset: 523.1047973632812;
+            }
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+    <svg class="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="10" y="10" viewbox="0 0 400 400" xml:space="preserve">
+      <g>
+        <path class="path2" d="M150.383,18.301c-7.13-3.928-15.308-6.187-24.033-6.187c-15.394,0-29.18,7.015-38.283,18.015    c-9.146-11-22.919-18.015-38.334-18.015c-8.704,0-16.867,2.259-24.013,6.187C10.388,26.792,0,43.117,0,61.878    C0,67.249,0.874,72.4,2.457,77.219c8.537,38.374,85.61,86.771,85.61,86.771s77.022-48.396,85.571-86.771    c1.583-4.819,2.466-9.977,2.466-15.341C176.104,43.124,165.716,26.804,150.383,18.301z"/>
+      </g>
+    </svg>
+    stroke-dashoffset：<input class="range" type="range" name="value" min="0" max="1" step="0.01"> <span class="txt2"></span>
+    <script>
+        const path2 = document.querySelector('.path2');
+        const txt2 = document.querySelector('.txt2');
+        const range = document.querySelector('.range');
+        const totalLength = path2.getTotalLength();
+        path2.style.strokeDasharray = totalLength;
+        path2.style.strokeDashoffset = totalLength * range.value;
+        txt2.innerHTML = totalLength * range.value;
+        range.addEventListener('input', (e) => {
+            const target = e.target;
+            const value = target.value;
+            txt2.innerHTML = totalLength * value;
+            path2.style.strokeDashoffset = totalLength * value;
+        });
+    </script>
 </body>
+
 </html>
       
     </div>
@@ -370,8 +422,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/01/svg-描边动画/demo/animation/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2019/08/02/趣清理H5项目分享/" rel="next" title="趣清理H5项目分享">
+                <i class="fa fa-chevron-left"></i> 趣清理H5项目分享
               </a>
             
           </div>
@@ -380,7 +432,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/02/svg-描边动画/demo/animation_demo/" rel="prev" title="">
+              <a href="/2019/08/02/svg-描边动画/exercise/" rel="prev" title="">
                  <i class="fa fa-chevron-right"></i>
               </a>
             
