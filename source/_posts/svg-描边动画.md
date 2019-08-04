@@ -1,7 +1,7 @@
 ---
 title: svg 描边动画
 date: 2019-08-04 16:48:43
-tags: [svg, 动画, 'stroke']
+tags: [svg]
 author: singsong
 category:
 ---
