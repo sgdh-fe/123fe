@@ -102,7 +102,7 @@ category:
   </svg>
   ```
   ![stroke-dasharray](./imgs/stroke-dasharray.png)
-  >singsong：也就是说 `stroke-dasharray` 取值数列以两个数值为一个单元划分，每个单元第一个值表示dash大小，第二值表示两个dash之间空隙大小。[演示实例](./demo/animation_demo.html)
+  >singsong：也就是说 `stroke-dasharray` 取值数列以两个数值为一个单元划分，每个单元第一个值表示dash大小，第二值表示两个dash之间空隙大小。[演示实例]/demos/animation_demo.html)
 
   ![dasharray](./imgs/dasharray.gif)
 
@@ -115,7 +115,7 @@ category:
 
 ### stroke-dashoffset
 
-这个属性用于指定 stroke-dasharray 开始的偏移量。也是本文重点介绍对象，理解该属性如何工作，就能很好地掌握 svg 描边动画。stroke-dashoffset 取值可以大于 0，也可以小于 0。[演示实例](./demo/stroke-dashoffset.html)。
+这个属性用于指定 stroke-dasharray 开始的偏移量。也是本文重点介绍对象，理解该属性如何工作，就能很好地掌握 svg 描边动画。stroke-dashoffset 取值可以大于 0，也可以小于 0。[演示实例]/demos/stroke-dashoffset.html)。
 - 取值大于 0
 
   ![dashoffset1](./imgs/dashoffset1.gif)
@@ -127,11 +127,11 @@ category:
 
 ### 动画原理
 
-随着时间的变化，通过控制 `stroke-dashoffset` 来控制 `stroke-dasharray` 开始的偏移量的变化，以到达动画效果。[演示实例](./demo/animation_js.html)。
+随着时间的变化，通过控制 `stroke-dashoffset` 来控制 `stroke-dasharray` 开始的偏移量的变化，以到达动画效果。[演示实例](/demos/animation_js.html)。
 
 ![animation](./imgs/animation.gif)
 
-## 动画的实现方式：[演示实例](./demo/animation_demo.html)
+## 动画的实现方式：[演示实例/demos/animation_demo.html)
 
 - css
   ```css
@@ -182,7 +182,7 @@ category:
 
 将 stroke 动画用于预加载动画展示
 
-- [Demo](./demo/exercise.html)
+- [Demo]/demos/exercise.html)
 
   ![exercise](./imgs/exercise.gif)
 
