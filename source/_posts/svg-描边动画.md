@@ -102,7 +102,7 @@ category:
   </svg>
   ```
   ![stroke-dasharray](./imgs/stroke-dasharray.png)
-  >singsong：也就是说 `stroke-dasharray` 取值数列以两个数值为一个单元划分，每个单元第一个值表示dash大小，第二值表示两个dash之间空隙大小。[演示实例](/demos/animation_demo.html)
+  >singsong：也就是说 `stroke-dasharray` 取值数列以两个数值为一个单元划分，每个单元第一个值表示dash大小，第二值表示两个dash之间空隙大小。[演示实例](/demos/stroke-dasharray.html)
 
   ![dasharray](./imgs/dasharray.gif)
 
