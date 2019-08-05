@@ -14,7 +14,7 @@ category:
 ## svg 描边属性 stroke
 
 在 svg 中对图形（line、polyline、rect、circle、ellipse、polygon）、路径（path）、文本(text、textPath、tspan)的描边需要用到`stroke`属性。
-
+<!-- more -->
 ### stroke 常用属性
 
 - stroke：颜色。

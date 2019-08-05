@@ -77,13 +77,13 @@
 
 
 
-<meta name="description" content="在开始讲解之前，先来看看效果  svg 描边属性 stroke在 svg 中对图形（line、polyline、rect、circle、ellipse、polygon）、路径（path）、文本(text、textPath、tspan)的描边需要用到stroke属性。 stroke 常用属性 stroke：颜色。 1234567&amp;lt;svg xmlns=&quot;http://www.w3.org/200">
+<meta name="description" content="在开始讲解之前，先来看看效果  svg 描边属性 stroke在 svg 中对图形（line、polyline、rect、circle、ellipse、polygon）、路径（path）、文本(text、textPath、tspan)的描边需要用到stroke属性。">
 <meta name="keywords" content="svg">
 <meta property="og:type" content="article">
 <meta property="og:title" content="svg 描边动画">
 <meta property="og:url" content="http://123fe.com/2019/08/04/svg-描边动画/index.html">
 <meta property="og:site_name" content="Sogou.dh.fe">
-<meta property="og:description" content="在开始讲解之前，先来看看效果  svg 描边属性 stroke在 svg 中对图形（line、polyline、rect、circle、ellipse、polygon）、路径（path）、文本(text、textPath、tspan)的描边需要用到stroke属性。 stroke 常用属性 stroke：颜色。 1234567&amp;lt;svg xmlns=&quot;http://www.w3.org/200">
+<meta property="og:description" content="在开始讲解之前，先来看看效果  svg 描边属性 stroke在 svg 中对图形（line、polyline、rect、circle、ellipse、polygon）、路径（path）、文本(text、textPath、tspan)的描边需要用到stroke属性。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/zhansingsong/fe-tutorials/master/svg%E6%8F%8F%E8%BE%B9%E5%8A%A8%E7%94%BB/imgs/svg.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/zhansingsong/fe-tutorials/master/svg%E6%8F%8F%E8%BE%B9%E5%8A%A8%E7%94%BB/imgs/stroke.png">
@@ -98,10 +98,10 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/zhansingsong/fe-tutorials/master/svg%E6%8F%8F%E8%BE%B9%E5%8A%A8%E7%94%BB/imgs/animation.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/zhansingsong/fe-tutorials/master/svg%E6%8F%8F%E8%BE%B9%E5%8A%A8%E7%94%BB/imgs/exercise.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/zhansingsong/fe-tutorials/master/svg%E6%8F%8F%E8%BE%B9%E5%8A%A8%E7%94%BB/imgs/inaction.gif">
-<meta property="og:updated_time" content="2019-08-04T10:39:41.733Z">
+<meta property="og:updated_time" content="2019-08-05T05:19:18.914Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="svg 描边动画">
-<meta name="twitter:description" content="在开始讲解之前，先来看看效果  svg 描边属性 stroke在 svg 中对图形（line、polyline、rect、circle、ellipse、polygon）、路径（path）、文本(text、textPath、tspan)的描边需要用到stroke属性。 stroke 常用属性 stroke：颜色。 1234567&amp;lt;svg xmlns=&quot;http://www.w3.org/200">
+<meta name="twitter:description" content="在开始讲解之前，先来看看效果  svg 描边属性 stroke在 svg 中对图形（line、polyline、rect、circle、ellipse、polygon）、路径（path）、文本(text、textPath、tspan)的描边需要用到stroke属性。">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/zhansingsong/fe-tutorials/master/svg%E6%8F%8F%E8%BE%B9%E5%8A%A8%E7%94%BB/imgs/svg.gif">
 
 
@@ -350,7 +350,7 @@
       
         <p>在开始讲解之前，先来看看效果</p>
 <p><img src="https://raw.githubusercontent.com/zhansingsong/fe-tutorials/master/svg%E6%8F%8F%E8%BE%B9%E5%8A%A8%E7%94%BB/imgs/svg.gif" alt="svg"></p>
-<h2 id="svg-描边属性-stroke"><a href="#svg-描边属性-stroke" class="headerlink" title="svg 描边属性 stroke"></a>svg 描边属性 stroke</h2><p>在 svg 中对图形（line、polyline、rect、circle、ellipse、polygon）、路径（path）、文本(text、textPath、tspan)的描边需要用到<code>stroke</code>属性。</p>
+<h2 id="svg-描边属性-stroke"><a href="#svg-描边属性-stroke" class="headerlink" title="svg 描边属性 stroke"></a>svg 描边属性 stroke</h2><p>在 svg 中对图形（line、polyline、rect、circle、ellipse、polygon）、路径（path）、文本(text、textPath、tspan)的描边需要用到<code>stroke</code>属性。<br><a id="more"></a></p>
 <h3 id="stroke-常用属性"><a href="#stroke-常用属性" class="headerlink" title="stroke 常用属性"></a>stroke 常用属性</h3><ul>
 <li><p>stroke：颜色。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span> <span class="attr">version</span>=<span class="string">"1.1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">g</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">path</span> <span class="attr">stroke</span>=<span class="string">"red"</span> <span class="attr">d</span>=<span class="string">"M0 20 l200 0"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">path</span> <span class="attr">stroke</span>=<span class="string">"green"</span> <span class="attr">d</span>=<span class="string">"M0 40 l200 0"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">path</span> <span class="attr">stroke</span>=<span class="string">"blue"</span> <span class="attr">d</span>=<span class="string">"M0 60 l200 0"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">g</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
