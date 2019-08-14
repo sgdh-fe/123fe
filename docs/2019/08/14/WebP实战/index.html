@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-192x192.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="webP,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在搭建 blog 过程中，使用 lighthouse 审查站点。在性能项上提示Serve images in next-gen formats优化建议。  Image formats like JPEG 2000, JPEG XR, and webp often provide better compression than PNG or JPEG, which means faster dow">
+<meta name="keywords" content="webP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebP实战">
+<meta property="og:url" content="http://123fe.com/2019/08/14/WebP实战/index.html">
+<meta property="og:site_name" content="Sogou.dh.fe">
+<meta property="og:description" content="在搭建 blog 过程中，使用 lighthouse 审查站点。在性能项上提示Serve images in next-gen formats优化建议。  Image formats like JPEG 2000, JPEG XR, and webp often provide better compression than PNG or JPEG, which means faster dow">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://123fe.com/2019/08/14/WebP实战/webp.png">
+<meta property="og:image" content="http://123fe.com/2019/08/14/WebP实战/images/webp-supports.png">
+<meta property="og:updated_time" content="2019-08-14T06:27:28.921Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebP实战">
+<meta name="twitter:description" content="在搭建 blog 过程中，使用 lighthouse 审查站点。在性能项上提示Serve images in next-gen formats优化建议。  Image formats like JPEG 2000, JPEG XR, and webp often provide better compression than PNG or JPEG, which means faster dow">
+<meta name="twitter:image" content="http://123fe.com/2019/08/14/WebP实战/webp.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://123fe.com/2019/08/14/WebP实战/">
+
+
+
+
+
+  <title>WebP实战 | Sogou.dh.fe</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sogou.dh.fe</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">fe blogs</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-github">
+          <a href="https://github.com/sgdh-fe" rel="section">
+            
+            Github
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-projects">
+          <a href="http://git.dh.sogou-inc.com/groups/fe" rel="section">
+            
+            Projects
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://123fe.com/2019/08/14/WebP实战/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sgdhfe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sogou.dh.fe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">WebP实战</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T14:25:09+08:00">
+                2019-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+          <span> ｜ </span><span class="fa fa-user-o"> </span><span style="color:#222;"> singsong</span>
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2019/08/14/WebP实战/webp.png" alt="webp"></p>
+<p>在搭建 blog 过程中，使用 <a href="https://github.com/GoogleChrome/lighthouse" target="_blank" rel="noopener">lighthouse</a> 审查站点。在性能项上提示<code>Serve images in next-gen formats</code>优化建议。</p>
+<blockquote>
+<p>Image formats like JPEG 2000, JPEG XR, and webp often provide better compression than PNG or JPEG, which means faster downloads and less data consumption.<a href="https://developers.google.com/web/tools/lighthouse/audits/webp" target="_blank" rel="noopener">Learn more</a></p>
+</blockquote>
+<p>JPEG 2000, JPEG XR, 和 WebP 与传统的 JPEG、PNG 相比具有高压缩比、高质量的特点。这让图片加载更快，带宽消耗更少。当前浏览器对 JPEG 2000, JPEG XR, 和 WebP 的支持情况：</p>
+<a id="more"></a>
+<ul>
+<li><a href="https://caniuse.com/#feat=webp" target="_blank" rel="noopener">WebP</a>：Chrome、Oprea、UC、QQ。其中 Firefox 新版已支持，Safari 已开始尝试支持。</li>
+<li><a href="https://caniuse.com/#feat=jpeg2000" target="_blank" rel="noopener">JPEG 2000</a>：Safari</li>
+<li><a href="https://caniuse.com/#feat=jpegxr" target="_blank" rel="noopener">JPEG XR</a>：IE</li>
+</ul>
+<p>结合浏览器的支持情况，最终选择支持 WebP 来优化：</p>
+<ul>
+<li>支持有损和无损压缩</li>
+<li>支持动画</li>
+<li>开源</li>
+<li>技术支持团队是 Google</li>
+<li><a href="https://developers.google.com/speed/webp/faq#how_can_i_detect_browser_support_for_webp" target="_blank" rel="noopener">更多关于 WebP</a></li>
+</ul>
+<h2 id="如何支持-WebP"><a href="#如何支持-WebP" class="headerlink" title="如何支持 WebP"></a>如何支持 WebP</h2><p>支持 WebP 有两种方式：</p>
+<ol>
+<li><p>客户端处理，这种处理方式需要提前准备好 WebP 图片。<a href="https://developers.google.com/speed/webp/docs/using" target="_blank" rel="noopener">如何将图片转换为 WebP 格式</a></p>
+<ul>
+<li>使用 js 检测是否支持 WebP。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// check_webp_feature:</span></span><br><span class="line"><span class="comment">//   'feature' can be one of 'lossy', 'lossless', 'alpha' or 'animation'.</span></span><br><span class="line"><span class="comment">//   'callback(feature, result)' will be passed back the detection result (in an asynchronous way!)</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">check_webp_feature</span>(<span class="params">feature, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> kTestImages = &#123;</span><br><span class="line">    lossy: <span class="string">"UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA"</span>,</span><br><span class="line">    lossless: <span class="string">"UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA=="</span>,</span><br><span class="line">    alpha:</span><br><span class="line">      <span class="string">"UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA=="</span>,</span><br><span class="line">    animation:</span><br><span class="line">      <span class="string">"UklGRlIAAABXRUJQVlA4WAoAAAASAAAAAAAAAAAAQU5JTQYAAAD/////AABBTk1GJgAAAAAAAAAAAAAAAAAAAGQAAABWUDhMDQAAAC8AAAAQBxAREYiI/gcA"</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">  img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = img.width &gt; <span class="number">0</span> &amp;&amp; img.height &gt; <span class="number">0</span>;</span><br><span class="line">    callback(feature, result);</span><br><span class="line">  &#125;;</span><br><span class="line">  img.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    callback(feature, <span class="literal">false</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  img.src = <span class="string">"data:image/webp;base64,"</span> + kTestImages[feature];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 HTML5 和 CSS3 特性支持检测库: <a href="https://modernizr.com/" target="_blank" rel="noopener">Modernizr</a> 。Modernizr.webp，Modernizr.webp.lossless，Modernizr.webp.alpha 和 Modernizr.webp.animation。</li>
+<li>使用 <code>&lt;picture&gt;</code> 元素</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;picture&gt;</span><br><span class="line">    &lt;source type=&quot;image/webp&quot; srcset=&quot;demo.webp&quot;&gt;</span><br><span class="line">    &lt;source type=&quot;image/png&quot; media=&quot;demo.png&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;demo.png&quot; alt=&quot;demo&quot;&gt;</span><br><span class="line">&lt;/picture&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>服务端处理。相比客户端处理，在服务端处理更加灵活。因为它可以通过内容类型协商，能提前知道客户端是否支持 WebP（请求头中<code>Accept</code>字段）。如果支持就优先响应 Web 格式图片，否则就响应请求图片。</p>
+<ul>
+<li><a href="https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/" target="_blank" rel="noopener">Deploying New Image Formats on the Web</a></li>
+</ul>
+</li>
+</ol>
+<p>对比两种处理方式，通过服务端来支持 WebP 具有如下优势:</p>
+<ul>
+<li>提前知道客户端是否支持 WebP。处理更灵活，更可靠。而客户端还需要根据是否支持 WebP，对链接做额外的替换处理。</li>
+<li>动态支持 WebP。如果支持 WebP，查看本地是否有对应 WebP 图片，如果没有动态生成响应。</li>
+</ul>
+<h2 id="服务端动态支持-WebP"><a href="#服务端动态支持-WebP" class="headerlink" title="服务端动态支持 WebP"></a>服务端动态支持 WebP</h2><p>服务端要动态支持 WebP，可以由代理服务器 Nginx，或 Backend 来完成。</p>
+<blockquote>
+<p>singsong：图片处理逻辑最好交给下游 Backend 来完成，NGINX 就负责转发即可。当然也有自动处理图片 nginx ：<a href="https://github.com/apache/incubator-pagespeed-ngx" target="_blank" rel="noopener">ngx_pagespeed</a></p>
+</blockquote>
+<h3 id="Nginx-处理"><a href="#Nginx-处理" class="headerlink" title="Nginx 处理"></a>Nginx 处理</h3><ol>
+<li>确保<code>mime.types</code>中有 WebP。因为如果没有 WebP 类型，WebP 图片会作为<code>application/octet-stream</code> 输出。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">image/webp  webp;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>获取请求头 <code>Accept</code> 字段中的 <code>webp</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">map $http_accept $webp_suffix &#123;</span><br><span class="line">  <span class="keyword">default</span>   <span class="string">""</span>;</span><br><span class="line">  <span class="string">"~*webp"</span>  <span class="string">".webp"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里使用 map(更多参考<a href="http://nginx.org/en/docs/http/ngx_http_map_module.html" target="_blank" rel="noopener">ngx_http_map_module</a>)定义了一个<code>$webp_suffix</code>变量，如果 WebP 存在，<code>$webp_suffix</code>值为<code>&quot;.webp&quot;</code>，否则为空字符串。</p>
+<ol start="3">
+<li><p>输出图片</p>
+<ul>
+<li>查看是否存在<code>.webp</code>的文件，如果存在就直接输出。</li>
+<li>查看是否存在请求文件，如果存在就直接输出。</li>
+<li>如果上述文件都不存在，就响应<code>404</code>。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">try_files <span class="variable">$uri</span><span class="variable">$webp_suffix</span> <span class="variable">$uri</span> =404;</span><br></pre></td></tr></table></figure>
+<p>这里还可以将响应操作反代理给 Backend：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable">$http_accept</span> ~* <span class="string">"webp"</span>)    &#123; <span class="built_in">set</span> <span class="variable">$webp_accept</span> <span class="string">"true"</span>; &#125;</span><br><span class="line"></span><br><span class="line">location ~ ^/imgs.*\.(png|jpe?g)$ &#123;</span><br><span class="line">  <span class="comment"># Pass WebP support header to backend</span></span><br><span class="line">  proxy_set_header  WebP  <span class="variable">$webp_accept</span>;</span><br><span class="line">  proxy_pass http://127.0.0.1:8080;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/igrigorik/webp-detect/blob/master/nginx.conf" target="_blank" rel="noopener">完整代码：</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">worker_processes 1;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">  worker_connections 1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">  include mime.types;</span><br><span class="line">  default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">  <span class="comment">#</span></span><br><span class="line">  <span class="comment"># &lt; regular Nginx configuration here &gt;</span></span><br><span class="line">  <span class="comment">#</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># For a hands-on explanation of using Accept negotiation, see:</span></span><br><span class="line">  <span class="comment"># http://www.igvita.com/2013/05/01/deploying-webp-via-accept-content-negotiation/</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># For an explanation of how to use maps for that, see:</span></span><br><span class="line">  <span class="comment"># http://www.lazutkin.com/blog/2014/02/23/serve-files-with-nginx-conditionally/</span></span><br><span class="line"></span><br><span class="line">  map <span class="variable">$http_accept</span> <span class="variable">$webp_suffix</span> &#123;</span><br><span class="line">    <span class="string">"~*webp"</span>  <span class="string">".webp"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  map <span class="variable">$msie</span> <span class="variable">$cache_control</span> &#123;</span><br><span class="line">      <span class="string">"1"</span>     <span class="string">"private"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  map <span class="variable">$msie</span> <span class="variable">$vary_header</span> &#123;</span><br><span class="line">      default <span class="string">"Accept"</span>;</span><br><span class="line">      <span class="string">"1"</span>     <span class="string">""</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment"># if proxying to another backend and using nginx as cache</span></span><br><span class="line">  proxy_cache_path  /tmp/cache levels=1:2 keys_zone=my-cache:8m max_size=1000m inactive=600m;</span><br><span class="line">  proxy_temp_path /tmp/cache/tmp;</span><br><span class="line"></span><br><span class="line">  server &#123;</span><br><span class="line">    listen       8081;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    location ~ \.(png|jpe?g)$ &#123;</span><br><span class="line">      <span class="comment"># set response headers specially treating MSIE</span></span><br><span class="line">      add_header Vary <span class="variable">$vary_header</span>;</span><br><span class="line">      add_header Cache-Control <span class="variable">$cache_control</span>;</span><br><span class="line">      <span class="comment"># now serve our images</span></span><br><span class="line">      try_files <span class="variable">$uri</span><span class="variable">$webp_suffix</span> <span class="variable">$uri</span> =404;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># if proxying to another backend and using nginx as cache</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$http_accept</span> ~* <span class="string">"webp"</span>)    &#123; <span class="built_in">set</span> <span class="variable">$webp_accept</span> <span class="string">"true"</span>; &#125;</span><br><span class="line">    proxy_cache_key <span class="variable">$scheme</span><span class="variable">$proxy_host</span><span class="variable">$request_uri</span><span class="variable">$webp_local</span><span class="variable">$webp_accept</span>;</span><br><span class="line"></span><br><span class="line">    location ~ ^/proxy.*\.(png|jpe?g)$ &#123;</span><br><span class="line">      <span class="comment"># Pass WebP support header to backend</span></span><br><span class="line">      proxy_set_header  WebP  <span class="variable">$webp_accept</span>;</span><br><span class="line">      proxy_pass http://127.0.0.1:8080;</span><br><span class="line">      proxy_cache my-cache;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>想了解更多可以参考如下文章：</p>
+<ul>
+<li><a href="https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/" target="_blank" rel="noopener">Ilya Grigorik: Deploying New Image Formats on the Web - webp</a></li>
+<li><a href="http://www.lazutkin.com/blog/2014/02/23/serve-files-with-nginx-conditionally/" target="_blank" rel="noopener">Eugene Lazutkin: Serve files with nginx conditionally - webp</a></li>
+<li><a href="https://github.com/igrigorik/webp-detect" target="_blank" rel="noopener">Webp Detect - WebP with Accept negotiation</a></li>
+<li><a href="https://corydowdy.com/blog/webp-jxr-nginx-content-negotiation-test" target="_blank" rel="noopener">my post on conditionally serving webp and jxr with nginx</a></li>
+</ul>
+<h3 id="Backend-处理"><a href="#Backend-处理" class="headerlink" title="Backend 处理"></a>Backend 处理</h3><p>Backend 是基于 <a href="https://github.com/koajs/koa" target="_blank" rel="noopener">KOA</a> 框架搭建的，要集成动态支持 WebP，需要完成如下两个任务：</p>
+<ul>
+<li>获取请求头中的<code>Accept</code>字段，判断是否支持 WebP。这一步也可由 Nginx 来做。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取请求头：ctx.header.accept, ctx.headers.accept、ctx.req.headers.accept、ctx.request.headers.accept、ctx.request.header.accept</span></span><br><span class="line"><span class="keyword">const</span> isWebp = <span class="regexp">/webp/i</span>.test(ctx.header.accept);</span><br><span class="line"><span class="comment">// 注意: 虽然 KOA 提供`ctx.accept('webp')`方法来判断accept type。但是该方法对webp判断存在bug，它会将`*/*`作为支持来处理。</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>添加图片处理功能。要动态支持 WebP，这就需要 Backend 具备图片处理功能。node 相关的图片处理库：</p>
+<ul>
+<li><a href="https://github.com/lovell/sharp" target="_blank" rel="noopener">sharp</a></li>
+<li><a href="https://github.com/oliver-moran/jimp" target="_blank" rel="noopener">jimp</a></li>
+<li><a href="https://github.com/aheckmann/gm" target="_blank" rel="noopener">gm</a></li>
+</ul>
+</li>
+</ul>
+<p>sharp 相比于 jimp、gm 综合性能更好，对 WebP 支持更友好。因此这里使用 sharp 来实现图片格式转换、缩放、水印等功能。npm 对比数据：<a href="https://www.npmtrends.com/gm-vs-jimp-vs-sharp" target="_blank" rel="noopener">gm vs jimp vs sharp</a> 。</p>
+<h2 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">"fs-extra"</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"><span class="keyword">const</span> send = <span class="built_in">require</span>(<span class="string">"koa-send"</span>);</span><br><span class="line"><span class="keyword">const</span> sharp = <span class="built_in">require</span>(<span class="string">"sharp"</span>);</span><br><span class="line"><span class="keyword">const</span> glob = <span class="built_in">require</span>(<span class="string">"glob"</span>);</span><br><span class="line"><span class="keyword">const</span> TextToSvg = <span class="built_in">require</span>(<span class="string">"text-to-svg"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置sharp</span></span><br><span class="line">sharp.concurrency(<span class="number">1</span>);</span><br><span class="line">sharp.cache(<span class="number">50</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">  <span class="comment">// getSvgByText</span></span><br><span class="line">  <span class="keyword">const</span> getSvgByText = <span class="function">(<span class="params">text, fontSize, color</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> textToSVG = TextToSvg.loadSync();</span><br><span class="line">    <span class="keyword">const</span> svg = textToSVG.getSVG(text, &#123;</span><br><span class="line">      fontSize,</span><br><span class="line">      anchor: <span class="string">"top"</span>,</span><br><span class="line">      attributes: &#123;</span><br><span class="line">        fill: color</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> Buffer.from(svg);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> originals = glob.sync(</span><br><span class="line">    path.join(__dirname, <span class="string">".."</span>, <span class="string">"public"</span>, <span class="string">"originals"</span>, <span class="string">"*.+(png|jpeg|svg|jpg)"</span>)</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">const</span> nameMapOriginal = &#123;&#125;;</span><br><span class="line">  originals.forEach(<span class="function"><span class="params">original</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> metas = path.parse(original);</span><br><span class="line">    nameMapOriginal[metas.name] = original;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// getOriginals</span></span><br><span class="line">  <span class="keyword">const</span> getOriginalsByName = <span class="function"><span class="params">name</span> =&gt;</span> nameMapOriginal[name];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> imgProcessor = <span class="keyword">async</span> (</span><br><span class="line">    inputPath,</span><br><span class="line">    outputPath,</span><br><span class="line">    &#123; overlay, width, blur &#125;</span><br><span class="line">  ) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> image = sharp(inputPath);</span><br><span class="line">    <span class="keyword">const</span> metadata = <span class="keyword">await</span> image.clone().metadata(); <span class="comment">// 获取原图片的元数据</span></span><br><span class="line">    <span class="keyword">const</span> rawWidth = width || metadata.width;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">      overlay !== <span class="string">"off"</span> &amp;&amp;</span><br><span class="line">      metadata.width &gt; <span class="number">160</span> &amp;&amp;</span><br><span class="line">      metadata.height &gt; <span class="number">80</span> &amp;&amp;</span><br><span class="line">      rawWidth &gt; <span class="number">160</span></span><br><span class="line">    ) &#123;</span><br><span class="line">      <span class="keyword">const</span> tempFontSize = (rawWidth * <span class="number">0.03</span>) | <span class="number">0</span>; <span class="comment">// eslint-disable-line</span></span><br><span class="line">      <span class="keyword">const</span> fontSize = tempFontSize &lt; <span class="number">12</span> ? <span class="number">12</span> : tempFontSize;</span><br><span class="line">      overlay = getSvgByText(</span><br><span class="line">        <span class="string">"zhansingsong.com"</span>,</span><br><span class="line">        fontSize,</span><br><span class="line">        <span class="string">"rgba(255, 255, 255, 0.3)"</span></span><br><span class="line">      ); <span class="comment">// eslint-disable-line</span></span><br><span class="line">      <span class="keyword">await</span> image</span><br><span class="line">        .clone()</span><br><span class="line">        .overlayWith(overlay, &#123; <span class="attr">gravity</span>: sharp.gravity.southeast &#125;)</span><br><span class="line">        .resize(&#123; <span class="attr">width</span>: <span class="built_in">parseInt</span>(width, <span class="number">10</span>) &#125;)</span><br><span class="line">        .toFile(outputPath)</span><br><span class="line">        .catch(<span class="function"><span class="params">err</span> =&gt;</span> ctx.app.emit(<span class="string">"error"</span>, err));</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!blur) &#123;</span><br><span class="line">      <span class="keyword">await</span> image</span><br><span class="line">        .clone()</span><br><span class="line">        .resize(&#123; <span class="attr">width</span>: <span class="built_in">parseInt</span>(width, <span class="number">10</span>) &#125;)</span><br><span class="line">        .toFile(outputPath)</span><br><span class="line">        .catch(<span class="function"><span class="params">err</span> =&gt;</span> ctx.app.emit(<span class="string">"error"</span>, err));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">await</span> image</span><br><span class="line">        .clone()</span><br><span class="line">        .resize(&#123; <span class="attr">width</span>: <span class="built_in">parseInt</span>(width, <span class="number">10</span>) &#125;)</span><br><span class="line">        .blur(<span class="number">1.3</span>)</span><br><span class="line">        .toFile(outputPath)</span><br><span class="line">        .catch(<span class="function"><span class="params">err</span> =&gt;</span> ctx.app.emit(<span class="string">"error"</span>, err));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">const</span> &#123; join, parse &#125; = path;</span><br><span class="line">  <span class="keyword">const</span> &#123; existsSync, ensureDirSync &#125; = fs;</span><br><span class="line">  <span class="comment">// 编码中文乱码</span></span><br><span class="line">  <span class="keyword">const</span> url = <span class="built_in">decodeURIComponent</span>(ctx.path);</span><br><span class="line">  <span class="keyword">const</span> metas = parse(url);</span><br><span class="line">  <span class="keyword">const</span> isWebp = <span class="regexp">/webp/i</span>.test(ctx.header.accept); <span class="comment">// 判断是否支持webp</span></span><br><span class="line">  <span class="keyword">const</span> isThumbnail = <span class="regexp">/^\/public\/thumbnails\//</span>.test(url);</span><br><span class="line">  <span class="keyword">const</span> fileDir = isThumbnail</span><br><span class="line">    ? join.apply(path, [</span><br><span class="line">        __dirname,</span><br><span class="line">        <span class="string">".."</span>,</span><br><span class="line">        <span class="string">"public"</span>,</span><br><span class="line">        <span class="string">"thumbnails"</span>,</span><br><span class="line">        <span class="string">`<span class="subst">$&#123;ctx.query.width || <span class="number">20</span>&#125;</span>`</span></span><br><span class="line">      ])</span><br><span class="line">    : join.apply(path, [</span><br><span class="line">        __dirname,</span><br><span class="line">        <span class="string">".."</span>,</span><br><span class="line">        <span class="string">"public"</span>,</span><br><span class="line">        <span class="string">"imgs"</span>,</span><br><span class="line">        ...Object.values(ctx.query)</span><br><span class="line">      ]);</span><br><span class="line">  <span class="keyword">const</span> filePath = join(</span><br><span class="line">    fileDir,</span><br><span class="line">    <span class="string">`<span class="subst">$&#123;metas.name&#125;</span><span class="subst">$&#123;isWebp ? <span class="string">".webp"</span> : metas.ext&#125;</span>`</span></span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">const</span> options = isThumbnail</span><br><span class="line">    ? &#123;</span><br><span class="line">        width: ctx.query.width || <span class="number">20</span>,</span><br><span class="line">        overlay: ctx.query.overlay || <span class="string">"off"</span>,</span><br><span class="line">        blur: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    : ctx.query;</span><br><span class="line"></span><br><span class="line">  ensureDirSync(fileDir);</span><br><span class="line">  <span class="keyword">if</span> (!existsSync(filePath)) &#123;</span><br><span class="line">    <span class="keyword">await</span> imgProcessor(getOriginalsByName(metas.name), filePath, options); <span class="comment">// eslint-disable-line</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">await</span> send(ctx, filePath, &#123; <span class="attr">root</span>: <span class="string">"/"</span> &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h2><p>通过 sharp 为 Backend 实现了一些简单图片处理接口：图片压缩、水印、格式转换。这也为后面缩略图的使用提供了支持。处理效果如下图所示：<br><img src="./images/webp-supports.png" alt="webp-support"><br>从上图可知:</p>
+<ul>
+<li>Safari 和 Chrome 浏览器分别请求同一图片，响应结果各不相同。浏览器支持 WebP 时，会直接响应 WebP 图片。否则就响应请求图片。</li>
+<li>相同质量的图片，WebP 格式大小约为 png 格式大小的 0.43。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文是自己在使用 WebP 的一些心得总结。主要对 WebP 的使用做个简单介绍。至于为什么要用 WebP，本文也做了相关介绍。但这并不代表 WebP 没有缺点。如在编解码效率上就存在不足。不过随着硬件设备的提升，这也在可接受范围内。随着移动互联网的快速发展，PWA(Progressive Web App)必成为 Web App 的主流。而 WebP 是 PWA 一个组成部分，了解并支持 WebP 已成大趋势。目前很多主流的站点已全站或部分支持 WebP。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webP/" rel="tag"># webP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/14/virtual-list（虚拟化列表）/" rel="next" title="virtual list（虚拟化列表）">
+                <i class="fa fa-chevron-left"></i> virtual list（虚拟化列表）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/14/Medium-渐进性图片加载-（Medium-progressive-image-loading）/" rel="prev" title="Medium 渐进性图片加载 （Medium progressive image loading）">
+                Medium 渐进性图片加载 （Medium progressive image loading） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
+            
+              <p class="site-author-name" itemprop="name">sgdhfe</p>
+              <p class="site-description motion-element" itemprop="description">🐳🐳 搜狗导航前端开发组 🐬🐬</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sgdh-fe" target="_blank" title="github">
+                      
+                        <i class="fa fa-fw fa-github"></i>github</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://123.sogou.com/" title="123sogou" target="_blank">123sogou</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何支持-WebP"><span class="nav-number">1.</span> <span class="nav-text">如何支持 WebP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端动态支持-WebP"><span class="nav-number">2.</span> <span class="nav-text">服务端动态支持 WebP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx-处理"><span class="nav-number">2.1.</span> <span class="nav-text">Nginx 处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backend-处理"><span class="nav-number">2.2.</span> <span class="nav-text">Backend 处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键代码"><span class="nav-number">3.</span> <span class="nav-text">关键代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现效果"><span class="nav-number">4.</span> <span class="nav-text">实现效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sgdhfe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

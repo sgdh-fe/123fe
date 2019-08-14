@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-192x192.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="优化,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一直对 Medium 的渐进性图片加载颇感兴趣，刚好最近有时间折腾了一下🤘。小有收获，并在自己的 blog 站点实践了一下，总体体验还是不错滴😆。虽然之前对其实现思路有个大概的了解，但当自己深入研究后，发现还是有些值得探讨的技术点。如缩略图的支持、模糊效果处理、如何撑开缩略图等。  singsong: blog 站点的渐进性图片加载并未完全按照 Medium 的实现方式，在其基础上稍微做了一">
+<meta name="keywords" content="优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Medium 渐进性图片加载 （Medium progressive image loading）">
+<meta property="og:url" content="http://123fe.com/2019/08/14/Medium-渐进性图片加载-（Medium-progressive-image-loading）/index.html">
+<meta property="og:site_name" content="Sogou.dh.fe">
+<meta property="og:description" content="一直对 Medium 的渐进性图片加载颇感兴趣，刚好最近有时间折腾了一下🤘。小有收获，并在自己的 blog 站点实践了一下，总体体验还是不错滴😆。虽然之前对其实现思路有个大概的了解，但当自己深入研究后，发现还是有些值得探讨的技术点。如缩略图的支持、模糊效果处理、如何撑开缩略图等。  singsong: blog 站点的渐进性图片加载并未完全按照 Medium 的实现方式，在其基础上稍微做了一">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://123fe.com/2019/08/14/Medium-渐进性图片加载-（Medium-progressive-image-loading）/p-img-loading.png">
+<meta property="og:image" content="http://123fe.com/2019/08/14/Medium-渐进性图片加载-（Medium-progressive-image-loading）/lqip-sqip.png">
+<meta property="og:image" content="http://123fe.com/2019/08/14/Medium-渐进性图片加载-（Medium-progressive-image-loading）/200-bytes.jpg">
+<meta property="og:image" content="http://123fe.com/2019/08/14/Medium-渐进性图片加载-（Medium-progressive-image-loading）/pinterest.png">
+<meta property="og:updated_time" content="2019-08-14T06:31:03.642Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Medium 渐进性图片加载 （Medium progressive image loading）">
+<meta name="twitter:description" content="一直对 Medium 的渐进性图片加载颇感兴趣，刚好最近有时间折腾了一下🤘。小有收获，并在自己的 blog 站点实践了一下，总体体验还是不错滴😆。虽然之前对其实现思路有个大概的了解，但当自己深入研究后，发现还是有些值得探讨的技术点。如缩略图的支持、模糊效果处理、如何撑开缩略图等。  singsong: blog 站点的渐进性图片加载并未完全按照 Medium 的实现方式，在其基础上稍微做了一">
+<meta name="twitter:image" content="http://123fe.com/2019/08/14/Medium-渐进性图片加载-（Medium-progressive-image-loading）/p-img-loading.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://123fe.com/2019/08/14/Medium-渐进性图片加载-（Medium-progressive-image-loading）/">
+
+
+
+
+
+  <title>Medium 渐进性图片加载 （Medium progressive image loading） | Sogou.dh.fe</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sogou.dh.fe</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">fe blogs</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-github">
+          <a href="https://github.com/sgdh-fe" rel="section">
+            
+            Github
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-projects">
+          <a href="http://git.dh.sogou-inc.com/groups/fe" rel="section">
+            
+            Projects
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://123fe.com/2019/08/14/Medium-渐进性图片加载-（Medium-progressive-image-loading）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sgdhfe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sogou.dh.fe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Medium 渐进性图片加载 （Medium progressive image loading）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T14:28:20+08:00">
+                2019-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+          <span> ｜ </span><span class="fa fa-user-o"> </span><span style="color:#222;"> singsong</span>
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2019/08/14/Medium-渐进性图片加载-（Medium-progressive-image-loading）/p-img-loading.png" alt="Medium progressive image loading"></p>
+<p>一直对 <a href="https://medium.com/" target="_blank" rel="noopener">Medium</a> 的渐进性图片加载颇感兴趣，刚好最近有时间折腾了一下🤘。小有收获，并在自己的 <a href="https://www.zhansingsong.com" target="_blank" rel="noopener">blog 站点</a>实践了一下，总体体验还是不错滴😆。虽然之前对其实现思路有个大概的了解，但当自己深入研究后，发现还是有些值得探讨的技术点。如缩略图的支持、模糊效果处理、如何撑开缩略图等。</p>
+<blockquote>
+<p>singsong: blog 站点的渐进性图片加载并未完全按照 Medium 的实现方式，在其基础上稍微做了一些调整。不过整体效果基本上是一样滴。<br><a id="more"></a></p>
+</blockquote>
+<h2 id="缩略图的支持"><a href="#缩略图的支持" class="headerlink" title="缩略图的支持"></a>缩略图的支持</h2><p>要实现渐进性图片加载，前提是需要后端对缩略图提供支持。关于缩略图的支持，之前自己写了一篇文章做了些介绍：<a href="https://www.zhansingsong.com/articles/5c34b552430eec101e95d405" target="_blank" rel="noopener">WebP 实战</a>，感兴趣的同学可以自行查看。另外，其他相关技术可以参考如下文章:</p>
+<ul>
+<li><a href="https://www.guypo.com/introducing-lqip-low-quality-image-placeholders" target="_blank" rel="noopener">LQIP – Low Quality Image Placeholders</a></li>
+<li><p><a href="https://github.com/technopagan/sqip" target="_blank" rel="noopener">SQIP – SVG-Based Image Placeholder</a></p>
+<p><img src="/2019/08/14/Medium-渐进性图片加载-（Medium-progressive-image-loading）/lqip-sqip.png" alt="lqip-sqip"></p>
+</li>
+<li><p><a href="https://code.fb.com/android/the-technology-behind-preview-photos/" target="_blank" rel="noopener">Facebook’s 200 bytes 技术</a></p>
+<blockquote>
+<p>the final format became one byte for version number, one byte each for width and height, and finally the approximately 200 byte payload. The server would just send this format as part of the GraphQL response, and then the client could simply append the JPEG body to the predefined JPEG header, patch the width and height, and treat it as a regular JPEG image. After the standard JPEG decoding, the client could run the predetermined Gaussian blur and scale it to fit the window size. <a href="https://code.fb.com/android/the-technology-behind-preview-photos/" target="_blank" rel="noopener">The technology behind preview photos</a></p>
+</blockquote>
+<p>这是 Facebook 一种基于 JPEG 编码，将缩略图(最大 42*42)压缩到 200 字节的技术。单标准 JPEG 头大小就大于 200 字节，但除去 JPEG 头，图片编码有效数据大小刚好接近 200 字节。要实现将缩略图压缩到 200 字节，Facebook 将标准 JPEG 头固有部分移置客户端，最终图片就一字节的版本号、一字节宽度、一字节高度和数据体，总大小刚好约 200 字节。当数据传到客户端，客户端会将接受到的数据与保存在客户端头合成为最终的图片。</p>
+<p><img src="/2019/08/14/Medium-渐进性图片加载-（Medium-progressive-image-loading）/200-bytes.jpg" alt="200-bytes"></p>
+</li>
+</ul>
+<h2 id="Medium-官方实现代码"><a href="#Medium-官方实现代码" class="headerlink" title="Medium 官方实现代码"></a>Medium 官方实现代码</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span> <span class="attr">name</span>=<span class="string">"5a04"</span> <span class="attr">id</span>=<span class="string">"5a04"</span> <span class="attr">class</span>=<span class="string">"graf graf--figure graf-after--h4"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"aspectRatioPlaceholder is-locked"</span> <span class="attr">style</span>=<span class="string">"max-width: 800px; max-height: 400px;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"aspectRatioPlaceholder-fill"</span> <span class="attr">style</span>=<span class="string">"padding-bottom: 50%;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded"</span> <span class="attr">data-image-id</span>=<span class="string">"1*9bVaonlM0iP8mSu45GzIeg.png"</span> <span class="attr">data-width</span>=<span class="string">"1200"</span> <span class="attr">data-height</span>=<span class="string">"734"</span> <span class="attr">data-action</span>=<span class="string">"zoom"</span> <span class="attr">data-action-value</span>=<span class="string">"1*9bVaonlM0iP8mSu45GzIeg.png"</span> <span class="attr">data-scroll</span>=<span class="string">"native"</span> &gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://cdn-images-1.medium.com/freeze/max/60/1*9bVaonlM0iP8mSu45GzIeg.png?q=20"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span> <span class="attr">class</span>=<span class="string">"progressiveMedia-thumbnail js-progressiveMedia-thumbnail"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">class</span>=<span class="string">"progressiveMedia-canvas js-progressiveMedia-canvas"</span> <span class="attr">width</span>=<span class="string">"40"</span> <span class="attr">height</span>=<span class="string">"20"</span> &gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"progressiveMedia-image js-progressiveMedia-image"</span> <span class="attr">data-src</span>=<span class="string">"https://cdn-images-1.medium.com/max/1600/1*9bVaonlM0iP8mSu45GzIeg.png"</span> <span class="attr">src</span>=<span class="string">"https://cdn-images-1.medium.com/max/1600/1*9bVaonlM0iP8mSu45GzIeg.png"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">noscript</span> <span class="attr">class</span>=<span class="string">"js-progressiveMedia-inner"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"progressiveMedia-noscript js-progressiveMedia-inner"</span> <span class="attr">src</span>=<span class="string">"https://cdn-images-1.medium.com/max/1600/1*9bVaonlM0iP8mSu45GzIeg.png"</span>/&gt;</span><span class="tag">&lt;/<span class="name">noscript</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这么一坨代码看不出什么来呀 🤣~~~~！怎么破，接着往下看 👇</p>
+<h2 id="剖析-Medium-代码"><a href="#剖析-Medium-代码" class="headerlink" title="剖析 Medium 代码"></a>剖析 Medium 代码</h2><blockquote>
+<p>singsong：为了方便讲解，这里删掉了一些无用的类名，绑定属性数据。并将样式内联于标签内，如果是在实际项目可将其移至 css 文件中。</p>
+</blockquote>
+<h3 id="1-限制容器的最大宽高"><a href="#1-限制容器的最大宽高" class="headerlink" title="1. 限制容器的最大宽高"></a>1. 限制容器的最大宽高</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 容器 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"max-width: 800px; max-height: 400px; width: 100%;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里最大宽高需要由后台计算提供。之所以这里使用<code>max-width</code>、<code>max-height</code>，主要为了自适应响应。</p>
+<h3 id="2-撑开缩略图"><a href="#2-撑开缩略图" class="headerlink" title="2. 撑开缩略图"></a>2. 撑开缩略图</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 容器 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"max-width: 800px; max-height: 400px; width: 100%;"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 撑开缩略图 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"padding-bottom: 50%;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>singsong: 这里可能有些读者会好奇，为什么还需要使用一个额外的元素来撑开缩略图呢？直接给缩略图设置固定宽高不就完事了么。如果你不考虑自适应响应，那样操作是木有任何问题滴。</p>
+</blockquote>
+<p>要撑开缩略图需要同时满足如下条件：</p>
+<ul>
+<li>撑开的宽高比必须与实际原图的宽高比保持一致。这样才能确保视觉上的一致，还能避免浏览器 reflow。</li>
+<li>支持自适应响应。要做到自适应，需要使用相对单位。如百分比、rem 等。</li>
+</ul>
+<p>宽高比可由后台计算提供。假设这里宽高比设为<code>ratio=50%;</code>。这里的宽是不需要处理，因为它的计算是参考父节点 width（即父节点设置了<code>width: 100%;</code>）。</p>
+<p>主要工作是如何设置高。首先不能将高直接设置为: <code>height: 50%;</code>，这样是不能撑开高，因为它的计算是参考父节点高，而父节点的高此时为缩略图的高。那怎么破呢？🤔</p>
+<blockquote>
+<p><strong>The percentage is calculated with respect to the width of the generated box’s containing block, even for ‘padding-top’ and ‘padding-bottom’.</strong> If the containing block’s width depends on this element, then the resulting layout is undefined in CSS 2.1. <a href="https://www.w3.org/TR/CSS2/box.html#padding-properties" target="_blank" rel="noopener">W3C-Specification</a></p>
+</blockquote>
+<p>根据规范，padding 的 percentage 计算是参考父节点 width 来计算的。刚好满足撑开高的需求，设置：<code>padding-bottom: 50%;</code> 或 <code>padding-top: 50%;</code>即可。这样缩略图设置<code>height:100%; width:100%;</code>就能自适应撑开啦 😆</p>
+<h3 id="3-渐进性加载"><a href="#3-渐进性加载" class="headerlink" title="3. 渐进性加载"></a>3. 渐进性加载</h3><p>上述步骤已将容器创建好，接下来就是将图片放进去即可。代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 容器限制高宽：800*400 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"position:relative; max-width: 800px; max-height: 400px; width: 100%;"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 撑开高 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"padding-bottom: 50%;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">     <span class="comment">&lt;!-- progressive-img容器 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"position: absolute; width: 100%; height: 100%; left:0; top: 0;"</span> <span class="attr">class</span>=<span class="string">"js-progressive-img"</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- placeholder缩略图 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://www.zhansingsong.com/public/imgs/webp.png?width=40"</span> <span class="attr">style</span>=<span class="string">"display: none;"</span> <span class="attr">class</span>=<span class="string">"js-thumbnails"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span> /&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 获取placeholder缩略图，将其写入canvas中，并对其应用高斯模糊效果 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">height</span>=<span class="string">"20"</span>, <span class="attr">width</span>=<span class="string">"40"</span> <span class="attr">class</span>=<span class="string">"js-canvas"</span> <span class="attr">style</span>=<span class="string">"position: absolute; left:0; top:0; height: 100%; width: 100%;"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 原图片 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://www.zhansingsong.com/public/imgs/webp.png"</span> <span class="attr">class</span>=<span class="string">"js-image"</span> <span class="attr">style</span>=<span class="string">"position: absolute; height: 100%; width: 100%; visibility: hidden; opacity: 0; transition: opacity .4s ease-in, visibility .4s;"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>/&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 不支持JS的回退方案 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">noscript</span>&gt;</span><span class="tag">&lt;/<span class="name">noscript</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里使用了一个隐藏的 img 加载缩略图。如果你的站点是部署在 HTTP1.1 上，为了减少请求次数。可以将缩略图转换为 base64 内嵌在 canvas 上：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- progressive-img容器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"position: absolute; width: 100%; height: 100%; left:0; top: 0;"</span> <span class="attr">class</span>=<span class="string">"js-progressive-img"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 获取placeholder缩略图，将其写入canvas中，并对其应用高斯模糊效果 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">data-src</span>=<span class="string">"data:image/PNG;base64,ABCDEFGHIJKLMNOPQRSTUVWXYZ"</span> <span class="attr">height</span>=<span class="string">"20"</span>, <span class="attr">width</span>=<span class="string">"40"</span> <span class="attr">class</span>=<span class="string">"js-canvas"</span> <span class="attr">style</span>=<span class="string">"position: absolute; left:0; top:0; height: 100%; width: 100%;"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 原图片 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://www.zhansingsong.com/public/imgs/webp.png"</span> <span class="attr">class</span>=<span class="string">"js-image"</span> <span class="attr">style</span>=<span class="string">"position: absolute; height: 100%; width: 100%; visibility: hidden; opacity: 0; transition: opacity .4s ease-in, visibility .4s;"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>/&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 不支持JS的回退方案 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">noscript</span>&gt;</span><span class="tag">&lt;/<span class="name">noscript</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>为什么这里 Medium 要选择使用 canvas，而不直接使用<code>img</code>呢？原因可能有如下两点：</p>
+<ul>
+<li>如果缩略图的宽高比与原图的不一致，img 不能很好处理。如缩略图：20:11=1.81818，原图：1920:1080=1.77777; 而容器宽高比是按照原图设置的，即也为：1.77777。虽在视觉效果上没多大影响，不过使用 Canvas 可以很好地避免这样的问题。</li>
+<li>Canvas 能对图片做 blur 效果处理。虽然 css 也能处理 blur 效果，但兼容性不如 Canvas。</li>
+</ul>
+<p>另外，还需要注意如下几点：</p>
+<ul>
+<li><code>&lt;canvas height=&quot;20&quot;, width=&quot;40&quot; class=&quot;js-canvas&quot; style=&quot;position: absolute; left:0; top:0; height: 100%; width: 100%;&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/canvas&gt;</code> 这里的<code>height</code>、<code>width</code>是缩略图的宽、高，由后台计算提供。另外，需要设置<code>height: 100%; width: 100%;</code>，这样才能将 canvas 撑开为容器的大小。</li>
+<li>元素之间的叠层顺序，img 原图一定要在 canvas 的上面。如果不这样叠放，别人想要 copy 你的图片。这时 copy 得到就会是缩略图了。</li>
+</ul>
+<p>到这里，结构样式也已完成。接下来注入 JavaScript 逻辑。实现思路也很简单：</p>
+<ul>
+<li>加载缩略图，并将其写入 canvas，再对其使用 blur 效果。</li>
+<li>在原图加载完后，显示原图。这里可以配合懒加载，再加上一些过滤效果，可以让体验更加友好。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> progressiveImg = <span class="built_in">document</span>.querySelector(<span class="string">".js-progressive-img"</span>);</span><br><span class="line"><span class="comment">// 获取缩略图</span></span><br><span class="line"><span class="keyword">const</span> thumbnails = progressiveImg.querySelector(<span class="string">".js-thumbnails"</span>);</span><br><span class="line"><span class="comment">// 获取canvas</span></span><br><span class="line"><span class="keyword">const</span> canvas = progressiveImg.querySelector(<span class="string">".js-canvas"</span>);</span><br><span class="line"><span class="comment">// 获取原图</span></span><br><span class="line"><span class="keyword">const</span> image = progressiveImg.querySelector(<span class="string">".js-image"</span>);</span><br><span class="line"><span class="comment">// 获取canvas的context</span></span><br><span class="line"><span class="keyword">const</span> ctx = canvas.getContext(<span class="string">"2d"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> drawImg = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  ctx.drawImage(thumbnails, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="comment">// stack-blur</span></span><br><span class="line">  stackBlurCanvasRGBA(ctx, <span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height, <span class="number">3</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// thumbnails</span></span><br><span class="line">thumbnails.onload = <span class="function"><span class="params">()</span> =&gt;</span> drawImg();</span><br><span class="line"><span class="keyword">if</span> (thumbnails.complete) &#123;</span><br><span class="line">  drawImg();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// progressive image</span></span><br><span class="line">image.onload = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 模拟网络延迟效果</span></span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    image.style.opacity = <span class="number">1</span>;</span><br><span class="line">    image.style.visibility = <span class="string">"visible"</span>;</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这里 blur 效果是使用 <a href="http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html" target="_blank" rel="noopener">stackBlur</a> 完成的。完整实例代码：</p>
+<iframe height="265" scrolling="no" title="Medium loading image effect" src="//codepen.io/zhansingsong/embed/preview/GPwGMy/?height=265&theme-id=0&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/zhansingsong/pen/GPwGMy/" target="_blank" rel="noopener">Medium loading image effect</a> by zhansingsong (<a href="https://codepen.io/zhansingsong" target="_blank" rel="noopener">@zhansingsong</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.<br></iframe>
+
+<h2 id="其他-blur-效果"><a href="#其他-blur-效果" class="headerlink" title="其他 blur 效果"></a>其他 blur 效果</h2><p>当浏览器渲染被放大的缩略图时，为了不让用户看见像素块化图片，会应用一些模糊效果让其看起来更加平滑。所以，如果浏览器默认 blur 效果刚好满足你的需要，就不需要做额外的处理。</p>
+<iframe height="265" scrolling="no" title="browser default blur render" src="//codepen.io/zhansingsong/embed/preview/KbbVwW/?height=265&theme-id=0&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/zhansingsong/pen/KbbVwW/" target="_blank" rel="noopener">browser default blur render</a> by zhansingsong (<a href="https://codepen.io/zhansingsong" target="_blank" rel="noopener">@zhansingsong</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.<br></iframe>
+
+<p>但并不是所有图片都需要这种效果，如二维码图片可能就不需要这种渲染效果。可以参考如下方式关闭：</p>
+<ul>
+<li><a href="http://superuser.com/questions/530317/how-to-prevent-chrome-from-blurring-small-images-when-zoomed-in" target="_blank" rel="noopener">How to prevent Chrome from blurring small images when zoomed in?</a></li>
+<li><a href="https://developers.google.com/web/updates/2015/01/pixelated" target="_blank" rel="noopener">image-rendering: pixelated(the browser would render it in a way that didn’t make it look blocky)</a></li>
+</ul>
+<iframe height="265" scrolling="no" title="turn off browser blur" src="//codepen.io/zhansingsong/embed/preview/maaVJN/?height=265&theme-id=0&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/zhansingsong/pen/maaVJN/" target="_blank" rel="noopener">turn off browser blur</a> by zhansingsong (<a href="https://codepen.io/zhansingsong" target="_blank" rel="noopener">@zhansingsong</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.<br></iframe>
+
+<p>blur 效果也可使用 <a href="http://codepen.io/aniketpant/pen/DsEve" target="_blank" rel="noopener">CSS Filter</a>。<a href="http://caniuse.com/#feat=css-filters" target="_blank" rel="noopener">除了 IE 不支持外，其他浏览器都支持</a>。</p>
+<iframe height="265" scrolling="no" title="css Filter" src="//codepen.io/zhansingsong/embed/preview/WLLrro/?height=265&theme-id=0&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/zhansingsong/pen/WLLrro/" target="_blank" rel="noopener">css Filter</a> by zhansingsong (<a href="https://codepen.io/zhansingsong" target="_blank" rel="noopener">@zhansingsong</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.<br></iframe>
+
+<p>另外，还可以使用 <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter" target="_blank" rel="noopener">SVG filter</a>：</p>
+<ul>
+<li><a href="https://css-tricks.com/the-blur-up-technique-for-loading-background-images/" target="_blank" rel="noopener">The “Blur Up” Technique for Loading Background Images</a></li>
+<li><a href="http://rentafounder.com/textured-gradients-in-pure-css/" target="_blank" rel="noopener">Textured Gradients in Pure CSS</a></li>
+</ul>
+<iframe height="265" scrolling="no" title="SVG filter" src="//codepen.io/zhansingsong/embed/preview/VqqeQZ/?height=265&theme-id=0&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/zhansingsong/pen/VqqeQZ/" target="_blank" rel="noopener">SVG filter</a> by zhansingsong (<a href="https://codepen.io/zhansingsong" target="_blank" rel="noopener">@zhansingsong</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.<br></iframe>
+
+<h2 id="其他相关加载技术"><a href="#其他相关加载技术" class="headerlink" title="其他相关加载技术"></a>其他相关加载技术</h2><h3 id="Color-Placeholder"><a href="#Color-Placeholder" class="headerlink" title="Color Placeholder"></a>Color Placeholder</h3><p>与 progressive image loading 技术相比较，这种加载技术不是使用图片作为 Placeholder，而是使用原图的主要颜色(也称为 Dominant Color)作为 Placeholder。这种技术很适合图片多的情况，因为它不需要额外加载缩略图，而且又保证一定用户体验。像<a href="https://www.google.com/search?q=husky&amp;safe=strict&amp;source=lnms&amp;tbm=isch&amp;sa=X&amp;ved=0ahUKEwiakr_LgevfAhVCA4gKHbbxDpEQ_AUIDigB&amp;biw=1419&amp;bih=1000" target="_blank" rel="noopener">Google</a>、<a href="https://www.pinterest.com/search/pins/?q=husky&amp;rs=typed&amp;term_meta[]=husky%7Ctyped" target="_blank" rel="noopener">Pinterest</a>图片展示就使用这种加载技术。</p>
+<p><img src="/2019/08/14/Medium-渐进性图片加载-（Medium-progressive-image-loading）/pinterest.png" alt="pinterest"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要对 Medium 渐进性图片加载的实现技术做了相关介绍，同时还对使用到的技术做了相关延展。在决定写这篇 blog 时，自己对其实现做了深入地研究，收获颇多。发现 Medium 在实现技术上，处理细节上，都有很多值得学习地方。本文只是将其中关键技术点做了介绍。另外，特别值得提一下的是： Medium 在实现技术别出心裁，实现方式并未按常规实现方式。如它的图片查看功能，它并没创建新的逻辑结构来展示图，而是在原图的结构基础上做处理，并使用 <code>padding</code> 来填充背景。感兴趣的同学可自行研究，我相信你一定会有收获滴。当然，自己也将该功能移置我的 blog 站点啦😆。</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="https://zurb.com/playground/image-blur-texture" target="_blank" rel="noopener">Image Blur Texture</a></li>
+<li><a href="https://jmperezperez.com/medium-image-progressive-loading-placeholder/" target="_blank" rel="noopener">How Medium does progressive image loading</a></li>
+<li><a href="https://slides.com/jmperez/pir-frontfest#/" target="_blank" rel="noopener">Progressive image rendering</a></li>
+<li><a href="https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/" target="_blank" rel="noopener">The technology behind preview photos</a></li>
+<li><a href="https://blog.codinghorror.com/progressive-image-rendering/" target="_blank" rel="noopener">Progressive Image Rendering</a></li>
+<li><a href="https://www.smashingmagazine.com/2018/02/progressive-image-loading-user-perceived-performance/" target="_blank" rel="noopener">Taking A Look At The State Of Progressive Images And User Perception</a></li>
+<li><a href="https://css-tricks.com/the-blur-up-technique-for-loading-background-images/" target="_blank" rel="noopener">The “Blur Up” Technique for Loading Background Images</a></li>
+<li><a href="https://codepen.io/abramstyle/pen/Bzwqvr" target="_blank" rel="noopener">https://codepen.io/abramstyle/pen/Bzwqvr</a></li>
+<li><a href="https://codepen.io/jmperez/pen/yYjPER" target="_blank" rel="noopener">Reproducing Medium loading image effect</a></li>
+<li><a href="https://www.quora.com/How-do-I-implement-progressive-image-loading" target="_blank" rel="noopener">How do I implement progressive image loading?</a></li>
+<li><a href="https://zurb.com/playground/image-blur-texture" target="_blank" rel="noopener">Image Blur Texture</a></li>
+<li><a href="https://superuser.com/questions/530317/how-to-prevent-chrome-from-blurring-small-images-when-zoomed-in" target="_blank" rel="noopener">How to prevent Chrome from blurring small images when zoomed in?</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/优化/" rel="tag"># 优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/14/WebP实战/" rel="next" title="WebP实战">
+                <i class="fa fa-chevron-left"></i> WebP实战
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
+            
+              <p class="site-author-name" itemprop="name">sgdhfe</p>
+              <p class="site-description motion-element" itemprop="description">🐳🐳 搜狗导航前端开发组 🐬🐬</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sgdh-fe" target="_blank" title="github">
+                      
+                        <i class="fa fa-fw fa-github"></i>github</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://123.sogou.com/" title="123sogou" target="_blank">123sogou</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缩略图的支持"><span class="nav-number">1.</span> <span class="nav-text">缩略图的支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Medium-官方实现代码"><span class="nav-number">2.</span> <span class="nav-text">Medium 官方实现代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#剖析-Medium-代码"><span class="nav-number">3.</span> <span class="nav-text">剖析 Medium 代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-限制容器的最大宽高"><span class="nav-number">3.1.</span> <span class="nav-text">1. 限制容器的最大宽高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-撑开缩略图"><span class="nav-number">3.2.</span> <span class="nav-text">2. 撑开缩略图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-渐进性加载"><span class="nav-number">3.3.</span> <span class="nav-text">3. 渐进性加载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他-blur-效果"><span class="nav-number">4.</span> <span class="nav-text">其他 blur 效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他相关加载技术"><span class="nav-number">5.</span> <span class="nav-text">其他相关加载技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Color-Placeholder"><span class="nav-number">5.1.</span> <span class="nav-text">Color Placeholder</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">7.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sgdhfe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
