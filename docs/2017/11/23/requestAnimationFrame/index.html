@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="requestAnimationFrame,动画,">
+  <meta name="keywords" content="requestAnimationFrame,动画," />
 
 
 
@@ -84,7 +84,7 @@
 <meta property="og:site_name" content="Sogou.dh.fe">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://123fe.com/2017/11/23/requestAnimationFrame/arf.png">
-<meta property="og:updated_time" content="2019-07-15T03:25:23.113Z">
+<meta property="og:updated_time" content="2019-02-15T09:27:07.870Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="requestAnimationFrame">
 <meta name="twitter:image" content="http://123fe.com/2017/11/23/requestAnimationFrame/arf.png">
@@ -117,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://123fe.com/2017/11/23/requestAnimationFrame/">
+  <link rel="canonical" href="http://123fe.com/2017/11/23/requestAnimationFrame/"/>
 
 
 
@@ -135,7 +135,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -145,13 +145,13 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Sogou.dh.fe</span>
         <span class="logo-line-after"><i></i></span>
@@ -261,20 +261,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://123fe.com/2017/11/23/requestAnimationFrame/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sgdhfe">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/logo.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Sogou.dh.fe">
     </span>
 
@@ -306,7 +306,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -317,7 +317,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/动画/" itemprop="url" rel="index">
                     <span itemprop="name">动画</span>
                   </a>
@@ -368,20 +368,18 @@
 <li>多个定时器的代码执行之间的间隔可能会被预期的小</li>
 </ul>
 <p>可以通过如下链式setTimeout()调用模式来避免类似问题：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// do something. . . .</span></span><br><span class="line">  setTimeout(<span class="built_in">arguments</span>.callee, interval);</span><br><span class="line">&#125;, interval);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// do something. . . .</span></div><div class="line">  setTimeout(<span class="built_in">arguments</span>.callee, interval);</div><div class="line">&#125;, interval);</div></pre></td></tr></table></figure>
 <p><strong>不过setInterval()会不停地调用函数，直到窗口关闭或调用clearInterval()。当然如果链式setTimeout()调用模式没有终止逻辑，也会一直运行下去。因此再不需要重复定时器时，确保对定时器进行清除，避免占用系统资源。</strong></p>
 <h2 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h2><blockquote>
-<p>在JavaScript中创建动画的典型方式就是使用setInterval()方法来控制所有动画（或链式setTimeout()调用模式）。编写这种动画循环的关键是要知道延迟时间多长适合。一方面，循环间隔必须足够短，这样才能让不同的动画效果显得更平滑流畅；另一方面，循环间隔还要足够长，这样才能确保浏览器有能力渲染产生的变化。通常电脑显示器的刷新频率是60Hz，大概相当于每秒重绘60次，平均每次约等于17ms(1000ms/60)，以这个循环间隔重绘动画可到达最平滑效果。<br>虽然与使用多组setTimeout()的循环方式相比，使用setInterval()的动画循环效率更高，但后者也不是没有问题的。无论是setInterval()还是setTimeout()都不十分精确。<u>传递给它们的第二个参数，实际上只是指定了把动画代码添加到浏览器UI线程队列中以等待执行的时间点。如果队列前面已经加入了其他的任务，那动画代码就要等待前面的任务完成后再执行。另外，要保证动画平滑的关键是要知道下一帧的绘制时间点，而开发人员没有办法确保浏览器按时绘制下一帧。加上浏览器使用的<a href="http://www.ituring.com.cn/article/1828" target="_blank" rel="noopener">计时器并非精确到毫秒级别</a>。</u></p>
-</blockquote>
-<blockquote>
+<p>在JavaScript中创建动画的典型方式就是使用setInterval()方法来控制所有动画（或链式setTimeout()调用模式）。编写这种动画循环的关键是要知道延迟时间多长适合。一方面，循环间隔必须足够短，这样才能让不同的动画效果显得更平滑流畅；另一方面，循环间隔还要足够长，这样才能确保浏览器有能力渲染产生的变化。通常电脑显示器的刷新频率是60Hz，大概相当于每秒重绘60次，平均每次约等于17ms(1000ms/60)，以这个循环间隔重绘动画可到达最平滑效果。<br>虽然与使用多组setTimeout()的循环方式相比，使用setInterval()的动画循环效率更高，但后者也不是没有问题的。无论是setInterval()还是setTimeout()都不十分精确。<u>传递给它们的第二个参数，实际上只是指定了把动画代码添加到浏览器UI线程队列中以等待执行的时间点。如果队列前面已经加入了其他的任务，那动画代码就要等待前面的任务完成后再执行。另外，要保证动画平滑的关键是要知道下一帧的绘制时间点，而开发人员没有办法确保浏览器按时绘制下一帧。加上浏览器使用的<a href="http://www.ituring.com.cn/article/1828" target="_blank" rel="external">计时器并非精确到毫秒级别</a>。</u></p>
 <p>CSS的transition和animation效果优于JavaScript实现的动画效果，原因在于CSS知道动画什么时候开始，会计算出正确的循环间隔，在适合的时候刷新UI。基于该问题，浏览器为了JavaScript动画添加了一个新API，即requestAnimationFrame()。</p>
 </blockquote>
-<p><strong>语法</strong>：<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame" target="_blank" rel="noopener">requestAnimationFrame(callback)</a>;</p>
+<p><strong>语法</strong>：<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame" target="_blank" rel="external">requestAnimationFrame(callback)</a>;</p>
 <p><strong>定义</strong>：告诉浏览器希望执行动画，并请求浏览器调用指定的函数在下一次重绘之前更新动画。</p>
-<p>该方法使用一个回调函数callback作为参数，这个回调函数callback会在浏览器重绘之前调用。回调频率通常是每秒60次。回调函数callback会被传入一个参数<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/DOMHighResTimeStamp" target="_blank" rel="noopener">DOMHighResTimeStamp</a>，指示从触发requestAnimationFrame回调到现在的时间。<code>requestAnimationFrame(callback)</code>会返回一个long整数，请求ID，也是回调列表中唯一的标识，一个非零值，可以传此值到 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/cancelAnimationFrame" target="_blank" rel="noopener">ancelAnimationFrame(requestID)</a>以取消回调函数。</p>
+<p>该方法使用一个回调函数callback作为参数，这个回调函数callback会在浏览器重绘之前调用。回调频率通常是每秒60次。回调函数callback会被传入一个参数<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/DOMHighResTimeStamp" target="_blank" rel="external">DOMHighResTimeStamp</a>，指示从触发requestAnimationFrame回调到现在的时间。<code>requestAnimationFrame(callback)</code>会返回一个long整数，请求ID，也是回调列表中唯一的标识，一个非零值，可以传此值到 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/cancelAnimationFrame" target="_blank" rel="external">ancelAnimationFrame(requestID)</a>以取消回调函数。</p>
 <p>requestAnimationFrame基本思想是利用显示器的刷新机制，与刷新频率保持同步，并利用这个刷新频率进行页面重绘更新。不过需要注意：<em>因为JavaScript单线程工作机制，如果主线程一直处于繁忙状态，那么requestAnimationFrame的动画效果也会受影响的。</em></p>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>使用requestAnimationFrame的时候，只需反复调用它即可：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animation</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// do something ....</span></span><br><span class="line">  requestAnimationFrame(animation);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">requestAnimationFrame(animation);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">animation</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// do something ....</span></div><div class="line">  requestAnimationFrame(animation);</div><div class="line">&#125;</div><div class="line"></div><div class="line">requestAnimationFrame(animation);</div></pre></td></tr></table></figure>
 <h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>与setTimeout和setInterval相比，requestAnimationFrame有如下优势：</p>
 <ul>
 <li>在后台标签页、不活动标签页、最小化窗口中，requestAnimationFrame会自动暂停，节省系统资源为其他任务。</li>
@@ -475,13 +473,13 @@
 <li><strong>&gt;=1000ms</strong>: 时间间隔大于等于1000ms，即如果时间间隔小于1000ms会被调整为1000ms，如果时间间隔大于等于1000ms会用指定时间间隔</li>
 <li><strong>1s | 2ns</strong>: 时间间隔（在Firefox不活动标签页中，requestAnimationFrame每帧消耗时间以2的次方依次递增：1s、2s、4s、8s…..）</li>
 </ul>
-<h3 id="兼容性："><a href="#兼容性：" class="headerlink" title="兼容性："></a><a href="https://caniuse.com/#feat=requestanimationframe" target="_blank" rel="noopener">兼容性：</a></h3><iframe height="540" title="caniuse-requestAnimationFrame" src="https://caniuse.com/#feat=requestanimationframe" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+<h3 id="兼容性："><a href="#兼容性：" class="headerlink" title="兼容性："></a><a href="https://caniuse.com/#feat=requestanimationframe" target="_blank" rel="external">兼容性：</a></h3><iframe height="540" title="caniuse-requestAnimationFrame" src="https://caniuse.com/#feat=requestanimationframe" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
-<h3 id="polyfill："><a href="#polyfill：" class="headerlink" title="polyfill："></a><a href="https://gist.github.com/paulirish/1579671" target="_blank" rel="noopener">polyfill：</a></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// http://paulirish.com/2011/requestanimationframe-for-smart-animating/</span></span><br><span class="line"><span class="comment">// http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// MIT license</span></span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> lastTime = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> vendors = [<span class="string">'ms'</span>, <span class="string">'moz'</span>, <span class="string">'webkit'</span>, <span class="string">'o'</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> x = <span class="number">0</span>; x &lt; vendors.length &amp;&amp; !<span class="built_in">window</span>.requestAnimationFrame; ++x) &#123;</span><br><span class="line">        <span class="built_in">window</span>.requestAnimationFrame = <span class="built_in">window</span>[vendors[x]+<span class="string">'RequestAnimationFrame'</span>];</span><br><span class="line">        <span class="built_in">window</span>.cancelAnimationFrame = <span class="built_in">window</span>[vendors[x]+<span class="string">'CancelAnimationFrame'</span>] </span><br><span class="line">                                   || <span class="built_in">window</span>[vendors[x]+<span class="string">'CancelRequestAnimationFrame'</span>];</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">window</span>.requestAnimationFrame)</span><br><span class="line">        <span class="built_in">window</span>.requestAnimationFrame = <span class="function"><span class="keyword">function</span>(<span class="params">callback, element</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> currTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">            <span class="keyword">var</span> timeToCall = <span class="built_in">Math</span>.max(<span class="number">0</span>, <span class="number">16</span> - (currTime - lastTime));</span><br><span class="line">            <span class="keyword">var</span> id = <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; callback(currTime + timeToCall); &#125;, </span><br><span class="line">              timeToCall);</span><br><span class="line">            lastTime = currTime + timeToCall;</span><br><span class="line">            <span class="keyword">return</span> id;</span><br><span class="line">        &#125;;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">window</span>.cancelAnimationFrame)</span><br><span class="line">        <span class="built_in">window</span>.cancelAnimationFrame = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">            clearTimeout(id);</span><br><span class="line">        &#125;;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+<h3 id="polyfill："><a href="#polyfill：" class="headerlink" title="polyfill："></a><a href="https://gist.github.com/paulirish/1579671" target="_blank" rel="external">polyfill：</a></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// http://paulirish.com/2011/requestanimationframe-for-smart-animating/</span></div><div class="line"><span class="comment">// http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating</span></div><div class="line"></div><div class="line"><span class="comment">// requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel</span></div><div class="line"></div><div class="line"><span class="comment">// MIT license</span></div><div class="line"></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> lastTime = <span class="number">0</span>;</div><div class="line">    <span class="keyword">var</span> vendors = [<span class="string">'ms'</span>, <span class="string">'moz'</span>, <span class="string">'webkit'</span>, <span class="string">'o'</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> x = <span class="number">0</span>; x &lt; vendors.length &amp;&amp; !<span class="built_in">window</span>.requestAnimationFrame; ++x) &#123;</div><div class="line">        <span class="built_in">window</span>.requestAnimationFrame = <span class="built_in">window</span>[vendors[x]+<span class="string">'RequestAnimationFrame'</span>];</div><div class="line">        <span class="built_in">window</span>.cancelAnimationFrame = <span class="built_in">window</span>[vendors[x]+<span class="string">'CancelAnimationFrame'</span>] </div><div class="line">                                   || <span class="built_in">window</span>[vendors[x]+<span class="string">'CancelRequestAnimationFrame'</span>];</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="keyword">if</span> (!<span class="built_in">window</span>.requestAnimationFrame)</div><div class="line">        <span class="built_in">window</span>.requestAnimationFrame = <span class="function"><span class="keyword">function</span>(<span class="params">callback, element</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> currTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</div><div class="line">            <span class="keyword">var</span> timeToCall = <span class="built_in">Math</span>.max(<span class="number">0</span>, <span class="number">16</span> - (currTime - lastTime));</div><div class="line">            <span class="keyword">var</span> id = <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; callback(currTime + timeToCall); &#125;, </div><div class="line">              timeToCall);</div><div class="line">            lastTime = currTime + timeToCall;</div><div class="line">            <span class="keyword">return</span> id;</div><div class="line">        &#125;;</div><div class="line"> </div><div class="line">    <span class="keyword">if</span> (!<span class="built_in">window</span>.cancelAnimationFrame)</div><div class="line">        <span class="built_in">window</span>.cancelAnimationFrame = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</div><div class="line">            clearTimeout(id);</div><div class="line">        &#125;;</div><div class="line">&#125;());</div></pre></td></tr></table></figure>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
-<li><a href="https://hacks.mozilla.org/2011/08/animating-with-javascript-from-setinterval-to-requestanimationframe/" target="_blank" rel="noopener">Animating with javascript: from setInterval to requestAnimationFrame</a></li>
-<li><a href="http://satheeq.blogspot.com/2015/12/how-do-browsers-pausechange-javascript.html" target="_blank" rel="noopener">How do browsers behave when tab or window is not active?</a></li>
-<li><a href="https://www.html5rocks.com/en/tutorials/speed/rendering/" target="_blank" rel="noopener">Jank Busting for Better Rendering Performance</a></li>
+<li><a href="https://hacks.mozilla.org/2011/08/animating-with-javascript-from-setinterval-to-requestanimationframe/" target="_blank" rel="external">Animating with javascript: from setInterval to requestAnimationFrame</a></li>
+<li><a href="http://satheeq.blogspot.com/2015/12/how-do-browsers-pausechange-javascript.html" target="_blank" rel="external">How do browsers behave when tab or window is not active?</a></li>
+<li><a href="https://www.html5rocks.com/en/tutorials/speed/rendering/" target="_blank" rel="external">Jank Busting for Better Rendering Performance</a></li>
 </ul>
 
       
@@ -591,9 +589,11 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="sgdhfe" />
             
               <p class="site-author-name" itemprop="name">sgdhfe</p>
               <p class="site-description motion-element" itemprop="description">🐳🐳 搜狗导航前端开发组 🐬🐬</p>
@@ -606,7 +606,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
