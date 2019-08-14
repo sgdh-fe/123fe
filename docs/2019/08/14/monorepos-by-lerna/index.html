@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="lerna," />
+  <meta name="keywords" content="lerna,">
 
 
 
@@ -86,7 +86,7 @@
 <meta property="og:description" content="最近在开发一个类似 create-react-app 工具。但面临一个问题，需要同时维护两个 packages，开发起来不是很方便，后期维护成本也高（如版本号维护）。于是查看了 create-react-app 源码，发现在其源码中有个 lerna.json 文件。好奇这个文件是做什么的，就了解一番。经查阅了解到 Lerna 可以用来管理项目中多个 packages。这正是自己所需要的，于是就有">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://123fe.com/2019/08/14/monorepos-by-lerna/lerna.jpg">
-<meta property="og:updated_time" content="2019-08-14T09:36:24.861Z">
+<meta property="og:updated_time" content="2019-08-14T10:49:13.794Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="monorepos by lerna">
 <meta name="twitter:description" content="最近在开发一个类似 create-react-app 工具。但面临一个问题，需要同时维护两个 packages，开发起来不是很方便，后期维护成本也高（如版本号维护）。于是查看了 create-react-app 源码，发现在其源码中有个 lerna.json 文件。好奇这个文件是做什么的，就了解一番。经查阅了解到 Lerna 可以用来管理项目中多个 packages。这正是自己所需要的，于是就有">
@@ -120,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://123fe.com/2019/08/14/monorepos-by-lerna/"/>
+  <link rel="canonical" href="http://123fe.com/2019/08/14/monorepos-by-lerna/">
 
 
 
@@ -138,7 +138,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -148,13 +148,13 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Sogou.dh.fe</span>
         <span class="logo-line-after"><i></i></span>
@@ -264,20 +264,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://123fe.com/2019/08/14/monorepos-by-lerna/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sgdhfe">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/logo.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Sogou.dh.fe">
     </span>
 
@@ -337,49 +337,49 @@
 
       
         <p><img src="/2019/08/14/monorepos-by-lerna/lerna.jpg" alt="lerna"></p>
-<p>最近在开发一个类似 <a href="https://github.com/facebook/create-react-app" target="_blank" rel="external">create-react-app</a> 工具。但面临一个问题，需要同时维护两个 packages，开发起来不是很方便，后期维护成本也高（如版本号维护）。于是查看了 create-react-app 源码，发现在其源码中有个 <code>lerna.json</code> 文件。好奇这个文件是做什么的，就了解一番。经查阅了解到 <a href="https://github.com/lerna/lerna" target="_blank" rel="external">Lerna</a> 可以用来管理项目中多个 packages。这正是自己所需要的，于是就有了这篇文章。本文主要对 Lerna 的使用做个简单介绍。</p>
+<p>最近在开发一个类似 <a href="https://github.com/facebook/create-react-app" target="_blank" rel="noopener">create-react-app</a> 工具。但面临一个问题，需要同时维护两个 packages，开发起来不是很方便，后期维护成本也高（如版本号维护）。于是查看了 create-react-app 源码，发现在其源码中有个 <code>lerna.json</code> 文件。好奇这个文件是做什么的，就了解一番。经查阅了解到 <a href="https://github.com/lerna/lerna" target="_blank" rel="noopener">Lerna</a> 可以用来管理项目中多个 packages。这正是自己所需要的，于是就有了这篇文章。本文主要对 Lerna 的使用做个简单介绍。</p>
 <h2 id="Lerna"><a href="#Lerna" class="headerlink" title="Lerna"></a>Lerna</h2><blockquote>
 <p>Lerna is a tool that optimizes the workflow around managing multi-package repositories with git and npm.</p>
 </blockquote>
 <p><strong>Lerna</strong> 是一个基于 git 和 npm 管理多个 packages 来简化工作流程的工具。</p>
 <a id="more"></a>
-<h2 id="安装-Lerna"><a href="#安装-Lerna" class="headerlink" title="安装 Lerna"></a>安装 Lerna</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># npm</span></div><div class="line">npm install --global lerna || npm install -g lerna</div><div class="line"></div><div class="line"><span class="comment"># yarn</span></div><div class="line">yarn global add lerna</div></pre></td></tr></table></figure>
-<p>如果不想安装，也可以使用 <a href="https://www.npmjs.com/package/npx" target="_blank" rel="external">npx</a>。</p>
-<h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><p>创建一个名为 <a href="https://github.com/zhansingsong/lerna-demo" target="_blank" rel="external">lerna-demo</a> 项目。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init lerna-demo &amp;&amp; <span class="built_in">cd</span> lerna-demo</div></pre></td></tr></table></figure></p>
+<h2 id="安装-Lerna"><a href="#安装-Lerna" class="headerlink" title="安装 Lerna"></a>安装 Lerna</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm</span></span><br><span class="line">npm install --global lerna || npm install -g lerna</span><br><span class="line"></span><br><span class="line"><span class="comment"># yarn</span></span><br><span class="line">yarn global add lerna</span><br></pre></td></tr></table></figure>
+<p>如果不想安装，也可以使用 <a href="https://www.npmjs.com/package/npx" target="_blank" rel="noopener">npx</a>。</p>
+<h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><p>创建一个名为 <a href="https://github.com/zhansingsong/lerna-demo" target="_blank" rel="noopener">lerna-demo</a> 项目。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init lerna-demo &amp;&amp; <span class="built_in">cd</span> lerna-demo</span><br></pre></td></tr></table></figure></p>
 <p>使用 Lerna 初始化项目</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lerna init</div></pre></td></tr></table></figure>
-<p>此时项目结构如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── lerna.json</div><div class="line">├── package.json</div><div class="line">└── packages</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lerna init</span><br></pre></td></tr></table></figure>
+<p>此时项目结构如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── lerna.json</span><br><span class="line">├── package.json</span><br><span class="line">└── packages</span><br></pre></td></tr></table></figure></p>
 <h2 id="创建-packages"><a href="#创建-packages" class="headerlink" title="创建 packages"></a>创建 packages</h2><blockquote>
 <p>singsong: 为了方便讲解，这里假设有三个 packages：banana、apple、grocery。其中 grocery 依赖于 banana、apple 两个 package。</p>
 </blockquote>
 <p>在 <code>packages/</code> 目录下创建 <strong>banana</strong>、<strong>apple</strong>、<strong>grocery</strong> 三个目录：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir banana apple grocery</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir banana apple grocery</span><br></pre></td></tr></table></figure>
 <p>然后分别在 <strong>banana</strong>、<strong>apple</strong>、<strong>grocery</strong> 目录下执行如下命令初始化 package：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm init -y</div></pre></td></tr></table></figure>
-<p>并分别创建一个<code>index.js</code>文件，增加如下代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// apple index.js</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="string">'apple package'</span>;</div></pre></td></tr></table></figure></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// banana index.js</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="string">'banana package'</span>;</div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// grocery index.js</span></div><div class="line"><span class="keyword">const</span> apple = <span class="built_in">require</span>(<span class="string">'apple'</span>);</div><div class="line"><span class="keyword">const</span> banana = <span class="built_in">require</span>(<span class="string">'banana'</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'all the dependencies of the grocery package:'</span>);</div><div class="line"><span class="built_in">console</span>.log(apple);</div><div class="line"><span class="built_in">console</span>.log(banana);</div></pre></td></tr></table></figure>
-<p>此时目录结构如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── lerna.json</div><div class="line">├── package.json</div><div class="line">└── packages</div><div class="line">    ├── apple</div><div class="line">    │   ├── index.js</div><div class="line">    │   └── package.json</div><div class="line">    ├── banana</div><div class="line">    │   ├── index.js</div><div class="line">    │   └── package.json</div><div class="line">    └── grocery</div><div class="line">        ├── index.js</div><div class="line">        └── package.json</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+<p>并分别创建一个<code>index.js</code>文件，增加如下代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// apple index.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="string">'apple package'</span>;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// banana index.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="string">'banana package'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// grocery index.js</span></span><br><span class="line"><span class="keyword">const</span> apple = <span class="built_in">require</span>(<span class="string">'apple'</span>);</span><br><span class="line"><span class="keyword">const</span> banana = <span class="built_in">require</span>(<span class="string">'banana'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'all the dependencies of the grocery package:'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(apple);</span><br><span class="line"><span class="built_in">console</span>.log(banana);</span><br></pre></td></tr></table></figure>
+<p>此时目录结构如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── lerna.json</span><br><span class="line">├── package.json</span><br><span class="line">└── packages</span><br><span class="line">    ├── apple</span><br><span class="line">    │   ├── index.js</span><br><span class="line">    │   └── package.json</span><br><span class="line">    ├── banana</span><br><span class="line">    │   ├── index.js</span><br><span class="line">    │   └── package.json</span><br><span class="line">    └── grocery</span><br><span class="line">        ├── index.js</span><br><span class="line">        └── package.json</span><br></pre></td></tr></table></figure></p>
 <h3 id="创建-packages-依赖关系"><a href="#创建-packages-依赖关系" class="headerlink" title="创建 packages 依赖关系"></a>创建 packages 依赖关系</h3><p>上一步骤已创建了 <strong>banana</strong>、<strong>apple</strong>、<strong>grocery</strong> 三个 packages，其中 <strong>grocery</strong> 依赖于 <strong>banana</strong>、<strong>apple</strong>。要建立此依赖只需执行如下命令：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// add apple to grocery as a dependency</span></div><div class="line">lerna add apple packages/grocery</div><div class="line"><span class="comment">// add banana to grocery as a dependency</span></div><div class="line">lerna add banana packages/grocery</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// add apple to grocery as a dependency</span></span><br><span class="line">lerna add apple packages/grocery</span><br><span class="line"><span class="comment">// add banana to grocery as a dependency</span></span><br><span class="line">lerna add banana packages/grocery</span><br></pre></td></tr></table></figure>
 <p><code>lerna add</code> 类似于 <code>npm install</code>。</p>
 <p>此时目录结构如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── lerna.json</div><div class="line">├── package.json</div><div class="line">└── packages</div><div class="line">    ├── apple</div><div class="line">    │   ├── index.js</div><div class="line">    │   └── package.json</div><div class="line">    ├── banana</div><div class="line">    │   ├── index.js</div><div class="line">    │   └── package.json</div><div class="line">    └── grocery</div><div class="line">        ├── index.js</div><div class="line">        ├── node_modules</div><div class="line">        │   ├── apple -&gt; ../../apple</div><div class="line">        │   └── banana -&gt; ../../banana</div><div class="line">        └── package.json</div></pre></td></tr></table></figure>
-<p>在 <strong>grocery</strong> 的 <code>node_modules</code> 下，Lerna 会分别为 <strong>banana</strong>、<strong>apple</strong> 创建一个链接到对应 package 的 symlink（符号链接或软连接，相当于 Windows 中快捷方式)。这样对 <strong>banana</strong>、<strong>apple</strong> 任何修改都能立刻生效。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">├── node_modules</div><div class="line">│   ├── apple -&gt; ../../apple</div><div class="line">│   └── banana -&gt; ../../banana</div></pre></td></tr></table></figure></p>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>为了方便运行代码，对根目录下 <code>package.json</code> 文件增加如下代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">"scripts"</span>: &#123;</div><div class="line">  <span class="string">"start"</span>: <span class="string">"node packages/grocery/index.js"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── lerna.json</span><br><span class="line">├── package.json</span><br><span class="line">└── packages</span><br><span class="line">    ├── apple</span><br><span class="line">    │   ├── index.js</span><br><span class="line">    │   └── package.json</span><br><span class="line">    ├── banana</span><br><span class="line">    │   ├── index.js</span><br><span class="line">    │   └── package.json</span><br><span class="line">    └── grocery</span><br><span class="line">        ├── index.js</span><br><span class="line">        ├── node_modules</span><br><span class="line">        │   ├── apple -&gt; ../../apple</span><br><span class="line">        │   └── banana -&gt; ../../banana</span><br><span class="line">        └── package.json</span><br></pre></td></tr></table></figure>
+<p>在 <strong>grocery</strong> 的 <code>node_modules</code> 下，Lerna 会分别为 <strong>banana</strong>、<strong>apple</strong> 创建一个链接到对应 package 的 symlink（符号链接或软连接，相当于 Windows 中快捷方式)。这样对 <strong>banana</strong>、<strong>apple</strong> 任何修改都能立刻生效。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">├── node_modules</span><br><span class="line">│   ├── apple -&gt; ../../apple</span><br><span class="line">│   └── banana -&gt; ../../banana</span><br></pre></td></tr></table></figure></p>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>为了方便运行代码，对根目录下 <code>package.json</code> 文件增加如下代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"start"</span>: <span class="string">"node packages/grocery/index.js"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>执行如下命令，运行代码</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm start</div></pre></td></tr></table></figure>
-<p>输出<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; root@ start /Users/singsong/github/lerna-demo</div><div class="line">&gt; node packages/grocery/index.js</div><div class="line"></div><div class="line">all the dependencies <span class="keyword">of</span> the grocery package:</div><div class="line">apple package</div><div class="line">banana package</div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
+<p>输出<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; root@ start /Users/singsong/github/lerna-demo</span><br><span class="line">&gt; node packages/grocery/index.js</span><br><span class="line"></span><br><span class="line">all the dependencies <span class="keyword">of</span> the grocery package:</span><br><span class="line">apple package</span><br><span class="line">banana package</span><br></pre></td></tr></table></figure></p>
 <h2 id="添加第三方依赖"><a href="#添加第三方依赖" class="headerlink" title="添加第三方依赖"></a>添加第三方依赖</h2><p>为所有的 packages 添加 eslint.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lerna add eslint --dev</div></pre></td></tr></table></figure>
-<p>这里只有三个 packages，如果存在很多 packages，每个 package 都单独安装 eslint 包，这会造成资源的浪费。Lerna 也考虑到这个问题，提供了如下命令来解决：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lerna bootstrap --hoist</div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lerna add eslint --dev</span><br></pre></td></tr></table></figure>
+<p>这里只有三个 packages，如果存在很多 packages，每个 package 都单独安装 eslint 包，这会造成资源的浪费。Lerna 也考虑到这个问题，提供了如下命令来解决：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lerna bootstrap --hoist</span><br></pre></td></tr></table></figure></p>
 <p><code>lerna bootstrap</code> 会根据每个 package 的 <code>package.json</code> 为其安装依赖。如果加上 <code>--hoist</code> 参数，Lerna 会把所有 packages 中共有的依赖包安装到根目录中，然后分别在各自的 <code>node_modules/.bin</code> 中创建软链接指向对应依赖包的实际路径。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">├── apple</div><div class="line">│   ├── index.js</div><div class="line">│   ├── node_modules</div><div class="line">│   │   └── .bin</div><div class="line">│   │       └── eslint -&gt; ../../../../node_modules/eslint/bin/eslint.js</div><div class="line">│   ├── package-lock.json</div><div class="line">│   └── package.json</div><div class="line">├── banana</div><div class="line">│   ├── index.js</div><div class="line">│   ├── node_modules</div><div class="line">│   │   └── .bin</div><div class="line">│   │       └── eslint -&gt; ../../../../node_modules/eslint/bin/eslint.js</div><div class="line">│   ├── package-lock.json</div><div class="line">│   └── package.json</div><div class="line">└── grocery</div><div class="line">    ├── index.js</div><div class="line">    ├── node_modules</div><div class="line">    │   └── .bin</div><div class="line">    │       └── eslint -&gt; ../../../../node_modules/eslint/bin/eslint.js</div><div class="line">    ├── package-lock.json</div><div class="line">    └── package.json</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">├── apple</span><br><span class="line">│   ├── index.js</span><br><span class="line">│   ├── node_modules</span><br><span class="line">│   │   └── .bin</span><br><span class="line">│   │       └── eslint -&gt; ../../../../node_modules/eslint/bin/eslint.js</span><br><span class="line">│   ├── package-lock.json</span><br><span class="line">│   └── package.json</span><br><span class="line">├── banana</span><br><span class="line">│   ├── index.js</span><br><span class="line">│   ├── node_modules</span><br><span class="line">│   │   └── .bin</span><br><span class="line">│   │       └── eslint -&gt; ../../../../node_modules/eslint/bin/eslint.js</span><br><span class="line">│   ├── package-lock.json</span><br><span class="line">│   └── package.json</span><br><span class="line">└── grocery</span><br><span class="line">    ├── index.js</span><br><span class="line">    ├── node_modules</span><br><span class="line">    │   └── .bin</span><br><span class="line">    │       └── eslint -&gt; ../../../../node_modules/eslint/bin/eslint.js</span><br><span class="line">    ├── package-lock.json</span><br><span class="line">    └── package.json</span><br></pre></td></tr></table></figure>
 <p>当然如果只是安装开发依赖包，可以直接安装在根目录下即可。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// npm</span></div><div class="line">npm install -D eslint</div><div class="line"></div><div class="line"><span class="comment">// yarn</span></div><div class="line">yarn add -D eslint</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// npm</span></span><br><span class="line">npm install -D eslint</span><br><span class="line"></span><br><span class="line"><span class="comment">// yarn</span></span><br><span class="line">yarn add -D eslint</span><br></pre></td></tr></table></figure>
 <p>因为 node 在查找模块时，会从当前目录向上逐级查找。</p>
 <p>当然，也许只想对特定 package 安装依赖包，可以通过如下方式：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lerna add lodash --scope=grocery</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lerna add lodash --scope=grocery</span><br></pre></td></tr></table></figure>
 <p>使用 <code>--scope</code> 参数来指定安装位置。</p>
 <h2 id="版本管理"><a href="#版本管理" class="headerlink" title="版本管理"></a>版本管理</h2><p>Lerna 提供了两种版本管理模式：</p>
 <ul>
@@ -397,8 +397,8 @@
 </li>
 </ul>
 <h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><p>要发布新版时，只需执行如下命令即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lerna publish</div></pre></td></tr></table></figure>
-<p>另外，Lerna 还为 <code>lerna publish</code> 提供了一些选项：<a href="https://github.com/lerna/lerna/tree/master/commands/publish#readme" target="_blank" rel="external">@lerna/publish</a>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lerna publish</span><br></pre></td></tr></table></figure>
+<p>另外，Lerna 还为 <code>lerna publish</code> 提供了一些选项：<a href="https://github.com/lerna/lerna/tree/master/commands/publish#readme" target="_blank" rel="noopener">@lerna/publish</a>。</p>
 <p>在执行该命令时，需要注意，至少要有个 <strong>commit</strong>，否则会得到如下提示：</p>
 <blockquote>
 <p>Working tree has uncommitted changes, please commit or remove changes before continuing.</p>
@@ -409,21 +409,21 @@
 </blockquote>
 <p>因为在发布之前，Lerna 会检查 packages 是否有更新。如果有更新才会以 <strong>一问一答</strong> 的方式获取发布相关信息：</p>
 <blockquote>
-<p>singsong: 假设你已成功登录 NPM。<a href="https://docs.npmjs.com/creating-a-new-npm-user-account" target="_blank" rel="external">如何注册及登录</a></p>
+<p>singsong: 假设你已成功登录 NPM。<a href="https://docs.npmjs.com/creating-a-new-npm-user-account" target="_blank" rel="noopener">如何注册及登录</a></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">info cli using local version of lerna</div><div class="line">lerna notice cli v3.13.1</div><div class="line">lerna info current version 0.0.5</div><div class="line">lerna info Looking for changed packages since zhansingsong-apple@0.0.5</div><div class="line">? Select a new version (currently 0.0.5) Patch (0.0.6)</div><div class="line"></div><div class="line">Changes:</div><div class="line"> - zhansingsong-apple: 0.0.5 =&gt; 0.0.6</div><div class="line"> - zhansingsong-banana: 0.0.4 =&gt; 0.0.6</div><div class="line"> - zhansingsong-grocery: 0.0.4 =&gt; 0.0.6</div><div class="line"></div><div class="line">? Are you sure you want to publish these packages? Yes</div><div class="line">lerna info execute Skipping GitHub releases</div><div class="line">lerna info git Pushing tags...</div><div class="line">lerna info publish Publishing packages to npm...</div><div class="line">....</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">info cli using local version of lerna</span><br><span class="line">lerna notice cli v3.13.1</span><br><span class="line">lerna info current version 0.0.5</span><br><span class="line">lerna info Looking for changed packages since zhansingsong-apple@0.0.5</span><br><span class="line">? Select a new version (currently 0.0.5) Patch (0.0.6)</span><br><span class="line"></span><br><span class="line">Changes:</span><br><span class="line"> - zhansingsong-apple: 0.0.5 =&gt; 0.0.6</span><br><span class="line"> - zhansingsong-banana: 0.0.4 =&gt; 0.0.6</span><br><span class="line"> - zhansingsong-grocery: 0.0.4 =&gt; 0.0.6</span><br><span class="line"></span><br><span class="line">? Are you sure you want to publish these packages? Yes</span><br><span class="line">lerna info execute Skipping GitHub releases</span><br><span class="line">lerna info git Pushing tags...</span><br><span class="line">lerna info publish Publishing packages to npm...</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>singsong：为了能成功将 apple、banana、grocery 发布到 NPM，在包命名时都为每个 package 加了 <code>zhansingsong-</code> 前缀。</p>
 </blockquote>
 <p>上述是默认模式下的输出信息。虽然只对 <strong>zhansingsong-apple</strong> 做了修改，然而在版本号更新时，会更新所有 packages 的版本号。而且如果执行发布，会把所有的 packages 都发布到 NPM。那如果换成<code>Independent</code>模式，会是怎样呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">info cli using local version of lerna</div><div class="line">lerna notice cli v3.13.1</div><div class="line">lerna info versioning independent</div><div class="line">lerna info Looking for changed packages since v0.0.7</div><div class="line">? Select a new version for zhansingsong-apple (currently 0.0.7) Patch (0.0.8)</div><div class="line"></div><div class="line">Changes:</div><div class="line"> - zhansingsong-apple: 0.0.7 =&gt; 0.0.8</div><div class="line"></div><div class="line">? Are you sure you want to publish these packages? Yes</div><div class="line">lerna info execute Skipping GitHub releases</div><div class="line">lerna info git Pushing tags...</div><div class="line">lerna info publish Publishing packages to npm...</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">info cli using local version of lerna</span><br><span class="line">lerna notice cli v3.13.1</span><br><span class="line">lerna info versioning independent</span><br><span class="line">lerna info Looking for changed packages since v0.0.7</span><br><span class="line">? Select a new version for zhansingsong-apple (currently 0.0.7) Patch (0.0.8)</span><br><span class="line"></span><br><span class="line">Changes:</span><br><span class="line"> - zhansingsong-apple: 0.0.7 =&gt; 0.0.8</span><br><span class="line"></span><br><span class="line">? Are you sure you want to publish these packages? Yes</span><br><span class="line">lerna info execute Skipping GitHub releases</span><br><span class="line">lerna info git Pushing tags...</span><br><span class="line">lerna info publish Publishing packages to npm...</span><br></pre></td></tr></table></figure>
 <p>在 <strong>Independent</strong> 模式下，只会更新已更新 <strong>zhansingsong-apple</strong> 的版本号，并只将其发布到 NPM。</p>
 <h2 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h2><ul>
 <li><code>lerna create &lt;name&gt; [loc]</code>：在 <code>loc</code> 目录下创建一个 package。默认位置 <code>packages/</code>。</li>
 <li><code>lerna version</code>：更新 package 的版本号。提供 Patch、Minor、Major、Prepatch、Preminor、Premajor、Custom Prerelease、Custom Version 选项。</li>
 <li><code>lerna clean</code>：删除所有 packages 的 node_modules 目录。PS：不会删除根目录的 node_modules。</li>
 <li><p><code>lerna list</code> | <code>lerna ls</code> | <code>lerna ll</code> | <code>lerna la</code>：列举 packages 目录下的所有本地 packages。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 执行 lerna list 的输出：</span></div><div class="line">info cli using local version <span class="keyword">of</span> lerna</div><div class="line">lerna notice cli v3<span class="number">.13</span><span class="number">.1</span></div><div class="line">apple</div><div class="line">banana</div><div class="line">grocery</div><div class="line">lerna success found <span class="number">3</span> packages</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 执行 lerna list 的输出：</span></span><br><span class="line">info cli using local version <span class="keyword">of</span> lerna</span><br><span class="line">lerna notice cli v3<span class="number">.13</span><span class="number">.1</span></span><br><span class="line">apple</span><br><span class="line">banana</span><br><span class="line">grocery</span><br><span class="line">lerna success found <span class="number">3</span> packages</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>lerna changed</code> | <code>lerna updated</code>：查看本地 packages 是否发生变化。</p>
 </li>
@@ -536,11 +536,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/logo.png"
-                alt="sgdhfe" />
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
             
               <p class="site-author-name" itemprop="name">sgdhfe</p>
               <p class="site-description motion-element" itemprop="description">🐳🐳 搜狗导航前端开发组 🐬🐬</p>
@@ -553,7 +551,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -564,7 +562,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -575,7 +573,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
