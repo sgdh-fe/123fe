@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-192x192.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="lerna,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近在开发一个类似 create-react-app 工具。但面临一个问题，需要同时维护两个 packages，开发起来不是很方便，后期维护成本也高（如版本号维护）。于是查看了 create-react-app 源码，发现在其源码中有个 lerna.json 文件。好奇这个文件是做什么的，就了解一番。经查阅了解到 Lerna 可以用来管理项目中多个 packages。这正是自己所需要的，于是就有">
+<meta name="keywords" content="lerna">
+<meta property="og:type" content="article">
+<meta property="og:title" content="monorepos by lerna">
+<meta property="og:url" content="http://123fe.com/2019/08/14/monorepos-by-lerna/index.html">
+<meta property="og:site_name" content="Sogou.dh.fe">
+<meta property="og:description" content="最近在开发一个类似 create-react-app 工具。但面临一个问题，需要同时维护两个 packages，开发起来不是很方便，后期维护成本也高（如版本号维护）。于是查看了 create-react-app 源码，发现在其源码中有个 lerna.json 文件。好奇这个文件是做什么的，就了解一番。经查阅了解到 Lerna 可以用来管理项目中多个 packages。这正是自己所需要的，于是就有">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://123fe.com/2019/08/14/monorepos-by-lerna/lerna.jpg">
+<meta property="og:updated_time" content="2019-08-14T06:14:45.806Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="monorepos by lerna">
+<meta name="twitter:description" content="最近在开发一个类似 create-react-app 工具。但面临一个问题，需要同时维护两个 packages，开发起来不是很方便，后期维护成本也高（如版本号维护）。于是查看了 create-react-app 源码，发现在其源码中有个 lerna.json 文件。好奇这个文件是做什么的，就了解一番。经查阅了解到 Lerna 可以用来管理项目中多个 packages。这正是自己所需要的，于是就有">
+<meta name="twitter:image" content="http://123fe.com/2019/08/14/monorepos-by-lerna/lerna.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://123fe.com/2019/08/14/monorepos-by-lerna/">
+
+
+
+
+
+  <title>monorepos by lerna | Sogou.dh.fe</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sogou.dh.fe</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">fe blogs</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-github">
+          <a href="https://github.com/sgdh-fe" rel="section">
+            
+            Github
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-projects">
+          <a href="http://git.dh.sogou-inc.com/groups/fe" rel="section">
+            
+            Projects
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://123fe.com/2019/08/14/monorepos-by-lerna/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sgdhfe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sogou.dh.fe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">monorepos by lerna</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T14:12:21+08:00">
+                2019-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+          <span> ｜ </span><span class="fa fa-user-o"> </span><span style="color:#222;"> singsong</span>
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2019/08/14/monorepos-by-lerna/lerna.jpg" alt="lerna"></p>
+<p>最近在开发一个类似 <a href="https://github.com/facebook/create-react-app" target="_blank" rel="noopener">create-react-app</a> 工具。但面临一个问题，需要同时维护两个 packages，开发起来不是很方便，后期维护成本也高（如版本号维护）。于是查看了 create-react-app 源码，发现在其源码中有个 <code>lerna.json</code> 文件。好奇这个文件是做什么的，就了解一番。经查阅了解到 <a href="https://github.com/lerna/lerna" target="_blank" rel="noopener">Lerna</a> 可以用来管理项目中多个 packages。这正是自己所需要的，于是就有了这篇文章。本文主要对 Lerna 的使用做个简单介绍。</p>
+<h2 id="Lerna"><a href="#Lerna" class="headerlink" title="Lerna"></a>Lerna</h2><blockquote>
+<p>Lerna is a tool that optimizes the workflow around managing multi-package repositories with git and npm.</p>
+</blockquote>
+<p><strong>Lerna</strong> 是一个基于 git 和 npm 管理多个 packages 来简化工作流程的工具。</p>
+<a id="more"></a>
+<h2 id="安装-Lerna"><a href="#安装-Lerna" class="headerlink" title="安装 Lerna"></a>安装 Lerna</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm</span></span><br><span class="line">npm install --global lerna || npm install -g lerna</span><br><span class="line"></span><br><span class="line"><span class="comment"># yarn</span></span><br><span class="line">yarn global add lerna</span><br></pre></td></tr></table></figure>
+<p>如果不想安装，也可以使用 <a href="https://www.npmjs.com/package/npx" target="_blank" rel="noopener">npx</a>。</p>
+<h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><p>创建一个名为 <a href="https://github.com/zhansingsong/lerna-demo" target="_blank" rel="noopener">lerna-demo</a> 项目。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init lerna-demo &amp;&amp; <span class="built_in">cd</span> lerna-demo</span><br></pre></td></tr></table></figure></p>
+<p>使用 Lerna 初始化项目</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lerna init</span><br></pre></td></tr></table></figure>
+<p>此时项目结构如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── lerna.json</span><br><span class="line">├── package.json</span><br><span class="line">└── packages</span><br></pre></td></tr></table></figure></p>
+<h2 id="创建-packages"><a href="#创建-packages" class="headerlink" title="创建 packages"></a>创建 packages</h2><blockquote>
+<p>singsong: 为了方便讲解，这里假设有三个 packages：banana、apple、grocery。其中 grocery 依赖于 banana、apple 两个 package。</p>
+</blockquote>
+<p>在 <code>packages/</code> 目录下创建 <strong>banana</strong>、<strong>apple</strong>、<strong>grocery</strong> 三个目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir banana apple grocery</span><br></pre></td></tr></table></figure>
+<p>然后分别在 <strong>banana</strong>、<strong>apple</strong>、<strong>grocery</strong> 目录下执行如下命令初始化 package：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+<p>并分别创建一个<code>index.js</code>文件，增加如下代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// apple index.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="string">'apple package'</span>;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// banana index.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="string">'banana package'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// grocery index.js</span></span><br><span class="line"><span class="keyword">const</span> apple = <span class="built_in">require</span>(<span class="string">'apple'</span>);</span><br><span class="line"><span class="keyword">const</span> banana = <span class="built_in">require</span>(<span class="string">'banana'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'all the dependencies of the grocery package:'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(apple);</span><br><span class="line"><span class="built_in">console</span>.log(banana);</span><br></pre></td></tr></table></figure>
+<p>此时目录结构如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── lerna.json</span><br><span class="line">├── package.json</span><br><span class="line">└── packages</span><br><span class="line">    ├── apple</span><br><span class="line">    │   ├── index.js</span><br><span class="line">    │   └── package.json</span><br><span class="line">    ├── banana</span><br><span class="line">    │   ├── index.js</span><br><span class="line">    │   └── package.json</span><br><span class="line">    └── grocery</span><br><span class="line">        ├── index.js</span><br><span class="line">        └── package.json</span><br></pre></td></tr></table></figure></p>
+<h3 id="创建-packages-依赖关系"><a href="#创建-packages-依赖关系" class="headerlink" title="创建 packages 依赖关系"></a>创建 packages 依赖关系</h3><p>上一步骤已创建了 <strong>banana</strong>、<strong>apple</strong>、<strong>grocery</strong> 三个 packages，其中 <strong>grocery</strong> 依赖于 <strong>banana</strong>、<strong>apple</strong>。要建立此依赖只需执行如下命令：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// add apple to grocery as a dependency</span></span><br><span class="line">lerna add apple packages/grocery</span><br><span class="line"><span class="comment">// add banana to grocery as a dependency</span></span><br><span class="line">lerna add banana packages/grocery</span><br></pre></td></tr></table></figure>
+<p><code>lerna add</code> 类似于 <code>npm install</code>。</p>
+<p>此时目录结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── lerna.json</span><br><span class="line">├── package.json</span><br><span class="line">└── packages</span><br><span class="line">    ├── apple</span><br><span class="line">    │   ├── index.js</span><br><span class="line">    │   └── package.json</span><br><span class="line">    ├── banana</span><br><span class="line">    │   ├── index.js</span><br><span class="line">    │   └── package.json</span><br><span class="line">    └── grocery</span><br><span class="line">        ├── index.js</span><br><span class="line">        ├── node_modules</span><br><span class="line">        │   ├── apple -&gt; ../../apple</span><br><span class="line">        │   └── banana -&gt; ../../banana</span><br><span class="line">        └── package.json</span><br></pre></td></tr></table></figure>
+<p>在 <strong>grocery</strong> 的 <code>node_modules</code> 下，Lerna 会分别为 <strong>banana</strong>、<strong>apple</strong> 创建一个链接到对应 package 的 symlink（符号链接或软连接，相当于 Windows 中快捷方式)。这样对 <strong>banana</strong>、<strong>apple</strong> 任何修改都能立刻生效。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">├── node_modules</span><br><span class="line">│   ├── apple -&gt; ../../apple</span><br><span class="line">│   └── banana -&gt; ../../banana</span><br></pre></td></tr></table></figure></p>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>为了方便运行代码，对根目录下 <code>package.json</code> 文件增加如下代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"start"</span>: <span class="string">"node packages/grocery/index.js"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>执行如下命令，运行代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
+<p>输出<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; root@ start /Users/singsong/github/lerna-demo</span><br><span class="line">&gt; node packages/grocery/index.js</span><br><span class="line"></span><br><span class="line">all the dependencies <span class="keyword">of</span> the grocery package:</span><br><span class="line">apple package</span><br><span class="line">banana package</span><br></pre></td></tr></table></figure></p>
+<h2 id="添加第三方依赖"><a href="#添加第三方依赖" class="headerlink" title="添加第三方依赖"></a>添加第三方依赖</h2><p>为所有的 packages 添加 eslint.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lerna add eslint --dev</span><br></pre></td></tr></table></figure>
+<p>这里只有三个 packages，如果存在很多 packages，每个 package 都单独安装 eslint 包，这会造成资源的浪费。Lerna 也考虑到这个问题，提供了如下命令来解决：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lerna bootstrap --hoist</span><br></pre></td></tr></table></figure></p>
+<p><code>lerna bootstrap</code> 会根据每个 package 的 <code>package.json</code> 为其安装依赖。如果加上 <code>--hoist</code> 参数，Lerna 会把所有 packages 中共有的依赖包安装到根目录中，然后分别在各自的 <code>node_modules/.bin</code> 中创建软链接指向对应依赖包的实际路径。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">├── apple</span><br><span class="line">│   ├── index.js</span><br><span class="line">│   ├── node_modules</span><br><span class="line">│   │   └── .bin</span><br><span class="line">│   │       └── eslint -&gt; ../../../../node_modules/eslint/bin/eslint.js</span><br><span class="line">│   ├── package-lock.json</span><br><span class="line">│   └── package.json</span><br><span class="line">├── banana</span><br><span class="line">│   ├── index.js</span><br><span class="line">│   ├── node_modules</span><br><span class="line">│   │   └── .bin</span><br><span class="line">│   │       └── eslint -&gt; ../../../../node_modules/eslint/bin/eslint.js</span><br><span class="line">│   ├── package-lock.json</span><br><span class="line">│   └── package.json</span><br><span class="line">└── grocery</span><br><span class="line">    ├── index.js</span><br><span class="line">    ├── node_modules</span><br><span class="line">    │   └── .bin</span><br><span class="line">    │       └── eslint -&gt; ../../../../node_modules/eslint/bin/eslint.js</span><br><span class="line">    ├── package-lock.json</span><br><span class="line">    └── package.json</span><br></pre></td></tr></table></figure>
+<p>当然如果只是安装开发依赖包，可以直接安装在根目录下即可。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// npm</span></span><br><span class="line">npm install -D eslint</span><br><span class="line"></span><br><span class="line"><span class="comment">// yarn</span></span><br><span class="line">yarn add -D eslint</span><br></pre></td></tr></table></figure>
+<p>因为 node 在查找模块时，会从当前目录向上逐级查找。</p>
+<p>当然，也许只想对特定 package 安装依赖包，可以通过如下方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lerna add lodash --scope=grocery</span><br></pre></td></tr></table></figure>
+<p>使用 <code>--scope</code> 参数来指定安装位置。</p>
+<h2 id="版本管理"><a href="#版本管理" class="headerlink" title="版本管理"></a>版本管理</h2><p>Lerna 提供了两种版本管理模式：</p>
+<ul>
+<li><p>Fixed/Locked mode (default)</p>
+<p>任何 package 更新发布，都统一由根目录下 <code>lerna.json</code> 中的 <code>version</code> 字段来记录跟踪。即这种模式会将所有 packages 版本号关联起来。但这样会存在一个问题：<br>任何 package 版本号变化，都会导致其他所有 package 拥有一个新的版本号。</p>
+<p>开启方法：默认模式。</p>
+</li>
+<li><p>Independent mode (–independent)</p>
+<p>packages 发布新版时，会逐个询问每个 package 需要升级的版本号。即每个 package 都独立维护自己的 version。这样就可以有效地避免默认模式下版本号语义化的问题。</p>
+<p>开启方法：</p>
+<ul>
+<li><code>lerna init --independent</code></li>
+<li>将 <code>lerna.json</code> 中的 <code>version</code> 字段设置为 <code>&#39;independent&#39;</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><p>要发布新版时，只需执行如下命令即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lerna publish</span><br></pre></td></tr></table></figure>
+<p>另外，Lerna 还为 <code>lerna publish</code> 提供了一些选项：<a href="https://github.com/lerna/lerna/tree/master/commands/publish#readme" target="_blank" rel="noopener">@lerna/publish</a>。</p>
+<p>在执行该命令时，需要注意，至少要有个 <strong>commit</strong>，否则会得到如下提示：</p>
+<blockquote>
+<p>Working tree has uncommitted changes, please commit or remove changes before continuing.</p>
+</blockquote>
+<p>或</p>
+<blockquote>
+<p>Current HEAD is already released, skipping change detection.</p>
+</blockquote>
+<p>因为在发布之前，Lerna 会检查 packages 是否有更新。如果有更新才会以 <strong>一问一答</strong> 的方式获取发布相关信息：</p>
+<blockquote>
+<p>singsong: 假设你已成功登录 NPM。<a href="https://docs.npmjs.com/creating-a-new-npm-user-account" target="_blank" rel="noopener">如何注册及登录</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">info cli using local version of lerna</span><br><span class="line">lerna notice cli v3.13.1</span><br><span class="line">lerna info current version 0.0.5</span><br><span class="line">lerna info Looking for changed packages since zhansingsong-apple@0.0.5</span><br><span class="line">? Select a new version (currently 0.0.5) Patch (0.0.6)</span><br><span class="line"></span><br><span class="line">Changes:</span><br><span class="line"> - zhansingsong-apple: 0.0.5 =&gt; 0.0.6</span><br><span class="line"> - zhansingsong-banana: 0.0.4 =&gt; 0.0.6</span><br><span class="line"> - zhansingsong-grocery: 0.0.4 =&gt; 0.0.6</span><br><span class="line"></span><br><span class="line">? Are you sure you want to publish these packages? Yes</span><br><span class="line">lerna info execute Skipping GitHub releases</span><br><span class="line">lerna info git Pushing tags...</span><br><span class="line">lerna info publish Publishing packages to npm...</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>singsong：为了能成功将 apple、banana、grocery 发布到 NPM，在包命名时都为每个 package 加了 <code>zhansingsong-</code> 前缀。</p>
+</blockquote>
+<p>上述是默认模式下的输出信息。虽然只对 <strong>zhansingsong-apple</strong> 做了修改，然而在版本号更新时，会更新所有 packages 的版本号。而且如果执行发布，会把所有的 packages 都发布到 NPM。那如果换成<code>Independent</code>模式，会是怎样呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">info cli using local version of lerna</span><br><span class="line">lerna notice cli v3.13.1</span><br><span class="line">lerna info versioning independent</span><br><span class="line">lerna info Looking for changed packages since v0.0.7</span><br><span class="line">? Select a new version for zhansingsong-apple (currently 0.0.7) Patch (0.0.8)</span><br><span class="line"></span><br><span class="line">Changes:</span><br><span class="line"> - zhansingsong-apple: 0.0.7 =&gt; 0.0.8</span><br><span class="line"></span><br><span class="line">? Are you sure you want to publish these packages? Yes</span><br><span class="line">lerna info execute Skipping GitHub releases</span><br><span class="line">lerna info git Pushing tags...</span><br><span class="line">lerna info publish Publishing packages to npm...</span><br></pre></td></tr></table></figure>
+<p>在 <strong>Independent</strong> 模式下，只会更新已更新 <strong>zhansingsong-apple</strong> 的版本号，并只将其发布到 NPM。</p>
+<h2 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h2><ul>
+<li><code>lerna create &lt;name&gt; [loc]</code>：在 <code>loc</code> 目录下创建一个 package。默认位置 <code>packages/</code>。</li>
+<li><code>lerna version</code>：更新 package 的版本号。提供 Patch、Minor、Major、Prepatch、Preminor、Premajor、Custom Prerelease、Custom Version 选项。</li>
+<li><code>lerna clean</code>：删除所有 packages 的 node_modules 目录。PS：不会删除根目录的 node_modules。</li>
+<li><p><code>lerna list</code> | <code>lerna ls</code> | <code>lerna ll</code> | <code>lerna la</code>：列举 packages 目录下的所有本地 packages。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 执行 lerna list 的输出：</span></span><br><span class="line">info cli using local version <span class="keyword">of</span> lerna</span><br><span class="line">lerna notice cli v3<span class="number">.13</span><span class="number">.1</span></span><br><span class="line">apple</span><br><span class="line">banana</span><br><span class="line">grocery</span><br><span class="line">lerna success found <span class="number">3</span> packages</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>lerna changed</code> | <code>lerna updated</code>：查看本地 packages 是否发生变化。</p>
+</li>
+<li><code>lerna link</code>：根据依赖关系为本地所有 packages 创建软链接。</li>
+<li><code>lerna run &lt;script&gt;</code>：运行每个 package 中包含 <code>npm run &lt;script&gt;</code> 的脚本。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/lerna/" rel="tag"># lerna</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/14/代码规范化工具-ESLint/" rel="next" title="代码规范化工具 ESLint">
+                <i class="fa fa-chevron-left"></i> 代码规范化工具 ESLint
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/14/virtual-list（虚拟化列表）/" rel="prev" title="virtual list（虚拟化列表）">
+                virtual list（虚拟化列表） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
+            
+              <p class="site-author-name" itemprop="name">sgdhfe</p>
+              <p class="site-description motion-element" itemprop="description">🐳🐳 搜狗导航前端开发组 🐬🐬</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sgdh-fe" target="_blank" title="github">
+                      
+                        <i class="fa fa-fw fa-github"></i>github</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://123.sogou.com/" title="123sogou" target="_blank">123sogou</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lerna"><span class="nav-number">1.</span> <span class="nav-text">Lerna</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Lerna"><span class="nav-number">2.</span> <span class="nav-text">安装 Lerna</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化项目"><span class="nav-number">3.</span> <span class="nav-text">初始化项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-packages"><span class="nav-number">4.</span> <span class="nav-text">创建 packages</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-packages-依赖关系"><span class="nav-number">4.1.</span> <span class="nav-text">创建 packages 依赖关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行"><span class="nav-number">5.</span> <span class="nav-text">运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加第三方依赖"><span class="nav-number">6.</span> <span class="nav-text">添加第三方依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#版本管理"><span class="nav-number">7.</span> <span class="nav-text">版本管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布"><span class="nav-number">8.</span> <span class="nav-text">发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他常用命令"><span class="nav-number">9.</span> <span class="nav-text">其他常用命令</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sgdhfe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
