@@ -97,7 +97,7 @@ menu:
   categories: /categories
   tags: /tags
   Github: https://github.com/sgdh-fe
-  Projects: http://git.dh.sogou-inc.com/groups/fe
+  # Projects: http://git.dh.sogou-inc.com/groups/fe
   About: /about
   
   #schedule: /schedule/ || calendar
