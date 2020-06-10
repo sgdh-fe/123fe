@@ -544,7 +544,7 @@ Flexible Box的缩写，意为"弹性布局"，
 
 </br>
 
-> 声明:本资料仅供学习交流，严禁使用于任何商业用途! 相关资料参考自[mdn](https://developer.mozilla.org/en/)等开发者网站或技术大牛[阮一峰](http://www.ruanyifeng.com/blog/)、[oxxo](http://www.oxxostudio.tw/articles/201405/about-me.html)等博客内容。 如需转载，转载请注明出处。
+> 声明:本资料仅供学习交流，严禁使用于任何商业用途! 相关资料参考自[mdn](https://developer.mozilla.org/en/)等开发者网站或技术大牛[阮一峰](http://www.ruanyifeng.com/blog/)、[oxxo](http://www.oxxostudio.tw/articles/201405/about-me.html)等博客内容。如有侵权可联系删除或添加出处来源。
+如需转载，转载请注明出处。
 
 <br/>
-### 完.

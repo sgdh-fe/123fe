@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-192x192.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="算法,排序,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content=".img-gif{width:100%}">
+<meta name="keywords" content="算法,排序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS常见排序算法探究">
+<meta property="og:url" content="http://123fe.com/2019/08/09/JS常见排序算法探究/index.html">
+<meta property="og:site_name" content="Sogou.dh.fe">
+<meta property="og:description" content=".img-gif{width:100%}">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://123fe.com/2019/08/09/JS常见排序算法探究/jsSort-img.001.jpeg">
+<meta property="og:updated_time" content="2020-06-10T07:33:11.010Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS常见排序算法探究">
+<meta name="twitter:description" content=".img-gif{width:100%}">
+<meta name="twitter:image" content="http://123fe.com/2019/08/09/JS常见排序算法探究/jsSort-img.001.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://123fe.com/2019/08/09/JS常见排序算法探究/">
+
+
+
+
+
+  <title>JS常见排序算法探究 | Sogou.dh.fe</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sogou.dh.fe</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">fe blogs</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-github">
+          <a href="https://github.com/sgdh-fe" rel="section">
+            
+            Github
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://123fe.com/2019/08/09/JS常见排序算法探究/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sgdhfe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sogou.dh.fe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS常见排序算法探究</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-09T18:03:32+08:00">
+                2019-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+          <span> ｜ </span><span class="fa fa-user-o"> </span><span style="color:#222;"> kun</span>
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <style type="text/css">
+    .img-gif{width:100%}
+</style>
+
+<p><img class="br10" src="/2019/08/09/JS常见排序算法探究/jsSort-img.001.jpeg"></p>
+<a id="more"></a>
+<h2 id="常见术语名称"><a href="#常见术语名称" class="headerlink" title="常见术语名称"></a>常见术语名称</h2><p><img class="br10 k-lazy" data-original="./jsSort-img.002.jpeg"></p>
+<h2 id="评述算法优劣"><a href="#评述算法优劣" class="headerlink" title="评述算法优劣"></a>评述算法优劣</h2><h3 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h3><p><img class="br10 k-lazy" data-original="./jsSort-img.003.jpeg"></p>
+<h3 id="排序方式"><a href="#排序方式" class="headerlink" title="排序方式"></a>排序方式</h3><p><img class="br10 k-lazy" data-original="./jsSort-img.004.jpeg"></p>
+<h3 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h3><p><img class="br10 k-lazy" data-original="./jsSort-img.005.jpeg"></p>
+<h2 id="排序算法图片总结"><a href="#排序算法图片总结" class="headerlink" title="排序算法图片总结"></a>排序算法图片总结</h2><p><img class="br10 k-lazy" data-original="./jsSort-img.006.jpeg"></p>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p><img class="br10 k-lazy" data-original="./jsSort-img.007.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.008.jpeg"><br><img class="br10 k-lazy img-gif" data-original="./jsSort-img.009.gif"><br><img class="br10 k-lazy" data-original="./jsSort-img.010.jpeg"></p>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p><img class="br10 k-lazy" data-original="./jsSort-img.011.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.012.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.013.jpeg"><br><img class="br10 k-lazy img-gif" data-original="./jsSort-img.014.gif"></p>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p><img class="br10 k-lazy" data-original="./jsSort-img.015.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.016.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.017.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.018.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.019.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.020.jpeg"></p>
+<h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><p><img class="br10 k-lazy" data-original="./jsSort-img.021.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.022.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.023.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.024.jpeg"></p>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p><img class="br10 k-lazy" data-original="./jsSort-img.025.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.026.jpeg"><br><img class="br10 k-lazy img-gif" data-original="./jsSort-img.027.gif"><br><img class="br10 k-lazy" data-original="./jsSort-img.028.jpeg"></p>
+<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><p><img class="br10 k-lazy" data-original="./jsSort-img.029.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.030.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.031.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.032.jpeg"><br><img class="br10 k-lazy img-gif" data-original="./jsSort-img.033.gif"><br><img class="br10 k-lazy" data-original="./jsSort-img.034.jpeg"></p>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p><img class="br10 k-lazy" data-original="./jsSort-img.035.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.036.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.037.jpeg"><br><img class="br10 k-lazy img-gif" data-original="./jsSort-img.038.gif"><br><img class="br10 k-lazy" data-original="./jsSort-img.039.jpeg"></p>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p><img class="br10 k-lazy" data-original="./jsSort-img.040.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.041.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.042.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.043.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.044.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.045.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.046.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.047.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.048.jpeg"></p>
+<h2 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h2><p><img class="br10 k-lazy" data-original="./jsSort-img.049.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.050.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.051.jpeg"><br><img class="br10 k-lazy img-gif" data-original="./jsSort-img.052.gif"><br><img class="br10 k-lazy" data-original="./jsSort-img.053.jpeg"></p>
+<h2 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h2><p><img class="br10 k-lazy" data-original="./jsSort-img.054.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.055.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.056.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.057.jpeg"></p>
+<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><p><img class="br10 k-lazy" data-original="./jsSort-img.058.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.059.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.060.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.061.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.062.jpeg"><br><img class="br10 k-lazy img-gif" data-original="./jsSort-img.063.gif"><br><img class="br10 k-lazy" data-original="./jsSort-img.064.jpeg"></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><img class="br10 k-lazy" data-original="./jsSort-img.065.jpeg"><br><img class="br10 k-lazy" data-original="./jsSort-img.066.jpeg"></p>
+<p><br></p>
+<blockquote>
+<p>声明:本资料仅供学习交流，严禁使用于任何商业用途!<br>相关资料参考自网络博客内容。 如有侵权可联系删除或添加出处来源。<br>如需转载，转载请注明出处。</p>
+</blockquote>
+<p><br></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+            <a href="/tags/排序/" rel="tag"># 排序</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/04/svg-描边动画/" rel="next" title="svg 描边动画">
+                <i class="fa fa-chevron-left"></i> svg 描边动画
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/14/代码规范化工具-ESLint/" rel="prev" title="代码规范化工具 ESLint">
+                代码规范化工具 ESLint <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
+            
+              <p class="site-author-name" itemprop="name">sgdhfe</p>
+              <p class="site-description motion-element" itemprop="description">🐳🐳 搜狗导航前端开发组 🐬🐬</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sgdh-fe" target="_blank" title="github">
+                      
+                        <i class="fa fa-fw fa-github"></i>github</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://123.sogou.com/" title="123sogou" target="_blank">123sogou</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见术语名称"><span class="nav-number">1.</span> <span class="nav-text">常见术语名称</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评述算法优劣"><span class="nav-number">2.</span> <span class="nav-text">评述算法优劣</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#稳定性"><span class="nav-number">2.1.</span> <span class="nav-text">稳定性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序方式"><span class="nav-number">2.2.</span> <span class="nav-text">排序方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度"><span class="nav-number">2.3.</span> <span class="nav-text">复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序算法图片总结"><span class="nav-number">3.</span> <span class="nav-text">排序算法图片总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡排序"><span class="nav-number">4.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速排序"><span class="nav-number">5.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入排序"><span class="nav-number">6.</span> <span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分查找"><span class="nav-number">7.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择排序"><span class="nav-number">8.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#希尔排序"><span class="nav-number">9.</span> <span class="nav-text">希尔排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归并排序"><span class="nav-number">10.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆排序"><span class="nav-number">11.</span> <span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计数排序"><span class="nav-number">12.</span> <span class="nav-text">计数排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#桶排序"><span class="nav-number">13.</span> <span class="nav-text">桶排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基数排序"><span class="nav-number">14.</span> <span class="nav-text">基数排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">15.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sgdhfe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

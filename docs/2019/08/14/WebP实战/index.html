@@ -87,7 +87,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://123fe.com/2019/08/14/WebP实战/webp.png">
 <meta property="og:image" content="http://123fe.com/2019/08/14/WebP实战/images/webp-supports.png">
-<meta property="og:updated_time" content="2020-06-09T08:31:09.784Z">
+<meta property="og:updated_time" content="2020-06-09T10:27:57.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WebP实战">
 <meta name="twitter:description" content="在搭建 blog 过程中，使用 lighthouse 审查站点。在性能项上提示Serve images in next-gen formats优化建议。  Image formats like JPEG 2000, JPEG XR, and webp often provide better compression than PNG or JPEG, which means faster dow">
@@ -381,12 +381,12 @@
 <li>确保<code>mime.types</code>中有 WebP。因为如果没有 WebP 类型，WebP 图片会作为<code>application/octet-stream</code> 输出。</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">image/webp  webp;</span><br></pre></td></tr></table></figure>
-<ol start="2">
+<ol>
 <li>获取请求头 <code>Accept</code> 字段中的 <code>webp</code></li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">map $http_accept $webp_suffix &#123;</span><br><span class="line">  <span class="keyword">default</span>   <span class="string">""</span>;</span><br><span class="line">  <span class="string">"~*webp"</span>  <span class="string">".webp"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里使用 map(更多参考<a href="http://nginx.org/en/docs/http/ngx_http_map_module.html" target="_blank" rel="noopener">ngx_http_map_module</a>)定义了一个<code>$webp_suffix</code>变量，如果 WebP 存在，<code>$webp_suffix</code>值为<code>&quot;.webp&quot;</code>，否则为空字符串。</p>
-<ol start="3">
+<ol>
 <li><p>输出图片</p>
 <ul>
 <li>查看是否存在<code>.webp</code>的文件，如果存在就直接输出。</li>
@@ -550,7 +550,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -572,7 +572,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
