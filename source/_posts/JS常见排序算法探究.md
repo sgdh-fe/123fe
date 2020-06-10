@@ -10,6 +10,7 @@ author: kun
 
 <style type="text/css">
     .img-gif{width:100%}
+    .br10{border-radius: 6px;}
 </style>
 
 <img class="br10" src="./jsSort-img.001.jpeg">

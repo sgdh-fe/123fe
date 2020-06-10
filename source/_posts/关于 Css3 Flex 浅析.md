@@ -8,6 +8,9 @@ tags:
 author: kun
 ---
 
+<style type="text/css">
+    .br10{border-radius: 6px;}
+</style>
 
 布局的传统解决方案，基于盒状模型，依赖 display属性 + position属性 + float属性。它对于那些特殊布局非常不方便，比如，[垂直居中](https://css-tricks.com/centering-css-complete-guide/)就不容易实现。
 

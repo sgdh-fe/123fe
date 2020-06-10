@@ -8,6 +8,9 @@ tags:
 author: kun
 ---
 
+<style type="text/css">
+    .br10{border-radius: 6px;}
+</style>
 
 # CSS3 Grid
 
