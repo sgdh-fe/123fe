@@ -1,0 +1,47 @@
+---
+title: 构建 FEER 命令行工具 CLI
+date: 2020-06-11 12:13:56
+categories: js
+tags:
+- 开发环境
+- CLI
+author: kun
+---
+
+<style type="text/css">
+    .br10{border-radius: 6px;}
+</style>
+
+
+
+<img class="br10" src="./f_01.jpg" style="height: 230px">
+
+<!-- <img class="br10" src="./logo.png">
+<img class="br10" src="./logo2.png"> -->
+
+##构建 FEER 命令行工具 CLI
+
+前言
+CLI，全称是command-line interface，也就是命令行交互接口。无论是在前端还是后端，都可以用于在构建时通过命令快速生成项目或模板等。例如前端的vue-cli（Vue前端开发脚手架），后端的dva-cli（Ant Design后端开发脚手架）等
+
+需求
+那么如何构建属于自己的CLI工具呢，在项目开发时可以快速生成自己需要的代码模板，去除重复工作，并且还可以为其他的开发者提供快速入门的使用呢？我们的具体需求如下：
+
+1，通过执行命令，自动生成项目代码模板
+2，项目代码模板可以自定义编辑
+3，CLI可以通过软件包形式分发，其他开发者可以简单使用
+
+作者：宇帅
+链接：https://www.jianshu.com/p/5d0eef9724e0
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+> 
+
+<!-- more -->
+
+## xx
+
+
+
+[feer-cli](https://github.com/consolejs/feer-cli)
