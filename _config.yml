@@ -107,3 +107,10 @@ deploy:
   repository: git@github.com:sgdh-fe/sgdh-fe.github.io.git
   branch: master
 
+# hexo-lazyload-image
+# http://www.zhaojun.im/hexo-lazyload/
+lazyload:
+  enable: true 
+  onlypost: false
+  loadingImg: #/images/loading/loading.gif #如果不填写图片则使用默认的图片
+  
