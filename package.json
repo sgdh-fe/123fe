@@ -22,7 +22,7 @@
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0",
     "hoek": "^5.0.4",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.13",
     "marked": "^0.5.0",
     "mime": "^2.3.1",
     "moment": "^2.22.2",
