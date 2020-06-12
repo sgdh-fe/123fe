@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-192x192.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="开发环境,RollupJS,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content=".br10{border-radius: 6px;}">
+<meta name="keywords" content="开发环境,RollupJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端集成开发环境 FEER">
+<meta property="og:url" content="http://123fe.com/2020/06/12/前端集成开发环境FEER/index.html">
+<meta property="og:site_name" content="Sogou.dh.fe">
+<meta property="og:description" content=".br10{border-radius: 6px;}">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://123fe.com/2020/06/12/前端集成开发环境FEER/f_02.jpg">
+<meta property="og:image" content="http://123fe.com/2020/06/12/前端集成开发环境FEER/screenshot.svg">
+<meta property="og:updated_time" content="2020-06-12T07:12:07.044Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端集成开发环境 FEER">
+<meta name="twitter:description" content=".br10{border-radius: 6px;}">
+<meta name="twitter:image" content="http://123fe.com/2020/06/12/前端集成开发环境FEER/f_02.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://123fe.com/2020/06/12/前端集成开发环境FEER/">
+
+
+
+
+
+  <title>前端集成开发环境 FEER | Sogou.dh.fe</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sogou.dh.fe</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">fe blogs</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-github">
+          <a href="https://github.com/sgdh-fe" rel="section">
+            
+            Github
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://123fe.com/2020/06/12/前端集成开发环境FEER/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sgdhfe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sogou.dh.fe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">前端集成开发环境 FEER</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-12T09:21:26+08:00">
+                2020-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+          <span> ｜ </span><span class="fa fa-user-o"> </span><span style="color:#222;"> kun</span>
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <style type="text/css">
+    .br10{border-radius: 6px;}
+</style>
+
+<p><img class="br10 k-lazy" src="/2020/06/12/前端集成开发环境FEER/f_02.jpg"></p>
+<a id="more"></a>
+<p><strong><code>Feer</code></strong> 基于<a href="https://www.rollupjs.com/" target="_blank" rel="noopener">RollupJS</a> 打造的前端工具集成环境. <a href="https://github.com/consolejs/feer-cli" target="_blank" rel="noopener">Github</a> &ensp;🚀 </p>
+<blockquote>
+<p>命名灵感来自 <strong><code>F</code></strong> ront- <strong><code>E</code></strong> nd&ensp; Engine <strong><code>er</code></strong>, 即前端工程构建师 <code>FEer</code>, 类似<code>PHPer</code>、<code>JAVAer</code> </p>
+</blockquote>
+<p align="center"><br>  <img class="br10 k-lazy" src="/2020/06/12/前端集成开发环境FEER/screenshot.svg" width="640"><br></p>
+
+
+<h2 id="安装-amp-使用"><a href="#安装-amp-使用" class="headerlink" title="安装 &amp; 使用"></a>安装 &amp; 使用</h2><h3 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h3><ul>
+<li><p>全局安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i feer-cli -g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>默认使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">feer &lt;project-name&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx feer-cli &lt;project-name&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="场景支持"><a href="#场景支持" class="headerlink" title="场景支持"></a>场景支持</h3><p>在使用 <code>feer</code> 命令创建过程中，会提供模板选择功能, 支持 <code>PC</code>和<code>H5</code> :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? Which <span class="built_in">type</span> <span class="keyword">do</span> you want to create? (Use arrow keys)</span><br><span class="line">❯ PC - (build the pc page)</span><br><span class="line">  H5 - (build the h5 page)</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="文件目录"><a href="#文件目录" class="headerlink" title="文件目录"></a>文件目录</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">├── .babelrc ---&gt; babel配置文件</span><br><span class="line">├── .gitignore ---&gt; git过滤规则</span><br><span class="line">├── .eslintrc ---&gt; ESLint配置</span><br><span class="line">├── .eslintignore ---&gt; ESLint过滤规则</span><br><span class="line">├── README.MD</span><br><span class="line">├── package.json</span><br><span class="line">├── build ---&gt; 打包文件夹</span><br><span class="line">├── config ---&gt; 配置文件夹(`*`)</span><br><span class="line">├── views ---&gt; Nunjucks 模板引擎</span><br><span class="line">├── imgs ---&gt; 图片资源文件 (使用cdn时，可删除该文件夹)</span><br><span class="line">└── src ---&gt; 源代码文件夹</span><br></pre></td></tr></table></figure>
+<h3 id="config-配置"><a href="#config-配置" class="headerlink" title="config 配置"></a>config 配置</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">├── build.js ----&gt; nunjucks模板处理</span><br><span class="line">├── server.js ----&gt; fastify静态服务器、路由处理</span><br><span class="line">└── rollup.config.js ---&gt; RollupJS配置文件, 内可配置环境变量</span><br></pre></td></tr></table></figure>
+<h3 id="src-代码资源"><a href="#src-代码资源" class="headerlink" title="src 代码资源"></a>src 代码资源</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">├── libs ---&gt; 可存放引入的第三方库文件</span><br><span class="line">├── mods ---&gt; 各模块业务逻辑</span><br><span class="line">├── index.js ---&gt; 入口文件index.js</span><br><span class="line">└── styles ---&gt; scss 源代码文件夹, 可自定义</span><br></pre></td></tr></table></figure>
+<h3 id="views-模板文件"><a href="#views-模板文件" class="headerlink" title="views 模板文件"></a>views 模板文件</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">├── common ---&gt; 存放公共模板, 如parent、header、footer等</span><br><span class="line">├── mods ---&gt; 各个模块业务模板</span><br><span class="line">└── index.html ---&gt; 主页面模板, 可结合路由自定义配置其他页面</span><br></pre></td></tr></table></figure>
+<h3 id="build-编译输出"><a href="#build-编译输出" class="headerlink" title="build 编译输出"></a>build 编译输出</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">├── index.html ---&gt; html模板文件</span><br><span class="line">├── js ---&gt; js源代码文件夹</span><br><span class="line">├── css ---&gt; css资源文件</span><br><span class="line">└── img ---&gt; 图片资源文件 (使用cdn时，可删除该文件夹)</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<hr>
+<h2 id="关键特性"><a href="#关键特性" class="headerlink" title="关键特性"></a>关键特性</h2><ul>
+<li>基于<code>RollupJS</code>快速打包，让bundle最小化</li>
+<li>Tree-shaking帮助你移除无用代码</li>
+<li>支持单/多页面开发</li>
+<li>支持Proxy代理访问接口</li>
+<li>基于MockJS 模拟 api</li>
+<li>配置简单便捷、打包迅速</li>
+<li>Nunjucks, 功能丰富、强大的模板引擎</li>
+<li>支持Sass、Less强大的CSS扩展语言</li>
+<li>可灵活配置路由</li>
+<li>ES6书写优雅的JS代码</li>
+<li>支持自动打开浏览器(自动获取本地的ip地址)</li>
+<li>历经多个项目考验、不断改进升级</li>
+<li>可兼容支持ie6、7+</li>
+</ul>
+<hr>
+<p><br></p>
+<h2 id="关于配置"><a href="#关于配置" class="headerlink" title="关于配置"></a>关于配置</h2><h3 id="Rollup-简介"><a href="#Rollup-简介" class="headerlink" title="Rollup 简介"></a>Rollup 简介</h3><p><strong><a href="https://www.rollupjs.com/" target="_blank" rel="noopener">Rollup</a></strong>是一个JavaScript模块打包利器，<u>它使用的ES6模块标准</u>，代替像CommonJS和AMD的模块加载方案，即意味着开发者可以<u>直接使用import和export来优雅地书写代码</u>，且无需要引入<em>日常必备</em>工具<strong>Babel</strong>了。Rollup可以优化ES模块，以现代浏览器中实现更快地加载。</p>
+<p>另外，还有一个重要亮点叫做”<code>Tree-shaking</code>“，通过这个特性可以帮助开发者从最终的编译文件中<u>排除任何未使用的代码</u>。该特性是基于ES6模块的静态分析，保证最终打包代码的纯净。<u>且不会增加额外的依赖</u>，Webpack虽然也可实现，但配置复杂且造成打包后臃肿。</p>
+<h3 id="插件使用"><a href="#插件使用" class="headerlink" title="插件使用"></a>插件使用</h3><h4 id="基础包"><a href="#基础包" class="headerlink" title="基础包"></a>基础包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rollup-plugin-node-resolve -----&gt;帮助Rollup查找外部模块并导入</span><br><span class="line">rollup-plugin-commonjs  ---&gt;将CommonJS模块转换为ES6提供给Rollups使用</span><br><span class="line">rollup-plugin-babel ---&gt; 使用es6新特性来书写代码</span><br><span class="line">rollup-plugin-uglify ---&gt; 压缩还可使用 pure_funcs移除console等</span><br><span class="line">rollup-plugin-eslint ---&gt; 必不可少的代码检测</span><br></pre></td></tr></table></figure>
+<h4 id="热选包"><a href="#热选包" class="headerlink" title="热选包"></a>热选包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rollup-plugin-postcss --&gt; Rollup和PostCSS间的无缝集成</span><br><span class="line">rollup-plugin-livereload ---&gt; 热更新~</span><br><span class="line">rollup-plugin-copy --&gt; 用来复制文件和文件夹，支持glob</span><br></pre></td></tr></table></figure>
+<h3 id="Web服务"><a href="#Web服务" class="headerlink" title="Web服务"></a>Web服务</h3><p><a href="https://github.com/fastify/fastify" target="_blank" rel="noopener"><code>Fastify</code></a> 是一个高度专注于以最少开销和强大的插件架构为开发者提供最佳体验的 Web 框架。</p>
+<p><strong>Fastify</strong> 快速并且低开销，且专为 Node.js 平台量身打造,<br>它受到了Hapi和Express的启发， 是目前最快的Node框架之一。</p>
+<blockquote>
+<p>见<code>config/server.js</code>，也可详细<a href="https://lavyun.gitbooks.io/fastify/content/Getting-Started.html" target="_blank" rel="noopener">API文档</a></p>
+</blockquote>
+<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ul>
+<li>高性能：每秒可以提供 76k+个请求</li>
+<li>可扩展：Fastify 通过其钩子，插件和装饰器完全可扩展</li>
+<li>基于模式：可使用 JSON Schema 来验证路由并序列化输出</li>
+<li>日志记录：输出日志</li>
+<li>对开发者友好：该框架构建非常有表现力，不牺牲性能和安全性</li>
+</ul>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>重点在如下四个方面的使用：</p>
+<ol>
+<li><strong>模板渲染</strong>，借助插件<a href="https://github.com/fastify/point-of-view" target="_blank" rel="noopener">point-of-view</a>，除了 Nunjucks, 对ejs、pug、以及twig等，均可支持。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fastify.register(<span class="built_in">require</span>(<span class="string">"point-of-view"</span>), &#123;</span><br><span class="line">  engine: &#123;</span><br><span class="line">    nunjucks: <span class="built_in">require</span>(<span class="string">"nunjucks"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ol>
+<li><strong>启用静态服务</strong>，默认为4000端口</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 启用静态服务，4000端口</span></span><br><span class="line"><span class="keyword">const</span> port = <span class="number">4000</span>;</span><br><span class="line">fastify.listen(port, ip4, (err, address) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ol>
+<li><strong>路由配置</strong>，方便、灵活</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 配置router方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">configRouter</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 若默认为空 ''，指向 index文件</span></span><br><span class="line">  fastify.get(<span class="string">"/"</span> + name, (req, reply) =&gt; &#123;</span><br><span class="line">    reply.view((name == <span class="string">""</span> ? <span class="string">"index"</span> : name) + <span class="string">".html"</span>, &#123;&#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 路由名字,首页一般为空 '/'</span></span><br><span class="line"><span class="keyword">const</span> routerNames = [<span class="string">""</span>, <span class="string">"index"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行配置</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> routerNames) &#123;</span><br><span class="line">  configRouter(routerNames[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><strong>Proxy</strong> 跨域代理接口</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// proxy</span></span><br><span class="line"><span class="keyword">const</span> pathname = <span class="string">"/api/"</span>;</span><br><span class="line">fastify.get(pathname, <span class="keyword">async</span> (request, reply) =&gt; &#123;</span><br><span class="line">  reply.type(<span class="string">"application/json"</span>).code(<span class="number">200</span>);</span><br><span class="line">  <span class="keyword">const</span> url = <span class="keyword">new</span> URL(<span class="string">"https://jsonplaceholder.typicode.com/todos/1"</span>);</span><br><span class="line">  <span class="keyword">const</span> query = request.query;</span><br><span class="line">  <span class="built_in">Object</span>.keys(request.query).forEach(<span class="function"><span class="params">key</span> =&gt;</span></span><br><span class="line">    url.searchParams.append(key, query[key])</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">const</span> body = <span class="keyword">await</span> fetch(url).then(<span class="function"><span class="params">res</span> =&gt;</span> res.json());</span><br><span class="line">  <span class="keyword">return</span> body;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h3><p><a href="https://mozilla.github.io/nunjucks/" target="_blank" rel="noopener"><code>Nunjucks</code></a> 是 JavaScript 专用的功能丰富、强大的模板引擎。</p>
+<p>由<code>Mozilla</code>开发的一个纯JS编写的模板引擎，既可以用在Node环境下，又可以运行在浏览器端。</p>
+<p><code>Nunjucks</code> 的 API 包括渲染模板，添加过滤器和扩展，自定义模板加载器等等。  </p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li><strong>功能丰富且强大</strong>，并支持块级继承（block inheritance）、自动转义、宏（macro）、异步控制等等。</li>
+<li><strong>快速 &amp; 精简 并且高效</strong>。运行时代码经过压缩之后只有 8K 大小， 可在浏览器端执行预编译模板。</li>
+<li><strong>可扩展性超强</strong>，用户可以自定义过滤器（filter）和扩展模块。</li>
+<li><strong>随处可运行</strong>，无论是 node 还是任何浏览器都支持，并且还可以预编译模板。</li>
+</ul>
+<h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h4><p><code>Nunjucks</code> 内置了大量<strong>标签</strong>，它们是一些特殊的区块，可以对模板执行一些操作。</p>
+<p>如：if、for 等分支语句，与 javascript 中的 if、for 类似。</p>
+<blockquote>
+<p>小注： for 一样可以遍历数组 (arrays) 和对象 (dictionaries)。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="keyword">if</span> variable %&#125;</span><br><span class="line">  It is <span class="literal">true</span></span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>] %&#125;</span><br><span class="line">  &#123;&#123; i &#125;&#125;</span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>模板继承</strong> 能让你以更强大的方式复用模板。通过定义父模板的基本结构然后由子模板来填充内容。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends "parent.html" %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% block header %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; subtitle &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">&#123;% endblock %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123; page.title &#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; page.content &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>宏</strong> (macro) 可以定义可复用的内容，类似与编程语言中的函数，看下面的示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;% macro field(name, value='', type='text') %&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"field"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"&#123;&#123; type &#125;&#125;"</span> <span class="attr">name</span>=<span class="string">"&#123;&#123; name &#125;&#125;"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">value</span>=<span class="string">"&#123;&#123; value | escape &#125;&#125;"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% endmacro %&#125;</span><br></pre></td></tr></table></figure>
+<p>现在 <code>field</code> 可以当作函数一样使用了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; field(<span class="string">'user'</span>) &#125;&#125;</span><br><span class="line">&#123;&#123; field(<span class="string">'pass'</span>, type=<span class="string">'password'</span>) &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>还有很多好玩又方便的api，更多详见 <a href="https://mozilla.github.io/nunjucks/cn/templating.html" target="_blank" rel="noopener">API文档</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/开发环境/" rel="tag"># 开发环境</a>
+          
+            <a href="/tags/RollupJS/" rel="tag"># RollupJS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/14/Medium-渐进性图片加载-（Medium-progressive-image-loading）/" rel="next" title="Medium 渐进性图片加载 （Medium progressive image loading）">
+                <i class="fa fa-chevron-left"></i> Medium 渐进性图片加载 （Medium progressive image loading）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
+            
+              <p class="site-author-name" itemprop="name">sgdhfe</p>
+              <p class="site-description motion-element" itemprop="description">🐳🐳 搜狗导航前端开发组 🐬🐬</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sgdh-fe" target="_blank" title="github">
+                      
+                        <i class="fa fa-fw fa-github"></i>github</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://123.sogou.com/" title="123sogou" target="_blank">123sogou</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-amp-使用"><span class="nav-number">1.</span> <span class="nav-text">安装 &amp; 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行"><span class="nav-number">1.1.</span> <span class="nav-text">命令行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景支持"><span class="nav-number">1.2.</span> <span class="nav-text">场景支持</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件目录"><span class="nav-number">2.</span> <span class="nav-text">文件目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#config-配置"><span class="nav-number">2.1.</span> <span class="nav-text">config 配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#src-代码资源"><span class="nav-number">2.2.</span> <span class="nav-text">src 代码资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#views-模板文件"><span class="nav-number">2.3.</span> <span class="nav-text">views 模板文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#build-编译输出"><span class="nav-number">2.4.</span> <span class="nav-text">build 编译输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键特性"><span class="nav-number">3.</span> <span class="nav-text">关键特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于配置"><span class="nav-number">4.</span> <span class="nav-text">关于配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rollup-简介"><span class="nav-number">4.1.</span> <span class="nav-text">Rollup 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件使用"><span class="nav-number">4.2.</span> <span class="nav-text">插件使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础包"><span class="nav-number">4.2.1.</span> <span class="nav-text">基础包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#热选包"><span class="nav-number">4.2.2.</span> <span class="nav-text">热选包</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web服务"><span class="nav-number">4.3.</span> <span class="nav-text">Web服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特性"><span class="nav-number">4.3.1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">4.3.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板引擎"><span class="nav-number">4.4.</span> <span class="nav-text">模板引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">4.4.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-1"><span class="nav-number">4.4.2.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sgdhfe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
