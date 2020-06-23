@@ -36,9 +36,44 @@ CLI，全称是command-line interface，也就是命令行交互接口。
 3. CLI可以通过软件包形式分发，其他开发者可以简单使用
 
 
-
 <!-- more -->
 
 https://github.com/SBoudrias/Inquirer.js#examples
 
 [feer-cli](https://github.com/consolejs/feer-cli)
+
+
+使用命令行，为的是方便、迅速， 让开发者不在搭建上浪费功夫。
+
+
+http://git.dh.sogou-inc.com/vin/fetch/blob/master/fetch.sh
+
+https://note.youdao.com/ynoteshare1/index.html?id=0da3b13abdc2bc65964d2fd09de9fd4c&type=note#/
+
+
+当初，选择使用过shell脚本把开发环境从gitlab拉取到本地，还算方便。
+
+执行该脚本，选择输入对应内容即可。
+
+分三个核心操作：
+
+1. 集成开发环境拉取，可选模板pc、h5
+2. 远程库地址变更，默认为模板所在库
+3. 项目初始化安装，开发者可选项
+
+
+有几个缺点：
+
+1. 该脚本须在本地，如果更新，需要手动替换. ----> 麻烦
+2. 拉取采用clone的形式，附带log日志.  ----> 冗余
+3. 新时期潮流编程趋势--命令行  ----> 落后
+
+
+命令行特点：
+
+1. 快速安装以及更新 ---> 敏捷
+2. 只含有集成开发环境代码 ---> 专注
+3. 紧跟开发潮流趋势 ---> 逼格
+
+
+
