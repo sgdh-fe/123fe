@@ -1,0 +1,105 @@
+---
+title: 构建命令行工具 FEER-CLI
+date: 2020-07-11 12:13:56
+categories: js
+tags:
+- 开发环境
+- CLI
+author: kun
+---
+
+<style type="text/css">
+    .br10{border-radius: 6px;}
+</style>
+
+
+<img class="br10 k-lazy" src="./f_01.jpg">
+
+
+<!-- more -->
+
+
+<!-- http://git.dh.sogou-inc.com/vin/fetch/blob/master/fetch.sh -->
+
+<!-- https://note.youdao.com/ynoteshare1/index.html?id=0da3b13abdc2bc65964d2fd09de9fd4c&type=note#/ -->
+
+
+
+## 开篇主题
+
+
+团队在开发项目时，常关注几个点 ：
+
+- 快速生成需要的项目模板，以避免重复基础搭建工作
+- 成熟稳定的开发环境，以使团队成员快速进入开发周期
+- 保证团队开发环境的一致性，以便于成员合作及长维护
+
+
+## 回顾与展望
+
+于是，随着开发阶段的发展以及技术革新，近些年我们团队陆续搭建了多个团队开发环境，从刚哥最初搭建的 __leo、fe、fe2、fe3__， 兴祥搭建的 __fes__，以及我最近搭建的 __feer__，以上看历经探索并应用 [grunt](https://www.gruntjs.net/) 到 [gulp](https://www.gulpjs.com.cn/) 到 [webpack](https://www.webpackjs.com/) & [rollup](https://www.rollupjs.com/) 等各类打包工具时代，或许接下来将应用号称提高10倍打包速度 [snowpack](https://www.snowpack.dev/) 或其他？？
+
+
+技术在不停地革新进步，同时期的技术或许可以在解决方案上、在性能上、在优雅度上有优劣之分，如[browserify](http://browserify.org/)时代我们就拿grunt与之对比，后来又加入gulp。再后来webpack的强大出现，是技术革新、足以碾压前时代，再与之前对比则无多少意义，于是有了rollup与之媲美 、有了[parcel](https://parceljs.org/)的加入，如今又来了 [snowpack](https://www.snowpack.dev/)。__总之，在选择上，符合时代发展的、适合当前项目开发的，就是最好的。__ 愿我们<u>紧跟技术发展的脚步</u>，<u>打造更多、更美好的、可为我们服务的</u>工具集合。
+
+
+## Shell的应用
+
+集成环境有了，那么，我们如何做到 “快速生成需要的项目模板”呢 ？
+
+
+曾经，选择使用Shell脚本将`FE2`集成开发环境从gitlab远程库拉取到本地，还算方便。
+
+<!-- 执行该脚本，选择输入对应内容即可。 -->
+这里时 演示 svg ~~~~~
+
+整个过程分三个核心操作：
+
+1. 集成开发环境拉取，可选模板
+2. 远程库地址变更，默认为模板所在库
+3. 项目初始化安装，开发者可选项
+
+
+使用一段时间后，发现有几个缺点：
+
+1. 该脚本须在本地，如果更新，需要手动替换. &longrightarrow; __麻烦__
+2. 拉取采用clone的形式，附带log日志.  &longrightarrow; __冗余__
+3. 新时期潮流编程趋势--命令行  &longrightarrow; __落后__
+
+于是，新问题的出现，带来新思考、新改变。
+
+## feer-cli 诞生
+
+
+将集成环境<u>构建成命令行工具</u>是个不错的选择！
+当然，这不是首创，前有做得如此优秀[create-react-app](https://create-react-app.dev/)做参考，
+__站在巨人的肩上，当然更容易看得远啦。__
+
+### 术语
+
+CLI，全称是command-line interface，也就是命令行交互接口。
+无论是在前端还是后端，都可以用于在构建时通过命令快速生成项目或模板等。
+
+
+### 基础诉求
+
+我们的基本诉求如下：
+
+1. 通过执行命令，自动生成集成开发环境
+2. 项目代码模板类型可以自定义选择
+3. CLI可通过软件包形式分发，团队其他成员以便捷使用
+
+
+### 优势特点
+
+命令行特点：
+
+* 快速安装以及更新 &longrightarrow; __敏捷__
+* 只含有集成开发环境代码 &longrightarrow; __专注__
+* 紧跟开发潮流趋势 &longrightarrow; __逼格__
+
+
+<!-- 
+https://github.com/SBoudrias/Inquirer.js#examples
+
+[feer-cli](https://github.com/consolejs/feer-cli) -->
