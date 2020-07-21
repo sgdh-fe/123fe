@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-192x192.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="源码 webpack hook," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content=".br10{border-radius: 10px;}">
+<meta name="keywords" content="源码 webpack hook">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tapable hook介绍">
+<meta property="og:url" content="http://123fe.com/2020/07/21/tapable-hook介绍/index.html">
+<meta property="og:site_name" content="Sogou.dh.fe">
+<meta property="og:description" content=".br10{border-radius: 10px;}">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-images.githubusercontent.com/14739234/76166340-b6eb0400-6198-11ea-940e-c2b3e7482aa8.png">
+<meta property="og:image" content="http://123fe.com/2020/07/21/tapable-hook介绍/syncHook.png">
+<meta property="og:image" content="http://123fe.com/2020/07/21/tapable-hook介绍/syncBailHook.png">
+<meta property="og:image" content="http://123fe.com/2020/07/21/tapable-hook介绍/syncWaterfallHook.png">
+<meta property="og:image" content="http://123fe.com/2020/07/21/tapable-hook介绍/syncLoopHook.png">
+<meta property="og:image" content="http://123fe.com/2020/07/21/tapable-hook介绍/syncLoopHook2.png">
+<meta property="og:image" content="http://123fe.com/2020/07/21/tapable-hook介绍/asyncParallelHook.png">
+<meta property="og:image" content="http://123fe.com/2020/07/21/tapable-hook介绍/asyncParallelBailHook.png">
+<meta property="og:image" content="http://123fe.com/2020/07/21/tapable-hook介绍/asyncSeriesHook.png">
+<meta property="og:image" content="http://123fe.com/2020/07/21/tapable-hook介绍/asyncSeriesBailHook.png">
+<meta property="og:image" content="http://123fe.com/2020/07/21/tapable-hook介绍/asyncSeriesWaterfallHook.png">
+<meta property="og:updated_time" content="2020-07-21T06:24:02.456Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tapable hook介绍">
+<meta name="twitter:description" content=".br10{border-radius: 10px;}">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/14739234/76166340-b6eb0400-6198-11ea-940e-c2b3e7482aa8.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://123fe.com/2020/07/21/tapable-hook介绍/"/>
+
+
+
+
+
+  <title>tapable hook介绍 | Sogou.dh.fe</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sogou.dh.fe</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">fe blogs</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-github">
+          <a href="https://github.com/sgdh-fe" rel="section">
+            
+            Github
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://123fe.com/2020/07/21/tapable-hook介绍/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sgdhfe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sogou.dh.fe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">tapable hook介绍</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-21T14:06:39+08:00">
+                2020-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工程化/" itemprop="url" rel="index">
+                    <span itemprop="name">工程化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+          <span> ｜ </span><span class="fa fa-user-o"> </span><span style="color:#222;"> 牛犇</span>
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <style type="text/css">
+    .br10{border-radius: 10px;}
+</style>
+
+<p><img class="br10" src="https://user-images.githubusercontent.com/14739234/76166340-b6eb0400-6198-11ea-940e-c2b3e7482aa8.png"></p>
+<a id="more"></a>
+<h2 id="tapable-hook介绍"><a href="#tapable-hook介绍" class="headerlink" title="tapable hook介绍"></a>tapable hook介绍</h2><p><code>tapable</code>是<code>webpack</code>重要的底层模块。理解<code>webpack</code>首先要理解<code>tabable</code>, 而<code>tapable hook</code>更是重中之重。</p>
+<p><code>tapable</code>主要提供各式各样的hook。主要有下面几种类型: </p>
+<ul>
+<li>SyncHook</li>
+<li>SyncBailHook</li>
+<li>SyncWaterfallHook</li>
+<li>SyncLoopHook</li>
+<li>AsyncParallelHook</li>
+<li>AsyncParallelBailHook</li>
+<li>AsyncSeriesHook</li>
+<li>AsyncSeriesBailHook</li>
+<li>AsyncSeriesWaterfallHook</li>
+</ul>
+<p>钩子的类型比较多，通过上面封面图分类看的会更加直观;<br><!-- ![tapable 钩子列表](https://user-images.githubusercontent.com/14739234/76166340-b6eb0400-6198-11ea-940e-c2b3e7482aa8.png)
+[点击查看图片来源](https://github.com/zgfang1993/blog/issues/41) --></p>
+<p>关键词介绍:</p>
+<ul>
+<li>Sync/Async: 同步/异步;</li>
+<li>Bail: 可退出<code>Hook</code>, 当订阅事件有<code>return</code>返回值时，则不执行之后的订阅事件;</li>
+<li>Waterfall: 可以传递值。当前一个事件可以把值传给后一个事件;</li>
+<li>Loop: 循环执行事件。当事件没有<code>return</code>返回值时会循环执行当前事件，直到有<code>return</code>返回值时才退出执行下一个事件;</li>
+<li>AsyncParallel: 异步并行;</li>
+<li>AsyncSeries: 异步串行;</li>
+</ul>
+<p>常见的订阅/发布API</p>
+<ul>
+<li>tap: 订阅一个同步事件;</li>
+<li>call: 发布一个同步事件;</li>
+<li>tapAsync: 订阅一个异步事件;</li>
+<li>callAsync: 发布一个异步事件;</li>
+</ul>
+<p>下面是每个Hook的流程图和介绍</p>
+<h4 id="syncHook"><a href="#syncHook" class="headerlink" title="syncHook"></a>syncHook</h4><p><code>syncHook</code>是最基础的同步<code>hook</code>, 按照订阅的前后顺序执行; 示例代码如下:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;SyncHook&#125;  <span class="keyword">from</span> <span class="string">"tapable"</span>;    </div><div class="line"><span class="keyword">var</span> synchook = <span class="keyword">new</span> SyncHook([<span class="string">"name"</span>]);</div><div class="line">synchook.tap(<span class="string">"tap0"</span>, (name)=&gt;&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"I'm"</span>, a);</div><div class="line">&#125;);</div><div class="line">synchook.tap(<span class="string">"tap1"</span>, (name)=&gt;&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"I'm"</span>, name);</div><div class="line">&#125;);</div><div class="line">synchook.tap(<span class="string">"tap2"</span>, (name)=&gt;&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"I'm"</span>, name);</div><div class="line">&#125;);</div><div class="line">synchook.call(<span class="string">"Ben"</span>);</div></pre></td></tr></table></figure></p>
+<p><code>syncHook</code>执行的流程图如下<br><img src="/2020/07/21/tapable-hook介绍/syncHook.png" alt="synchook"></p>
+<h4 id="syncBailHook"><a href="#syncBailHook" class="headerlink" title="syncBailHook"></a>syncBailHook</h4><p><code>syncBailHook</code>相比<code>syncHook</code>增加一个退出机制：当有一个订阅事件有<code>return</code>返回值，则之后的事件都不触发了;<br><code>syncBailHook</code>可用于一些需要前置条件判断的场景; 示例代码如下:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;SyncBailHook&#125;  <span class="keyword">from</span> <span class="string">"tapable"</span>;  </div><div class="line"><span class="keyword">var</span> syncBailHook = <span class="keyword">new</span> SyncBailHook([<span class="string">"name"</span>, <span class="string">"height"</span>]);</div><div class="line">syncBailHook.tap(<span class="string">"tap0"</span>, (name, height)=&gt;&#123;        </div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"I'm"</span>, name);</div><div class="line">    <span class="keyword">if</span>(name == <span class="string">"Ben"</span>)&#123;        </div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;        </div><div class="line">&#125;);</div><div class="line">syncBailHook.tap(<span class="string">"tap1"</span>, (name, height)=&gt;&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"I'm"</span>, name);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">syncBailHook.tap(<span class="string">"tap2"</span>, (name, height)=&gt;&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"I'm"</span>, name);</div><div class="line">&#125;);</div><div class="line">syncBailHook.call(<span class="string">"Ben"</span>);</div></pre></td></tr></table></figure></p>
+<p>上面代码当<code>tap0</code>事件有<code>return</code>时，<code>tap1, tap2</code>都不在触发了;<br><code>syncBailHook</code>执行流程图如下<br><img src="/2020/07/21/tapable-hook介绍/syncBailHook.png" alt="syncbailhook"></p>
+<h4 id="syncWaterfallHook"><a href="#syncWaterfallHook" class="headerlink" title="syncWaterfallHook"></a>syncWaterfallHook</h4><p><code>syncWaterfallHook</code>相比<code>syncHook</code>增加一个传递值的功能：前面一个事件可以将值传递给下一个事件;<br><code>syncWaterfallHook</code>可用于一些流程化的场景，第一步得到的结果传给第二步使用;  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;SyncWaterfallHook&#125;  <span class="keyword">from</span> <span class="string">"tapable"</span>;  </div><div class="line"><span class="keyword">var</span> SyncWaterfallHook = <span class="keyword">new</span> SyncWaterfallHook([<span class="string">"name"</span>]);</div><div class="line">SyncWaterfallHook.tap(<span class="string">"tap0"</span>, (name, height)=&gt;&#123;        </div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"I'm Tom"</span>);</div><div class="line">    <span class="keyword">return</span> name + <span class="string">",Tom"</span></div><div class="line">&#125;);</div><div class="line">SyncWaterfallHook.tap(<span class="string">"tap1"</span>, (name, height)=&gt;&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"I'm Piter"</span>);</div><div class="line">    <span class="keyword">return</span> name + <span class="string">",Piter"</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">SyncWaterfallHook.tap(<span class="string">"tap2"</span>, (name, height)=&gt;&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"I'm Luci"</span>);</div><div class="line">    <span class="keyword">return</span> name + <span class="string">",Luci"</span></div><div class="line">&#125;);</div><div class="line">SyncWaterfallHook.call(<span class="string">"Ben"</span>);</div></pre></td></tr></table></figure>
+<p>执行结果:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Ben,Tom,Piter,Luci</div></pre></td></tr></table></figure></p>
+<p><code>syncWaterfallHook</code>执行流程图如下:<br><img src="/2020/07/21/tapable-hook介绍/syncWaterfallHook.png" alt="syncWaterfallHook"></p>
+<h4 id="syncLoopHook"><a href="#syncLoopHook" class="headerlink" title="syncLoopHook"></a>syncLoopHook</h4><p><code>syncLoopHook</code>相比<code>syncHook</code>增加一个循环机制：当订阅事件没有<code>return</code>时会继续执行该事件，直到事件有<code>return</code>为止;<br><code>syncLoopHook</code>可以用于需要递归的场景，比如遍历树节点之类;示例代码如下:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;SyncLoopHook&#125;  <span class="keyword">from</span> <span class="string">"tapable"</span>;  </div><div class="line"><span class="keyword">var</span> syncLoopHook = <span class="keyword">new</span> SyncLoopHook();</div><div class="line"><span class="keyword">var</span> num = <span class="number">0</span>;</div><div class="line">syncLoopHook.tap(<span class="string">"tap0"</span>, ()=&gt;&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"tap0"</span>, num);</div><div class="line">    <span class="keyword">if</span>(num++ <span class="xml"><span class="tag">&lt; <span class="attr">5</span>)&#123;</span></span></div><div class="line"><span class="xml">        return false;    </span></div><div class="line"><span class="xml">    &#125;</span></div><div class="line"><span class="xml">&#125;);</span></div></pre></td></tr></table></figure></p>
+<p>执行结果如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">0</div><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td></tr></table></figure></p>
+<p><code>syncLoopHook</code>执行流程图如下:<br><img src="/2020/07/21/tapable-hook介绍/syncLoopHook.png" alt="syncLoopHook"></p>
+<p>当有注册多个事件时需要注意一点：之后事件会把之前事件也执行一次。执行流程图如下:<br><img src="/2020/07/21/tapable-hook介绍/syncLoopHook2.png" alt="syncLoopHook"></p>
+<h4 id="asyncParallelHook"><a href="#asyncParallelHook" class="headerlink" title="asyncParallelHook"></a>asyncParallelHook</h4><p><code>asyncParallelHook</code>是同时触发所有异步注册事件，当所有注册事件都执行完毕后，整个发布事件才结束;<br><code>asyncParallelHook</code>应用的场景很多，比如请求多个接口合并数据; </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> asyncParallelHook = <span class="keyword">new</span> AsyncParallelHook([]);</div><div class="line"></div><div class="line">asyncParallelHook.tapAsync(<span class="string">"tap0"</span>, (cb)=&gt;&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"tap0"</span>);</div><div class="line">    setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">        cb();</div><div class="line">    &#125;, <span class="number">2000</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">asyncParallelHook.tapAsync(<span class="string">"tap1"</span>, (cb)=&gt;&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"tap1"</span>);</div><div class="line">    setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">        cb();</div><div class="line">    &#125;, <span class="number">4000</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">asyncParallelHook.tapAsync(<span class="string">"tap2"</span>, (cb)=&gt;&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"tap2"</span>);</div><div class="line">    setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">        cb();</div><div class="line">    &#125;, <span class="number">4000</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// console.log(asyncParallelHook);</span></div><div class="line">asyncParallelHook.callAsync(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"end"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>执行结果<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 2s后</span></div><div class="line">tap0 </div><div class="line"><span class="comment">// 4s后</span></div><div class="line">tap1</div><div class="line">tap2</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/07/21/tapable-hook介绍/asyncParallelHook.png" alt="asyncParallelHook"></p>
+<h4 id="asyncParallelBailHook"><a href="#asyncParallelBailHook" class="headerlink" title="asyncParallelBailHook"></a>asyncParallelBailHook</h4><p><code>asyncParallelBailHook</code>相比<code>asyncParallelHook</code>多了一个退出机制，和<code>syncBailHook</code>是一样的逻辑;  </p>
+<p><code>asyncParallelBailHook</code>可以应用在一些需要前置判断的场景，如果前置条件不成立，则退出整个流程; </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> asyncParallelBailHook = <span class="keyword">new</span> AsyncParallelBailHook();</div><div class="line">asyncParallelBailHook.tapAsync(<span class="string">"tapAsync0"</span>, (cb)=&gt;&#123;    </div><div class="line">  cb();</div><div class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">asyncParallelBailHook.tapAsync(<span class="string">"tapAsync1"</span>, (cb)=&gt;&#123;  </div><div class="line">  cb();</div><div class="line">&#125;);</div><div class="line"></div><div class="line">asyncParallelBailHook.callAsync(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"end"</span>);</div><div class="line">&#125;);</div><div class="line">asyncParallelBailHook.call();</div></pre></td></tr></table></figure>
+<p><code>asyncParallelBailHook</code>执行流程如下:<br><img src="/2020/07/21/tapable-hook介绍/asyncParallelBailHook.png" alt="asyncParallelBailHook"></p>
+<h4 id="asyncSeriesHook"><a href="#asyncSeriesHook" class="headerlink" title="asyncSeriesHook"></a>asyncSeriesHook</h4><p><code>asyncSeriesHook</code>是按照注册的前后顺序触发异步事件，一个异步事件执行完毕后才能触发下一个。  </p>
+<p><code>asyncSeriesHook</code>可以应用场景很多,相比<code>syncHook</code>同步事件，<code>asyncSeriesHook</code>可以执行一些异步事件;  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> asyncSeriesHook = <span class="keyword">new</span> AsyncSeriesHook();</div><div class="line">asyncSeriesHook.tapAsync(<span class="string">"tapAsync0"</span>, (cb)=&gt;&#123;    </div><div class="line">    setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">        cb &amp;&amp; cb()</div><div class="line">    &#125;, <span class="number">5000</span>);</div><div class="line">&#125;); </div><div class="line"></div><div class="line">asyncSeriesHook.tapAsync(<span class="string">"tapAsync1"</span>, (cb)=&gt;&#123;    </div><div class="line">    setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">        cb &amp;&amp; cb()</div><div class="line">    &#125;, <span class="number">1000</span>);    </div><div class="line">&#125;);</div><div class="line"></div><div class="line">asyncSeriesHook.callAsync(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"end"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><code>asyncseriesHook</code>执行流程如下:<br><img src="/2020/07/21/tapable-hook介绍/asyncSeriesHook.png" alt="asyncseriesHook"></p>
+<h4 id="asyncSeriesBailHook"><a href="#asyncSeriesBailHook" class="headerlink" title="asyncSeriesBailHook"></a>asyncSeriesBailHook</h4><p><code>asyncSeriesBailHook</code>相比<code>asyncSeriesHook</code>多了一个退出机制，和<code>syncBailHook</code>是一样的逻辑;<br><code>asyncSeriesBailHook</code>可以应用在一些需要异步判断前置条件的场景，如果前置条件不成立则退出整个流程;  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> asyncSeriesBailHook = <span class="keyword">new</span> AsyncSeriesBailHook([<span class="string">"sum"</span>]);</div><div class="line">asyncSeriesBailHook.tapAsync(<span class="string">"tapAsync0"</span>, (sum, cb)=&gt;&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"sum"</span>, sum);</div><div class="line">    setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">        <span class="comment">// cb &amp;&amp; cb(false);        </span></div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;, <span class="number">2000</span>);</div><div class="line">    </div><div class="line">    </div><div class="line">&#125;); </div><div class="line"></div><div class="line">asyncSeriesBailHook.tapAsync(<span class="string">"tapAsync1"</span>, (sum, cb)=&gt;&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"sum"</span>, sum);    </div><div class="line">    setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">        cb &amp;&amp; cb(<span class="literal">false</span>);</div><div class="line">    &#125;, <span class="number">1000</span>);</div><div class="line">    </div><div class="line">&#125;);</div><div class="line"></div><div class="line">asyncSeriesBailHook.callAsync(<span class="number">1</span>, (sum)=&gt;&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"end"</span>, <span class="string">"sum"</span>, sum);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><code>asyncSeriesBailHook</code>执行流程如下:<br><img src="/2020/07/21/tapable-hook介绍/asyncSeriesBailHook.png" alt="asyncSeriesBailHook"></p>
+<h4 id="asyncSeriesWaterfallHook"><a href="#asyncSeriesWaterfallHook" class="headerlink" title="asyncSeriesWaterfallHook"></a>asyncSeriesWaterfallHook</h4><p><code>asyncSeriesWaterfallHook</code>相比<code>asyncSeriesHook</code>多了一个传值功能，和<code>syncWaterfallHook</code>是一样的逻辑;  </p>
+<p><code>asyncSeriesWaterfallHook</code>可以应用在异步流程化的场景，比如将一个异步请求接口值传给下一个;  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> asyncSeriesWaterfallHook = <span class="keyword">new</span> AsyncSeriesWaterfallHook([<span class="string">"sum"</span>]);</div><div class="line">asyncSeriesWaterfallHook.tapAsync(<span class="string">"tapAsync0"</span>, (sum, cb)=&gt;&#123;    </div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"sum"</span>, sum);</div><div class="line">    setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">        cb &amp;&amp; cb(<span class="literal">null</span>, ++sum);        </div><div class="line">    &#125;, <span class="number">2000</span>);</div><div class="line">    </div><div class="line">&#125;); </div><div class="line"></div><div class="line">asyncSeriesWaterfallHook.tapAsync(<span class="string">"tapAsync1"</span>, (sum, cb)=&gt;&#123;    </div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"sum"</span>, sum);</div><div class="line">    setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">        cb &amp;&amp; cb(<span class="literal">null</span>, ++sum);        </div><div class="line">    &#125;, <span class="number">1000</span>);    </div><div class="line">&#125;);</div><div class="line"></div><div class="line">asyncSeriesWaterfallHook.callAsync(<span class="number">1</span>, (sum)=&gt;&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"end"</span>,  sum);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><code>asyncSeriesWaterfallHook</code>执行流程如下:<br><img src="/2020/07/21/tapable-hook介绍/asyncSeriesWaterfallHook.png" alt="asyncSeriesWaterfallHook"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/源码-webpack-hook/" rel="tag"># 源码 webpack hook</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/12/前端集成开发环境FEER/" rel="next" title="前端集成开发环境 FEER">
+                <i class="fa fa-chevron-left"></i> 前端集成开发环境 FEER
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="sgdhfe" />
+            
+              <p class="site-author-name" itemprop="name">sgdhfe</p>
+              <p class="site-description motion-element" itemprop="description">🐳 搜狗导航前端开发组 🐬</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sgdh-fe" target="_blank" title="github">
+                      
+                        <i class="fa fa-fw fa-github"></i>github</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://123.sogou.com/" title="123sogou" target="_blank">123sogou</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tapable-hook介绍"><span class="nav-number">1.</span> <span class="nav-text">tapable hook介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#syncHook"><span class="nav-number">1.0.1.</span> <span class="nav-text">syncHook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#syncBailHook"><span class="nav-number">1.0.2.</span> <span class="nav-text">syncBailHook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#syncWaterfallHook"><span class="nav-number">1.0.3.</span> <span class="nav-text">syncWaterfallHook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#syncLoopHook"><span class="nav-number">1.0.4.</span> <span class="nav-text">syncLoopHook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#asyncParallelHook"><span class="nav-number">1.0.5.</span> <span class="nav-text">asyncParallelHook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#asyncParallelBailHook"><span class="nav-number">1.0.6.</span> <span class="nav-text">asyncParallelBailHook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#asyncSeriesHook"><span class="nav-number">1.0.7.</span> <span class="nav-text">asyncSeriesHook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#asyncSeriesBailHook"><span class="nav-number">1.0.8.</span> <span class="nav-text">asyncSeriesBailHook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#asyncSeriesWaterfallHook"><span class="nav-number">1.0.9.</span> <span class="nav-text">asyncSeriesWaterfallHook</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sgdhfe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

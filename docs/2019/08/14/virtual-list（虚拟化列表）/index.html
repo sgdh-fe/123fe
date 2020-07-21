@@ -6,10 +6,10 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="优化,">
+  <meta name="keywords" content="优化," />
 
 
 
@@ -86,7 +86,7 @@
 <meta property="og:description" content="第一次了解这项技术是通过 react-virtualized 组件。当时就大概了解了一下，没有深入研究。近期刚好有时间折腾了一下，想将其技术对现有项目进行优化，就对其技术研究了一番。有点收获，就整理一了一下，与大家分享分享。  singsong: react-virtualized 的作者已对 react-virtualized 进行重写。并重新构建为 react-window。  背景该技术算">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://123fe.com/2019/08/14/virtual-list（虚拟化列表）/window-diagram.jpg">
-<meta property="og:updated_time" content="2020-06-09T10:27:57.340Z">
+<meta property="og:updated_time" content="2019-08-14T09:36:24.896Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="virtual list（虚拟化列表）">
 <meta name="twitter:description" content="第一次了解这项技术是通过 react-virtualized 组件。当时就大概了解了一下，没有深入研究。近期刚好有时间折腾了一下，想将其技术对现有项目进行优化，就对其技术研究了一番。有点收获，就整理一了一下，与大家分享分享。  singsong: react-virtualized 的作者已对 react-virtualized 进行重写。并重新构建为 react-window。  背景该技术算">
@@ -120,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://123fe.com/2019/08/14/virtual-list（虚拟化列表）/">
+  <link rel="canonical" href="http://123fe.com/2019/08/14/virtual-list（虚拟化列表）/"/>
 
 
 
@@ -138,7 +138,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -148,13 +148,13 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Sogou.dh.fe</span>
         <span class="logo-line-after"><i></i></span>
@@ -256,20 +256,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://123fe.com/2019/08/14/virtual-list（虚拟化列表）/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sgdhfe">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/logo.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Sogou.dh.fe">
     </span>
 
@@ -329,35 +329,35 @@
 
       
         <p><img src="/2019/08/14/virtual-list（虚拟化列表）/window-diagram.jpg" alt=""></p>
-<p>第一次了解这项技术是通过 <a href="https://bvaughn.github.io/react-virtualized/" target="_blank" rel="noopener">react-virtualized</a> 组件。当时就大概了解了一下，没有深入研究。近期刚好有时间折腾了一下，想将其技术对现有项目进行优化，就对其技术研究了一番。有点收获，就整理一了一下，与大家分享分享。</p>
+<p>第一次了解这项技术是通过 <a href="https://bvaughn.github.io/react-virtualized/" target="_blank" rel="external">react-virtualized</a> 组件。当时就大概了解了一下，没有深入研究。近期刚好有时间折腾了一下，想将其技术对现有项目进行优化，就对其技术研究了一番。有点收获，就整理一了一下，与大家分享分享。</p>
 <blockquote>
-<p>singsong: react-virtualized 的作者已对 react-virtualized 进行重写。并重新构建为 <a href="https://github.com/bvaughn/react-window" target="_blank" rel="noopener">react-window</a>。</p>
+<p>singsong: react-virtualized 的作者已对 react-virtualized 进行重写。并重新构建为 <a href="https://github.com/bvaughn/react-window" target="_blank" rel="external">react-window</a>。</p>
 </blockquote>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>该技术算是对无限滚动加载的一种优化。无限滚动加载随着加载数量的增多，对性能的影响就越来越大。因为每次浏览器需要重绘的 DOM 节点数越来越多，耗时越长。这对用户体验造成的影响也是不容忽略的。为了减少 DOM 节点数量，virtual list 技术应运而生。</p>
 <a id="more"></a>
 <h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><ul>
-<li><p><a href="https://github.com/zhansingsong/fe-tutorials/blob/master/virtual-list/demo/list.html" target="_blank" rel="noopener">无限滚动加载</a></p>
+<li><p><a href="https://github.com/zhansingsong/fe-tutorials/blob/master/virtual-list/demo/list.html" target="_blank" rel="external">无限滚动加载</a></p>
 </li>
-<li><p><a href="https://github.com/zhansingsong/fe-tutorials/blob/master/virtual-list/demo/vlist.html" target="_blank" rel="noopener">virtual list</a></p>
+<li><p><a href="https://github.com/zhansingsong/fe-tutorials/blob/master/virtual-list/demo/vlist.html" target="_blank" rel="external">virtual list</a></p>
 </li>
 </ul>
-<h2 id="How-does-windowing-work"><a href="#How-does-windowing-work" class="headerlink" title="How does windowing work?"></a><a href="https://bvaughn.github.io/forward-js-2017/#/12/0" target="_blank" rel="noopener">How does windowing work?</a></h2><ul>
+<h2 id="How-does-windowing-work"><a href="#How-does-windowing-work" class="headerlink" title="How does windowing work?"></a><a href="https://bvaughn.github.io/forward-js-2017/#/12/0" target="_blank" rel="external">How does windowing work?</a></h2><ul>
 <li>定义一个相对定位（<code>position: relative;</code>）的容器 container。</li>
 <li>在 container 中定义一个滚动容器 scroller。</li>
 <li>在 scroller 中绝对定位（<code>position: absolute;</code>）可见的 items。</li>
 </ul>
 <h2 id="相关库"><a href="#相关库" class="headerlink" title="相关库"></a>相关库</h2><ul>
-<li><a href="https://github.com/tbranyen/hyperlist" target="_blank" rel="noopener">hyperlist</a></li>
-<li><a href="https://github.com/bvaughn/react-window" target="_blank" rel="noopener">react-window</a></li>
-<li><a href="https://bvaughn.github.io/react-virtualized/" target="_blank" rel="noopener">react-virtualized</a></li>
-<li><a href="https://github.com/NeXTs/Clusterize.js" target="_blank" rel="noopener">Clusterize.js</a></li>
-<li><a href="https://github.com/mleibman/SlickGrid" target="_blank" rel="noopener">SlickGrid</a></li>
-<li><a href="https://github.com/triceam/MegaList" target="_blank" rel="noopener">MegaList</a></li>
+<li><a href="https://github.com/tbranyen/hyperlist" target="_blank" rel="external">hyperlist</a></li>
+<li><a href="https://github.com/bvaughn/react-window" target="_blank" rel="external">react-window</a></li>
+<li><a href="https://bvaughn.github.io/react-virtualized/" target="_blank" rel="external">react-virtualized</a></li>
+<li><a href="https://github.com/NeXTs/Clusterize.js" target="_blank" rel="external">Clusterize.js</a></li>
+<li><a href="https://github.com/mleibman/SlickGrid" target="_blank" rel="external">SlickGrid</a></li>
+<li><a href="https://github.com/triceam/MegaList" target="_blank" rel="external">MegaList</a></li>
 </ul>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
-<li><a href="https://jsfiddle.net/jpeter06/ao464o8g/" target="_blank" rel="noopener">https://jsfiddle.net/jpeter06/ao464o8g/</a></li>
-<li><a href="https://sergimansilla.com/blog/virtual-scrolling/" target="_blank" rel="noopener">https://sergimansilla.com/blog/virtual-scrolling/</a></li>
-<li><a href="https://addyosmani.com/blog/react-window/" target="_blank" rel="noopener">Rendering large lists with react-window</a></li>
+<li><a href="https://jsfiddle.net/jpeter06/ao464o8g/" target="_blank" rel="external">https://jsfiddle.net/jpeter06/ao464o8g/</a></li>
+<li><a href="https://sergimansilla.com/blog/virtual-scrolling/" target="_blank" rel="external">https://sergimansilla.com/blog/virtual-scrolling/</a></li>
+<li><a href="https://addyosmani.com/blog/react-window/" target="_blank" rel="external">Rendering large lists with react-window</a></li>
 </ul>
 
       
@@ -465,12 +465,14 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="sgdhfe">
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="sgdhfe" />
             
               <p class="site-author-name" itemprop="name">sgdhfe</p>
-              <p class="site-description motion-element" itemprop="description">🐳🐳 搜狗导航前端开发组 🐬🐬</p>
+              <p class="site-description motion-element" itemprop="description">🐳 搜狗导航前端开发组 🐬</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -480,7 +482,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -491,7 +493,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -502,7 +504,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
