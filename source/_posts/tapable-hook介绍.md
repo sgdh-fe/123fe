@@ -37,7 +37,7 @@ author: 牛犇
 * Sync/Async: 同步/异步;
 * Bail: 可退出`Hook`, 当订阅事件有`return`返回值时，则不执行之后的订阅事件;
 * Waterfall: 可以传递值。当前一个事件可以把值传给后一个事件;
-* Loop: 循环执行事件。当事件没有`return`返回值时会循环执行当前事件，直到有`return`返回值时才退出执行下一个事件;
+* Loop: 循环执行事件。当事件有`return`返回值时会循环执行当前事件，直到没有`return`返回值时才退出执行下一个事件;
 * AsyncParallel: 异步并行;
 * AsyncSeries: 异步串行;
 
@@ -135,7 +135,7 @@ Ben,Tom,Piter,Luci
 ### syncLoopHook  
 ![syncLoopHook](./syncLoopHook.png)  
 
-`syncLoopHook`相比`syncHook`增加一个循环机制：当订阅事件没有`return`时会继续执行该事件，直到事件有`return`为止;
+`syncLoopHook`相比`syncHook`增加一个循环机制：当订阅事件有`return`时会继续执行该事件，直到事件没有`return`再执行下一个事件;
 `syncLoopHook`可以用于需要递归的场景，比如遍历树节点之类;示例代码如下:
 ```js
 import {SyncLoopHook}  from "tapable";  
