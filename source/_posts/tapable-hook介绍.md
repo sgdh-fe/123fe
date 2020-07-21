@@ -14,7 +14,7 @@ author: 牛犇
 
 <!-- more -->
 
-`tapable`是`webpack`重要的底层模块。理解`webpack`首先要理解`tabable`, 而`tapable hook`更是重中之重。
+`tapable`是`webpack`重要的底层模块。理解`webpack`首先要理解`tapable`, 而`tapable hook`更是重中之重。
 
 `tapable`主要提供各式各样的`hook`。主要有下面几种类型: 
 
@@ -316,4 +316,4 @@ asyncSeriesWaterfallHook.callAsync(1, (sum)=>{
 ```
 到这里已经介绍完9个`hook`，通过这9个`hook`可以覆盖各种各样的业务场景。  
 最后我想简单说一下`hook`这种设计模式的优缺点。我认为有封装和扩展两个优点。通过`hook`设计可以将相同功能代码放在一起实现代码拆分和封装。通过增加`hook`方式很容易实现功能的扩展。我认为有一个缺点：需要遵循一定调用规范，需要事先了解Hook相关API和返回值等。  
-`hook`设计思想整体来说还是利大于弊，底层还是分治的思想。`hook`特别适合功能复杂和功能经常需要扩展的场景下使用。
+`hook`设计模式整体来说还是利大于弊，底层采用分治的设计思想。`hook`特别适合功能复杂和功能经常需要扩展的场景下使用。
